@@ -16,11 +16,11 @@
         <li><a href="{% url 'dashboard' %}">Início</a></li>
         <li><a href="{% url 'historico' %}">Histórico</a></li>
         <li><a href="{% url 'perfil' %}">Perfil</a></li>
-      <li>
-  <form method="post" action="{% url 'logout' %}">
-    {% csrf_token %}
-    <button type="submit" class="link-button">Sair</button>
-  </form>
+      <form action="{% url 'logout' %}" method="post" style="display:inline;">
+  {% csrf_token %}
+  <button type="submit">Sair</button>
+</form>
+rm>
 </li>
 
       {% else %}
