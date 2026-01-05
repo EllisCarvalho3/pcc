@@ -179,11 +179,12 @@ def perfil(request):
     perfil, _ = Perfil.objects.get_or_create(user=request.user)
 
     if request.method == "POST":
-        perfil.peso = request.POST["peso"]
-        perfil.altura = request.POST["altura"]
-        perfil.idade = request.POST["idade"]
-        perfil.atividade = request.POST["atividade"]
-        perfil.objetivo = request.POST["objetivo"]
+        perfil.peso = request.POST.get("peso")
+        perfil.altura = request.POST.get("altura")
+        perfil.idade = request.POST.get("idade")
+        perfil.atividade = request.POST.get("atividade")
+        perfil.objetivo = request.POST.get("objetivo")
+
         perfil.meta_calorica = calcular_meta(
             float(perfil.peso),
             float(perfil.altura),
@@ -191,8 +192,8 @@ def perfil(request):
             perfil.atividade,
             perfil.objetivo
         )
-        perfil.save()
 
-        return redirect("dashboard")
+        perfil.save()
+        return redirect("perfil")
 
     return render(request, "perfil.html", {"perfil": perfil})
