@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Olá, {{ user.username }} 👋</h2>
+
+<section class="meta">
+  <p><strong>Meta diária:</strong> {{ perfil.meta_calorica }} kcal</p>
+  <p><strong>Consumo hoje:</strong> {{ total_calorias }} kcal</p>
+</section>
+
+<section class="cards">
+  <div class="card">🍞 Carboidratos: {{ total_carbo }} g</div>
+  <div class="card">💪 Proteínas: {{ total_proteina }} g</div>
+  <div class="card">🧈 Gorduras: {{ total_gordura }} g</div>
+</section>
+
+<section class="feedback">
+  <h3>Feedback do dia</h3>
+  <p>{{ feedback }}</p>
+</section>
+
+<section class="form">
+  <h3>Adicionar refeição</h3>
+  <form method="post">
+    {% csrf_token %}
+    <input name="nome" placeholder="Alimento" required>
+    <input type="number" step="0.1" name="carbo" placeholder="Carbo (g)" required>
+    <input type="number" step="0.1" name="proteina" placeholder="Proteína (g)" required>
+    <input type="number" step="0.1" name="gordura" placeholder="Gordura (g)" required>
+    <button type="submit">Adicionar</button>
+  </form>
+</section>
+{% endblock %}

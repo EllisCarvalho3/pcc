@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>NutriStudent</title>
+  {% load static %}
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <nav>
+    <h1>NutriStudent</h1>
+    <ul>
+      {% if user.is_authenticated %}
+        <li><a href="{% url 'dashboard' %}">Início</a></li>
+        <li><a href="{% url 'historico' %}">Histórico</a></li>
+        <li><a href="{% url 'perfil' %}">Perfil</a></li>
+        <li><a href="{% url 'logout' %}">Sair</a></li>
+      {% else %}
+        <li><a href="{% url 'login' %}">Entrar</a></li>
+        <li><a href="{% url 'cadastrar' %}">Criar conta</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+</header>
+
+<main>
+  {% block content %}{% endblock %}
+</main>
+
+</body>
+</html>

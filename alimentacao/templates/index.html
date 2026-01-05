@@ -1,89 +1,118 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <title>Monitoramento Nutricional</title>
-  <link rel="stylesheet" href="/alimentacao/static/styles.css">
+  <link rel="stylesheet" href="alimentacao/static/styles.css">
 </head>
 <body>
+
     <style>
         body {
-  font-family: Arial;
-  background: #f5f7fa;
-  padding: 40px;
+  font-family: Arial, sans-serif;
+  background: #f2f4f8;
 }
 
-form input, button {
-  margin: 6px;
-  padding: 8px;
+.container {
+  max-width: 900px;
+  margin: auto;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+input, select, button {
+  width: 100%;
+  margin: 6px 0;
+  padding: 10px;
 }
 
 button {
   background: #4CAF50;
   color: white;
   border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #45a049;
+}
+
+.feedback li {
+  margin: 6px 0;
 }
 
     </style>
-  <h1>Consumo Diário de Macronutrientes</h1>
 
-  <form method="post">
-    {% csrf_token %}
-    <input name="nome" placeholder="Alimento" required>
-    <input name="carbo" placeholder="Carbo (g)" type="number" step="0.1" required>
-    <input name="proteina" placeholder="Proteína (g)" type="number" step="0.1" required>
-    <input name="gordura" placeholder="Gordura (g)" type="number" step="0.1" required>
-    <button>Adicionar</button>
-  </form>
+<div class="container">
 
-  <h2>Total: {{ total }} kcal</h2>
+  <h1>🍽 Monitoramento Nutricional Diário</h1>
 
-  <ul>
-    {% for r in refeicoes %}
-      <li>{{ r.nome }} — {{ r.calorias }} kcal</li>
-    {% endfor %}
-  </ul>
-  <form method="post">
-  {% csrf_token %}
-  <input type="hidden" name="tipo" value="refeicao">
+  <section class="card">
+    <h2>➕ Adicionar Refeição</h2>
+    <form method="post">
+      {% csrf_token %}
+      <input name="nome" placeholder="Alimento" required>
+      <input name="carbo" type="number" step="0.1" placeholder="Carbo (g)" required>
+      <input name="proteina" type="number" step="0.1" placeholder="Proteína (g)" required>
+      <input name="gordura" type="number" step="0.1" placeholder="Gordura (g)" required>
+      <button>Adicionar</button>
+    </form>
+  </section>
 
-  <input name="nome" placeholder="Alimento" required>
-  <input name="carbo" placeholder="Carbo (g)" type="number" step="0.1" required>
-  <input name="proteina" placeholder="Proteína (g)" type="number" step="0.1" required>
-  <input name="gordura" placeholder="Gordura (g)" type="number" step="0.1" required>
+  <section class="card">
+    <h2>🎯 Perfil Nutricional</h2>
+    <form method="post">
+      {% csrf_token %}
+      <input name="peso" placeholder="Peso (kg)" required>
+      <input name="altura" placeholder="Altura (cm)" required>
+      <input name="idade" placeholder="Idade" required>
 
-  <button>Adicionar</button>
-</form>
+      <select name="atividade">
+        <option value="sedentario">Sedentário</option>
+        <option value="leve">Leve</option>
+        <option value="moderado">Moderado</option>
+        <option value="intenso">Intenso</option>
+      </select>
 
-<form method="post">
-  {% csrf_token %}
-  <input type="hidden" name="tipo" value="meta">
+      <select name="objetivo">
+        <option value="manter">Manter</option>
+        <option value="perder">Perder</option>
+        <option value="ganhar">Ganhar</option>
+      </select>
 
-  <input type="number" name="peso" placeholder="Peso (kg)" required>
-  <input type="number" name="altura" placeholder="Altura (cm)" required>
-  <input type="number" name="idade" placeholder="Idade" required>
+      <button>Calcular Meta</button>
+    </form>
 
-  <select name="atividade">
-    <option value="sedentario">Sedentário</option>
-    <option value="leve">Leve</option>
-    <option value="moderado">Moderado</option>
-    <option value="intenso">Intenso</option>
-  </select>
+    {% if perfil %}
+      <p><strong>Meta diária:</strong> {{ perfil.meta_calorica|floatformat:0 }} kcal</p>
+    {% endif %}
+  </section>
 
-  <select name="objetivo">
-    <option value="manter">Manter</option>
-    <option value="perder">Perder</option>
-    <option value="ganhar">Ganhar</option>
-  </select>
+  <section class="card">
+    <h2>📊 Resumo do Dia</h2>
+    <p>Total: {{ total }} kcal</p>
+    <p>Carboidratos: {{ carbo }} g</p>
+    <p>Proteínas: {{ proteina }} g</p>
+    <p>Gorduras: {{ gordura }} g</p>
+  </section>
 
-  <button type="submit">Calcular Meta</button>
-</form>
+  <section class="card feedback">
+    <h2>💬 Feedback</h2>
+    <ul>
+      {% for msg in feedback %}
+        <li>{{ msg }}</li>
+      {% endfor %}
+    </ul>
+  </section>
 
-{% if meta %}
-  <h3>Meta diária: {{ meta|floatformat:0 }} kcal</h3>
-  <p>{{ feedback }}</p>
-{% endif %}
-
+</div>
 
 </body>
 </html>

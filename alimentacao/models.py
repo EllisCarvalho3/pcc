@@ -1,6 +1,24 @@
 from django.db import models
+from django.contrib.auth.models import User
+
+from django.db.models import Sum
+
+def historico(request):
+    dias = (
+        Refeicao.objects
+        .filter(user=request.user)
+        .values('data')
+        .annotate(
+            total=Sum('carboidratos')*4 +
+                  Sum('proteinas')*4 +
+                  Sum('gorduras')*9
+        )
+    )
+    return render(request, "historico.html", {"dias": dias})
+
 
 class Perfil(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     peso = models.FloatField()
     altura = models.FloatField()
     idade = models.IntegerField()
@@ -8,7 +26,12 @@ class Perfil(models.Model):
     objetivo = models.CharField(max_length=20)
     meta_calorica = models.FloatField()
 
+    def __str__(self):
+        return self.user.username
+
+
 class Refeicao(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     nome = models.CharField(max_length=100)
     carboidratos = models.FloatField()
     proteinas = models.FloatField()
@@ -16,16 +39,11 @@ class Refeicao(models.Model):
     data = models.DateField(auto_now_add=True)
 
     def calorias(self):
-        return (
-            self.carboidratos * 4 +
-            self.proteinas * 4 +
-            self.gorduras * 9
-        )
+        return self.carboidratos * 4 + self.proteinas * 4 + self.gorduras * 9
+
 
     def __str__(self):
         return self.nome
+    
 
 
-        
-
-# Create your models here.

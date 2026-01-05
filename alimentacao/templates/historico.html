@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Histórico de consumo</h2>
+
+<ul class="historico">
+  {% for dia in dias %}
+    <li>
+      <strong>{{ dia.data }}</strong> — {{ dia.total }} kcal
+    </li>
+  {% empty %}
+    <li>Nenhum registro ainda.</li>
+  {% endfor %}
+</ul>
+{% endblock %}
