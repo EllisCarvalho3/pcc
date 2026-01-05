@@ -32,3 +32,10 @@ nav a {
   color: white;
   border-radius: 20px;
 }
+.link-button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}

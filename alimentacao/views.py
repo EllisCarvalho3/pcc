@@ -3,6 +3,8 @@ from .models import Refeicao, Perfil
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from .models import Perfil
+from django.contrib.auth.decorators import login_required
+
 
 from django.db.models import Sum
 
@@ -140,9 +142,57 @@ def index(request):
 def home(request):
     return render(request, 'home.html')
 
+@login_required
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    perfil = Perfil.objects.filter(user=request.user).first()
+    refeicoes = Refeicao.objects.filter(user=request.user)
 
+    if request.method == "POST":
+        Refeicao.objects.create(
+            user=request.user,
+            nome=request.POST["nome"],
+            carboidratos=float(request.POST["carbo"]),
+            proteinas=float(request.POST["proteina"]),
+            gorduras=float(request.POST["gordura"]),
+        )
+        return redirect("dashboard")
+
+    total_calorias = sum(r.calorias() for r in refeicoes)
+
+    feedback = gerar_feedback(
+        total_calorias,
+        perfil.meta_calorica if perfil else 0,
+        sum(r.carboidratos for r in refeicoes),
+        sum(r.proteinas for r in refeicoes),
+        sum(r.gorduras for r in refeicoes),
+    )
+
+    return render(request, "dashboard.html", {
+        "perfil": perfil,
+        "refeicoes": refeicoes,
+        "total": total_calorias,
+        "feedback": feedback,
+    })
+
+@login_required
 def perfil(request):
-    return render(request, "perfil.html")
+    perfil, _ = Perfil.objects.get_or_create(user=request.user)
 
+    if request.method == "POST":
+        perfil.peso = request.POST["peso"]
+        perfil.altura = request.POST["altura"]
+        perfil.idade = request.POST["idade"]
+        perfil.atividade = request.POST["atividade"]
+        perfil.objetivo = request.POST["objetivo"]
+        perfil.meta_calorica = calcular_meta(
+            float(perfil.peso),
+            float(perfil.altura),
+            int(perfil.idade),
+            perfil.atividade,
+            perfil.objetivo
+        )
+        perfil.save()
+
+        return redirect("dashboard")
+
+    return render(request, "perfil.html", {"perfil": perfil})
