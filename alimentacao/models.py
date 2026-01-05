@@ -1,22 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from django.db.models import Sum
-
-def historico(request):
-    dias = (
-        Refeicao.objects
-        .filter(user=request.user)
-        .values('data')
-        .annotate(
-            total=Sum('carboidratos')*4 +
-                  Sum('proteinas')*4 +
-                  Sum('gorduras')*9
-        )
-    )
-    return render(request, "historico.html", {"dias": dias})
-
-
 class Perfil(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     peso = models.FloatField()
@@ -41,9 +25,5 @@ class Refeicao(models.Model):
     def calorias(self):
         return self.carboidratos * 4 + self.proteinas * 4 + self.gorduras * 9
 
-
     def __str__(self):
         return self.nome
-    
-
-

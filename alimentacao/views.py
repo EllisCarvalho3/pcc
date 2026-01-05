@@ -2,6 +2,23 @@ from django.shortcuts import render, redirect
 from .models import Refeicao, Perfil
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from .models import Perfil
+
+from django.db.models import Sum
+
+def historico(request):
+    dias = (
+        Refeicao.objects
+        .filter(user=request.user)
+        .values('data')
+        .annotate(
+            total=Sum('carboidratos')*4 +
+                  Sum('proteinas')*4 +
+                  Sum('gorduras')*9
+        )
+    )
+    return render(request, "historico.html", {"dias": dias})
+
 
 def cadastrar(request):
     if request.method == "POST":
@@ -117,3 +134,15 @@ def index(request):
         "proteina": total_prot,
         "gordura": total_gord
     })
+
+
+
+def home(request):
+    return render(request, 'home.html')
+
+def dashboard(request):
+    return render(request, 'dashboard.html')
+
+def perfil(request):
+    return render(request, "perfil.html")
+

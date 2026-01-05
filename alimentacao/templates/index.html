@@ -3,52 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Monitoramento Nutricional</title>
-  <link rel="stylesheet" href="alimentacao/static/styles.css">
+ {% load static %}
+<link rel="stylesheet" href="{% static 'alimentacao/styles.css' %}">
+
 </head>
 <body>
-
-    <style>
-        body {
-  font-family: Arial, sans-serif;
-  background: #f2f4f8;
-}
-
-.container {
-  max-width: 900px;
-  margin: auto;
-}
-
-.card {
-  background: white;
-  padding: 20px;
-  margin: 20px 0;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-}
-
-input, select, button {
-  width: 100%;
-  margin: 6px 0;
-  padding: 10px;
-}
-
-button {
-  background: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #45a049;
-}
-
-.feedback li {
-  margin: 6px 0;
-}
-
-    </style>
+    
 
 <div class="container">
 
