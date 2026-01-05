@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Monitoramento Nutricional</title>
+  <link rel="stylesheet" href="/alimentacao/static/styles.css">
+</head>
+<body>
+    <style>
+        body {
+  font-family: Arial;
+  background: #f5f7fa;
+  padding: 40px;
+}
+
+form input, button {
+  margin: 6px;
+  padding: 8px;
+}
+
+button {
+  background: #4CAF50;
+  color: white;
+  border: none;
+}
+
+    </style>
+  <h1>Consumo Diário de Macronutrientes</h1>
+
+  <form method="post">
+    {% csrf_token %}
+    <input name="nome" placeholder="Alimento" required>
+    <input name="carbo" placeholder="Carbo (g)" type="number" step="0.1" required>
+    <input name="proteina" placeholder="Proteína (g)" type="number" step="0.1" required>
+    <input name="gordura" placeholder="Gordura (g)" type="number" step="0.1" required>
+    <button>Adicionar</button>
+  </form>
+
+  <h2>Total: {{ total }} kcal</h2>
+
+  <ul>
+    {% for r in refeicoes %}
+      <li>{{ r.nome }} — {{ r.calorias }} kcal</li>
+    {% endfor %}
+  </ul>
+  <form method="post">
+  {% csrf_token %}
+  <input type="hidden" name="tipo" value="refeicao">
+
+  <input name="nome" placeholder="Alimento" required>
+  <input name="carbo" placeholder="Carbo (g)" type="number" step="0.1" required>
+  <input name="proteina" placeholder="Proteína (g)" type="number" step="0.1" required>
+  <input name="gordura" placeholder="Gordura (g)" type="number" step="0.1" required>
+
+  <button>Adicionar</button>
+</form>
+
+<form method="post">
+  {% csrf_token %}
+  <input type="hidden" name="tipo" value="meta">
+
+  <input type="number" name="peso" placeholder="Peso (kg)" required>
+  <input type="number" name="altura" placeholder="Altura (cm)" required>
+  <input type="number" name="idade" placeholder="Idade" required>
+
+  <select name="atividade">
+    <option value="sedentario">Sedentário</option>
+    <option value="leve">Leve</option>
+    <option value="moderado">Moderado</option>
+    <option value="intenso">Intenso</option>
+  </select>
+
+  <select name="objetivo">
+    <option value="manter">Manter</option>
+    <option value="perder">Perder</option>
+    <option value="ganhar">Ganhar</option>
+  </select>
+
+  <button type="submit">Calcular Meta</button>
+</form>
+
+{% if meta %}
+  <h3>Meta diária: {{ meta|floatformat:0 }} kcal</h3>
+  <p>{{ feedback }}</p>
+{% endif %}
+
+
+</body>
+</html>
