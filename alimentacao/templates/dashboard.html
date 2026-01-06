@@ -19,10 +19,20 @@
 <div class="card">
   <h2>Resumo do Dia</h2>
 
-  <p><strong>Total consumido:</strong> {{ total }} kcal</p>
+  <p><strong>Total consumido:</strong> {{ total|floatformat:0 }} kcal</p>
 
   {% if perfil.meta_calorica %}
     <p><strong>Meta diária:</strong> {{ perfil.meta_calorica|floatformat:0 }} kcal</p>
+
+    <!-- 🔹 BARRA DE PROGRESSO -->
+    <div class="progress">
+      <div class="progress-fill" style="width: {{ percentual }}%;"></div>
+    </div>
+
+    <p class="percentual">
+      {{ percentual|floatformat:0 }}% da meta atingida
+    </p>
+
   {% else %}
     <p>Complete seu perfil para calcular a meta diária.</p>
   {% endif %}

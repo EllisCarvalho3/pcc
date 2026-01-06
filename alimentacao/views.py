@@ -4,22 +4,33 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from .models import Perfil
 from django.contrib.auth.decorators import login_required
+from collections import defaultdict
 
 
 from django.db.models import Sum
 
+@login_required
 def historico(request):
-    dias = (
-        Refeicao.objects
-        .filter(user=request.user)
-        .values('data')
-        .annotate(
-            total=Sum('carboidratos')*4 +
-                  Sum('proteinas')*4 +
-                  Sum('gorduras')*9
-        )
-    )
-    return render(request, "historico.html", {"dias": dias})
+    refeicoes = Refeicao.objects.filter(user=request.user).order_by("-data")
+
+    dias = defaultdict(list)
+
+    for r in refeicoes:
+        dias[r.data].append(r)
+
+    historico_formatado = []
+
+    for data, itens in dias.items():
+        total = sum(r.calorias() for r in itens)
+        historico_formatado.append({
+            "data": data,
+            "total": total,
+            "itens": itens
+        })
+
+    return render(request, "historico.html", {
+        "dias": historico_formatado
+    })
 
 
 def cadastrar(request):
@@ -88,7 +99,7 @@ def index(request):
                 proteinas=float(request.POST["proteina"]),
                 gorduras=float(request.POST["gordura"]),
             )
-            return redirect("index")
+            return redirect("home")
 
         # Formulário de perfil
         else:
@@ -140,7 +151,8 @@ def index(request):
 
 
 def home(request):
-    return render(request, 'home.html')
+    return render(request, "home.html")
+
 
 @login_required
 def dashboard(request):
@@ -170,10 +182,22 @@ def dashboard(request):
         total_gord
     )
 
+    # 🔹 NOVO: cálculo da barra de progresso
+    percentual = 0
+    if perfil and perfil.meta_calorica > 0:
+        percentual = min((total_calorias / perfil.meta_calorica) * 100, 100)
+
     return render(request, "dashboard.html", {
         "total": total_calorias,
         "perfil": perfil,
         "feedback": feedback,
+
+        # 🔹 NOVO: enviado para o template
+        "percentual": percentual,
+        "total_carbo": total_carbo,
+        "total_prot": total_prot,
+        "total_gord": total_gord,
+        "refeicoes": refeicoes,
     })
 
 @login_required
@@ -199,3 +223,4 @@ def perfil(request):
         return redirect("perfil")
 
     return render(request, "perfil.html", {"perfil": perfil})
+
