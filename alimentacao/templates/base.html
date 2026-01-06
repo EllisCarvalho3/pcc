@@ -1,10 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <title>NutriStudent</title>
- {% load static %}
-<link rel="stylesheet" href="{% static 'styles.css' %}">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
 
@@ -16,13 +16,7 @@
         <li><a href="{% url 'dashboard' %}">Início</a></li>
         <li><a href="{% url 'historico' %}">Histórico</a></li>
         <li><a href="{% url 'perfil' %}">Perfil</a></li>
-      <form action="{% url 'logout' %}" method="post" style="display:inline;">
-  {% csrf_token %}
-  <button type="submit">Sair</button>
-</form>
-rm>
-</li>
-
+<li><a href="{% url 'logout' %}">Sair</a></li>
       {% else %}
         <li><a href="{% url 'login' %}">Entrar</a></li>
         <li><a href="{% url 'cadastro' %}">Criar conta</a></li>

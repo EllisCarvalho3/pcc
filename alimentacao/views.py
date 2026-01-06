@@ -145,7 +145,6 @@ def home(request):
 @login_required
 def dashboard(request):
     perfil = Perfil.objects.filter(user=request.user).first()
-    refeicoes = Refeicao.objects.filter(user=request.user)
 
     if request.method == "POST":
         Refeicao.objects.create(
@@ -155,22 +154,25 @@ def dashboard(request):
             proteinas=float(request.POST["proteina"]),
             gorduras=float(request.POST["gordura"]),
         )
-        return redirect("dashboard")
+
+    refeicoes = Refeicao.objects.filter(user=request.user)
 
     total_calorias = sum(r.calorias() for r in refeicoes)
+    total_carbo = sum(r.carboidratos for r in refeicoes)
+    total_prot = sum(r.proteinas for r in refeicoes)
+    total_gord = sum(r.gorduras for r in refeicoes)
 
     feedback = gerar_feedback(
         total_calorias,
         perfil.meta_calorica if perfil else 0,
-        sum(r.carboidratos for r in refeicoes),
-        sum(r.proteinas for r in refeicoes),
-        sum(r.gorduras for r in refeicoes),
+        total_carbo,
+        total_prot,
+        total_gord
     )
 
     return render(request, "dashboard.html", {
-        "perfil": perfil,
-        "refeicoes": refeicoes,
         "total": total_calorias,
+        "perfil": perfil,
         "feedback": feedback,
     })
 

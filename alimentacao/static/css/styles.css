@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+  --verde: #4CAF50;
+  --verde-escuro: #388E3C;
+  --fundo: #f4f7f6;
+  --card: #ffffff;
+  --texto: #333;
+  --cinza: #777;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: var(--fundo);
+  color: var(--texto);
+}
+
+/* HEADER */
+header {
+  background: var(--card);
+  padding: 20px 40px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.05);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav h1 {
+  color: var(--verde);
+  font-weight: 600;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--cinza);
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: var(--verde);
+}
+
+/* CONTEÚDO */
+main {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* CARDS */
+.card {
+  background: var(--card);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.05);
+  margin-bottom: 30px;
+}
+
+.card h2 {
+  margin-bottom: 15px;
+  color: var(--verde-escuro);
+}
+
+/* FORMULÁRIOS */
+form {
+  display: grid;
+  gap: 15px;
+}
+
+input, select, button {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+button {
+  background: var(--verde);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+button:hover {
+  background: var(--verde-escuro);
+}
+
+/* FEEDBACK */
+.feedback {
+  margin-top: 15px;
+}
+
+.feedback p {
+  background: #e8f5e9;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+/* HISTÓRICO */
+.historico li {
+  padding: 15px;
+  background: #fafafa;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  list-style: none;
+}

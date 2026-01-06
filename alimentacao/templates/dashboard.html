@@ -1,33 +1,40 @@
 {% extends 'base.html' %}
-
 {% block content %}
-<h2>Olá, {{ user.username }} 👋</h2>
 
-<section class="meta">
-  <p><strong>Meta diária:</strong> {{ perfil.meta_calorica }} kcal</p>
-  <p><strong>Consumo hoje:</strong> {{ total_calorias }} kcal</p>
-</section>
+<div class="card">
+  <h2>Registrar Refeição</h2>
 
-<section class="cards">
-  <div class="card">🍞 Carboidratos: {{ total_carbo }} g</div>
-  <div class="card">💪 Proteínas: {{ total_proteina }} g</div>
-  <div class="card">🧈 Gorduras: {{ total_gordura }} g</div>
-</section>
-
-<section class="feedback">
-  <h3>Feedback do dia</h3>
-  <p>{{ feedback }}</p>
-</section>
-
-<section class="form">
-  <h3>Adicionar refeição</h3>
   <form method="post">
     {% csrf_token %}
-    <input name="nome" placeholder="Alimento" required>
-    <input type="number" step="0.1" name="carbo" placeholder="Carbo (g)" required>
-    <input type="number" step="0.1" name="proteina" placeholder="Proteína (g)" required>
-    <input type="number" step="0.1" name="gordura" placeholder="Gordura (g)" required>
-    <button type="submit">Adicionar</button>
+    <input type="text" name="nome" placeholder="Alimento (ex: arroz)" required>
+
+    <input type="number" step="0.1" name="carbo" placeholder="Carboidratos (g)" required>
+    <input type="number" step="0.1" name="proteina" placeholder="Proteínas (g)" required>
+    <input type="number" step="0.1" name="gordura" placeholder="Gorduras (g)" required>
+
+    <button>Adicionar refeição</button>
   </form>
-</section>
+</div>
+
+<div class="card">
+  <h2>Resumo do Dia</h2>
+
+  <p><strong>Total consumido:</strong> {{ total }} kcal</p>
+
+  {% if perfil.meta_calorica %}
+    <p><strong>Meta diária:</strong> {{ perfil.meta_calorica|floatformat:0 }} kcal</p>
+  {% else %}
+    <p>Complete seu perfil para calcular a meta diária.</p>
+  {% endif %}
+</div>
+
+<div class="card">
+  <h2>Feedback Nutricional</h2>
+  <div class="feedback">
+    {% for msg in feedback %}
+      <p>{{ msg }}</p>
+    {% endfor %}
+  </div>
+</div>
+
 {% endblock %}
