@@ -33,6 +33,7 @@ nav {
   align-items: center;
 }
 
+
 nav h1 {
   color: var(--verde);
   font-weight: 600;
@@ -52,6 +53,21 @@ nav a {
 
 nav a:hover {
   color: var(--verde);
+}
+
+nav ul li button.logout-btn {
+  background-color: #7edfa2;
+  border: none;
+  color: #065f46;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+nav ul li button.logout-btn:hover {
+  background-color: #30cc69;
 }
 
 main {
@@ -133,24 +149,6 @@ button:hover {
   font-size: 0.85rem;
 }
 
-.logout-btn {
-  background-color: #7edfa2;
-  border: none;
-  color: #065f46;
-  padding: 8px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.95rem;
-  font-weight: 600;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.logout-btn:hover {
-  background-color: #30cc69;
-  transform: translateY(-1px);
-}
-
-
 .progress {
   width: 100%;
   height: 14px;
@@ -169,7 +167,6 @@ button:hover {
 .progress-fill {
   width: calc(var(--percentual) * 1%);
 }
-
 
 .percentual {
   font-size: 0.9rem;
