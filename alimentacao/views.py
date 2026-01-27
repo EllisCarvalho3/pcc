@@ -71,18 +71,18 @@ def gerar_feedback(total, meta, carbo, prot, gord):
     mensagens = []
 
     if pct < 70:
-        mensagens.append("⚠️ Déficit calórico alto. Considere um lanche saudável.")
+        mensagens.append("Déficit calórico alto. Considere um lanche saudável.")
     elif pct <= 100:
-        mensagens.append("✅ Você está dentro da meta calórica.")
+        mensagens.append("Você está dentro da meta calórica.")
     else:
-        mensagens.append("⚠️ Excesso calórico. Prefira refeições leves.")
+        mensagens.append("Excesso calórico. Prefira refeições leves.")
 
     if prot < 50:
-        mensagens.append("💪 Proteína baixa para o dia.")
+        mensagens.append("Proteína baixa para o dia.")
     if gord > 70:
-        mensagens.append("🧈 Gordura elevada.")
+        mensagens.append("Gordura elevada.")
     if carbo < 130:
-        mensagens.append("🍞 Carboidratos abaixo do recomendado.")
+        mensagens.append("Carboidratos abaixo do recomendado.")
 
     return mensagens
 
@@ -91,7 +91,7 @@ def index(request):
     perfil = Perfil.objects.first()
 
     if request.method == "POST":
-        # Formulário de refeição
+        # formulário de refeição
         if "nome" in request.POST:
             Refeicao.objects.create(
                 nome=request.POST["nome"],
@@ -101,7 +101,7 @@ def index(request):
             )
             return redirect("home")
 
-        # Formulário de perfil
+        # formulário de perfil
         else:
             meta = calcular_meta(
                 float(request.POST["peso"]),
@@ -182,7 +182,7 @@ def dashboard(request):
         total_gord
     )
 
-    # 🔹 NOVO: cálculo da barra de progresso
+   
     percentual = 0
     if perfil and perfil.meta_calorica > 0:
         percentual = min((total_calorias / perfil.meta_calorica) * 100, 100)
@@ -192,7 +192,7 @@ def dashboard(request):
         "perfil": perfil,
         "feedback": feedback,
 
-        # 🔹 NOVO: enviado para o template
+        
         "percentual": percentual,
         "total_carbo": total_carbo,
         "total_prot": total_prot,

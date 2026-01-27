@@ -21,7 +21,6 @@ body {
   color: var(--texto);
 }
 
-/* HEADER */
 header {
   background: var(--card);
   padding: 20px 40px;
@@ -55,14 +54,12 @@ nav a:hover {
   color: var(--verde);
 }
 
-/* CONTEÚDO */
 main {
   max-width: 1000px;
   margin: 40px auto;
   padding: 0 20px;
 }
 
-/* CARDS */
 .card {
   background: var(--card);
   padding: 30px;
@@ -76,7 +73,6 @@ main {
   color: var(--verde-escuro);
 }
 
-/* FORMULÁRIOS */
 form {
   display: grid;
   gap: 15px;
@@ -102,7 +98,6 @@ button:hover {
   transition: ease-in-out 0.5s;
 }
 
-/* FEEDBACK */
 .feedback {
   margin-top: 15px;
 }
@@ -115,7 +110,6 @@ button:hover {
   font-size: 14px;
 }
 
-/* HISTÓRICO */
 .historico li {
   padding: 15px;
   background: #fafafa;

@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Monitoramento Nutricional</title>
+  <title>Monitoramento nutricional</title>
  {% load static %}
 <link rel="stylesheet" href="{% static 'alimentacao/styles.css' %}">
 
@@ -12,10 +12,10 @@
 
 <div class="container">
 
-  <h1>🍽 Monitoramento Nutricional Diário</h1>
+  <h1>Monitoramento nutricional diário</h1>
 
   <section class="card">
-    <h2>➕ Adicionar Refeição</h2>
+    <h2> Adicionar refeição</h2>
     <form method="post">
       {% csrf_token %}
       <input name="nome" placeholder="Alimento" required>
@@ -27,7 +27,7 @@
   </section>
 
   <section class="card">
-    <h2>🎯 Perfil Nutricional</h2>
+    <h2> Perfil nutricional</h2>
     <form method="post">
       {% csrf_token %}
       <input name="peso" placeholder="Peso (kg)" required>
@@ -47,7 +47,7 @@
         <option value="ganhar">Ganhar</option>
       </select>
 
-      <button>Calcular Meta</button>
+      <button>Calcular meta</button>
     </form>
 
     {% if perfil %}
@@ -56,7 +56,7 @@
   </section>
 
   <section class="card">
-    <h2> Resumo do Dia</h2>
+    <h2> Resumo do dia</h2>
     <p>Total: {{ total }} kcal</p>
     <p>Carboidratos: {{ carbo }} g</p>
     <p>Proteínas: {{ proteina }} g</p>
