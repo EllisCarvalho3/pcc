@@ -55,20 +55,23 @@ nav a:hover {
   color: var(--verde);
 }
 
-nav ul li button.logout-btn {
-  background-color: #7edfa2;
+nav .nav-link {
+  background: none;
   border: none;
-  color: #065f46;
-  padding: 8px 14px;
-  border-radius: 8px;
+  padding: 0;
+  font: inherit;
+  text-decoration: none;
+  color: var(--cinza);
+  font-weight: 500;
   cursor: pointer;
-  font-size: 0.95rem;
-  font-weight: 600;
 }
 
-nav ul li button.logout-btn:hover {
-  background-color: #30cc69;
+nav .nav-link:hover {
+  color: var(--verde);
+  background: none;
+  transition: none;
 }
+
 
 main {
   max-width: 1000px;
