@@ -134,16 +134,22 @@ button:hover {
 }
 
 .logout-btn {
-  background: none;
+  background-color: #7edfa2;
   border: none;
-  color: white;
+  color: #065f46;
+  padding: 8px 14px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .logout-btn:hover {
-  text-decoration: underline;
+  background-color: #30cc69;
+  transform: translateY(-1px);
 }
+
 
 .progress {
   width: 100%;
