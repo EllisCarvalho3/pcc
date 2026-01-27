@@ -160,6 +160,11 @@ button:hover {
   transition: width 0.4s ease;
 }
 
+.progress-fill {
+  width: calc(var(--percentual) * 1%);
+}
+
+
 .percentual {
   font-size: 0.9rem;
   color: #374151;

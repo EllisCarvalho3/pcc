@@ -181,7 +181,6 @@ def dashboard(request):
         total_prot,
         total_gord
     )
-
    
     percentual = 0
     if perfil and perfil.meta_calorica > 0:
@@ -191,8 +190,6 @@ def dashboard(request):
         "total": total_calorias,
         "perfil": perfil,
         "feedback": feedback,
-
-        
         "percentual": percentual,
         "total_carbo": total_carbo,
         "total_prot": total_prot,
