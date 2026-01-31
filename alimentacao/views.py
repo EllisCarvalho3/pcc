@@ -4,6 +4,8 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from collections import defaultdict
 from django.db.models import Sum
+from perfil.models import Perfil
+from refeicoes.models import Refeicao
 
 @login_required
 def dashboard(request):

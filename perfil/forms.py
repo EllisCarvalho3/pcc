@@ -4,4 +4,11 @@ from .models import Perfil
 class PerfilForm(forms.ModelForm):
     class Meta:
         model = Perfil
-        fields = ['peso', 'altura', 'idade', 'meta_calorica']
+        fields = [
+    'peso',
+    'altura',
+    'idade',
+    'atividade',
+    'objetivo'
+]
+

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from perfil.services import calcular_meta
 from .models import Perfil
 from .forms import PerfilForm
 
@@ -10,7 +11,17 @@ def perfil_view(request):
     if request.method == "POST":
         form = PerfilForm(request.POST, instance=perfil)
         if form.is_valid():
-            form.save()
+            perfil = form.save(commit=False)
+
+            perfil.meta_calorica = calcular_meta(
+                perfil.peso,
+                perfil.altura,
+                perfil.idade,
+                perfil.atividade,
+                perfil.objetivo
+            )
+
+            perfil.save()
             return redirect("dashboard")
     else:
         form = PerfilForm(instance=perfil)

@@ -1,5 +1,3 @@
-from perfil.utils import calcular_meta
-
 def calcular_meta(peso, altura, idade, atividade, objetivo):
     bmr = (10 * peso) + (6.25 * altura) - (5 * idade) + 5
 
@@ -10,11 +8,10 @@ def calcular_meta(peso, altura, idade, atividade, objetivo):
         'intenso': 1.725
     }
 
-    tdee = bmr * fatores[atividade]
+    tdee = bmr * fatores.get(atividade, 1.2)
 
     if objetivo == 'perder':
         return tdee - 300
     elif objetivo == 'ganhar':
         return tdee + 300
-    else:
-        return tdee
+    return tdee
