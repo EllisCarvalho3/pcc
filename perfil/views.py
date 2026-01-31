@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from perfil.services import calcular_meta
 from .models import Perfil
 from .forms import PerfilForm
+from .services import calcular_meta
 
 @login_required
 def perfil_view(request):
@@ -27,4 +27,3 @@ def perfil_view(request):
         form = PerfilForm(instance=perfil)
 
     return render(request, "perfil/perfil.html", {"form": form})
-
