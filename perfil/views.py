@@ -4,32 +4,30 @@ from .models import Perfil
 from .forms import PerfilForm
 from .services import calcular_meta
 
+
 @login_required
 def perfil_view(request):
     perfil = Perfil.objects.filter(user=request.user).first()
 
     if request.method == "POST":
         form = PerfilForm(request.POST, instance=perfil)
+
         if form.is_valid():
             perfil = form.save(commit=False)
             perfil.user = request.user
+
+            perfil.meta_calorica = calcular_meta(
+                perfil.peso,
+                perfil.altura,
+                perfil.idade,
+                perfil.atividade,
+                perfil.objetivo
+            )
+
             perfil.save()
             return redirect("dashboard")
+
     else:
         form = PerfilForm(instance=perfil)
 
     return render(request, "perfil/perfil.html", {"form": form})
-from .services import calcular_meta
-
-perfil = form.save(commit=False)
-perfil.user = request.user
-
-perfil.meta_calorica = calcular_meta(
-    perfil.peso,
-    perfil.altura,
-    perfil.idade,
-    perfil.atividade,
-    perfil.objetivo
-)
-
-perfil.save()
