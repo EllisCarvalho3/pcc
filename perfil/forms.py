@@ -5,9 +5,10 @@ class PerfilForm(forms.ModelForm):
     class Meta:
         model = Perfil
         fields = [
-            'peso',
-            'altura',
-            'idade',
-            'atividade',
-            'objetivo',
-        ]
+    'peso',
+    'altura',
+    'idade',
+    'atividade',
+    'objetivo'
+]
+

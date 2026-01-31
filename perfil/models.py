@@ -4,11 +4,10 @@ from django.contrib.auth.models import User
 
 class Perfil(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-    peso = models.FloatField()
-    altura = models.FloatField()
-    idade = models.IntegerField()
-
+    peso = models.FloatField(null=True, blank=True)
+    altura = models.FloatField(null=True, blank=True)
+    idade = models.IntegerField(null=True, blank=True)
+    meta_calorica = models.FloatField(null=True, blank=True)
     atividade = models.CharField(
         max_length=20,
         choices=[
