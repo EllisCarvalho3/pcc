@@ -1,12 +1,61 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<!-- REGISTRO DE REFEIÇÃO -->
+<div class="card">
+  <h2>Registrar Refeição</h2>
+
+  <form method="post">
+    {% csrf_token %}
+
+    {{ form.non_field_errors }}
+
+    <input
+      type="text"
+      name="nome"
+      placeholder="Alimento (ex: arroz)"
+      value="{{ form.nome.value|default_if_none:'' }}"
+      required
+    >
+
+    <input
+      type="number"
+      step="0.1"
+      name="carboidratos"
+      placeholder="Carboidratos (g)"
+      value="{{ form.carboidratos.value|default_if_none:'' }}"
+      required
+    >
+
+    <input
+      type="number"
+      step="0.1"
+      name="proteinas"
+      placeholder="Proteínas (g)"
+      value="{{ form.proteinas.value|default_if_none:'' }}"
+      required
+    >
+
+    <input
+      type="number"
+      step="0.1"
+      name="gorduras"
+      placeholder="Gorduras (g)"
+      value="{{ form.gorduras.value|default_if_none:'' }}"
+      required
+    >
+
+    <button type="submit">Adicionar refeição</button>
+  </form>
+</div>
+
+<!-- RESUMO DO DIA -->
 <div class="card">
   <h2>Resumo do Dia</h2>
 
   <p><strong>Total consumido:</strong> {{ total|floatformat:0 }} kcal</p>
 
-  {% if perfil.meta_calorica %}
+  {% if perfil and perfil.meta_calorica %}
     <p><strong>Meta diária:</strong> {{ perfil.meta_calorica|floatformat:0 }} kcal</p>
 
     <div class="progress">
@@ -21,14 +70,8 @@
   {% endif %}
 </div>
 
-<div class="card">
-  <h2>Refeições</h2>
-
-  <a href="{% url 'criar_refeicao' %}" class="btn">
-    + Adicionar refeição
-  </a>
-</div>
-
+<!-- FEEDBACK NUTRICIONAL -->
+{% if feedback %}
 <div class="card">
   <h2>Feedback Nutricional</h2>
   <div class="feedback">
@@ -37,5 +80,26 @@
     {% endfor %}
   </div>
 </div>
+{% endif %}
+
+<!-- LISTA DE REFEIÇÕES DO DIA -->
+{% if refeicoes %}
+<div class="card">
+  <h2>Refeições Registradas</h2>
+
+  <ul class="historico">
+    {% for r in refeicoes %}
+      <li>
+        <strong>{{ r.nome }}</strong><br>
+        <span class="macros">
+          Carbo: {{ r.carboidratos }}g |
+          Prot: {{ r.proteinas }}g |
+          Gord: {{ r.gorduras }}g
+        </span>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
 
 {% endblock %}
