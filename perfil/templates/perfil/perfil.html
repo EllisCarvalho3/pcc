@@ -1,37 +1,48 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends "base.html" %}
 
+{% block content %}
 <div class="card">
+
   <h2>Meu Perfil Nutricional</h2>
 
   <form method="post">
     {% csrf_token %}
 
-    <input type="number" name="peso" placeholder="Peso (kg)" value="{{ perfil.peso }}">
-    <input type="number" name="altura" placeholder="Altura (cm)" value="{{ perfil.altura }}">
-    <input type="number" name="idade" placeholder="Idade" value="{{ perfil.idade }}">
+    <div class="form-group">
+      <label for="{{ form.peso.id_for_label }}">Peso (kg)</label>
+      {{ form.peso }}
+    </div>
 
-    <select name="atividade">
-      <option value="">Nível de atividade</option>
-      <option value="sedentario">Sedentário</option>
-      <option value="leve">Leve</option>
-      <option value="moderado">Moderado</option>
-      <option value="intenso">Intenso</option>
-    </select>
+    <div class="form-group">
+      <label for="{{ form.altura.id_for_label }}">Altura (cm)</label>
+      {{ form.altura }}
+    </div>
 
-    <select name="objetivo">
-      <option value="">Objetivo</option>
-      <option value="manter">Manter peso</option>
-      <option value="perder">Perder peso</option>
-      <option value="ganhar">Ganhar peso</option>
-    </select>
+    <div class="form-group">
+      <label for="{{ form.idade.id_for_label }}">Idade</label>
+      {{ form.idade }}
+    </div>
 
-    <button>Salvar perfil</button>
+    <div class="form-group">
+      <label for="{{ form.atividade.id_for_label }}">Nível de atividade</label>
+      {{ form.atividade }}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.objetivo.id_for_label }}">Objetivo</label>
+      {{ form.objetivo }}
+    </div>
+
+    <button type="submit">Salvar perfil</button>
   </form>
 
   {% if perfil.meta_calorica %}
-    <p><strong>Meta diária:</strong> {{ perfil.meta_calorica|floatformat:0 }} kcal</p>
+    <hr>
+    <p>
+      <strong>Meta diária:</strong>
+      {{ perfil.meta_calorica|floatformat:0 }} kcal
+    </p>
   {% endif %}
-</div>
 
+</div>
 {% endblock %}

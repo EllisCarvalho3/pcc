@@ -7,7 +7,7 @@ from .services import calcular_meta
 
 @login_required
 def perfil_view(request):
-    perfil = Perfil.objects.filter(user=request.user).first()
+    perfil, created = Perfil.objects.get_or_create(user=request.user)
 
     if request.method == "POST":
         form = PerfilForm(request.POST, instance=perfil)
@@ -30,4 +30,11 @@ def perfil_view(request):
     else:
         form = PerfilForm(instance=perfil)
 
-    return render(request, "perfil/perfil.html", {"form": form})
+    return render(
+        request,
+        "perfil/perfil.html",
+        {
+            "form": form,
+            "perfil": perfil
+        }
+    )
