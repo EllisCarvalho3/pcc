@@ -2,21 +2,6 @@
 {% block content %}
 
 <div class="card">
-  <h2>Registrar Refeição</h2>
-
-  <form method="post">
-    {% csrf_token %}
-    <input type="text" name="nome" placeholder="Alimento (ex: arroz)" required>
-
-    <input type="number" step="0.1" name="carbo" placeholder="Carboidratos (g)" required>
-    <input type="number" step="0.1" name="proteina" placeholder="Proteínas (g)" required>
-    <input type="number" step="0.1" name="gordura" placeholder="Gorduras (g)" required>
-
-    <a href="{% url 'criar_refeicao' %}" class="btn">Adicionar refeição</a>
-  </form>
-</div>
-
-<div class="card">
   <h2>Resumo do Dia</h2>
 
   <p><strong>Total consumido:</strong> {{ total|floatformat:0 }} kcal</p>
@@ -24,7 +9,6 @@
   {% if perfil.meta_calorica %}
     <p><strong>Meta diária:</strong> {{ perfil.meta_calorica|floatformat:0 }} kcal</p>
 
-   
     <div class="progress">
       <div class="progress-fill" style="width: {{ percentual }}%;"></div>
     </div>
@@ -32,10 +16,17 @@
     <p class="percentual">
       {{ percentual|floatformat:0 }}% da meta atingida
     </p>
-
   {% else %}
     <p>Complete seu perfil para calcular a meta diária.</p>
   {% endif %}
+</div>
+
+<div class="card">
+  <h2>Refeições</h2>
+
+  <a href="{% url 'criar_refeicao' %}" class="btn">
+    + Adicionar refeição
+  </a>
 </div>
 
 <div class="card">

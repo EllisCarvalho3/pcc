@@ -6,11 +6,22 @@ from collections import defaultdict
 from django.db.models import Sum
 from perfil.models import Perfil
 from refeicoes.models import Refeicao
+from refeicoes.forms import RefeicaoForm 
 
 @login_required
 def dashboard(request):
     perfil = Perfil.objects.filter(user=request.user).first()
     refeicoes = Refeicao.objects.filter(user=request.user)
+
+    if request.method == "POST":
+        form = RefeicaoForm(request.POST)
+        if form.is_valid():
+            refeicao = form.save(commit=False)
+            refeicao.user = request.user
+            refeicao.save()
+            return redirect("dashboard")
+    else:
+        form = RefeicaoForm()
 
     total_calorias = sum(r.calorias() for r in refeicoes)
 
@@ -18,11 +29,21 @@ def dashboard(request):
     if perfil and perfil.meta_calorica > 0:
         percentual = min((total_calorias / perfil.meta_calorica) * 100, 100)
 
+    feedback = gerar_feedback(
+        total_calorias,
+        perfil.meta_calorica if perfil else 0,
+        sum(r.carboidratos for r in refeicoes),
+        sum(r.proteinas for r in refeicoes),
+        sum(r.gorduras for r in refeicoes),
+    )
+
     return render(request, "dashboard.html", {
         "perfil": perfil,
         "refeicoes": refeicoes,
         "total": total_calorias,
-        "percentual": percentual
+        "percentual": percentual,
+        "feedback": feedback,
+        "form": form
     })
 
 

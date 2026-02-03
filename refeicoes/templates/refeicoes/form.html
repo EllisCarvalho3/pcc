@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="card">
+  <h2>Registrar Refeição</h2>
+
+  <form method="post">
+    {% csrf_token %}
+
+    {{ form.non_field_errors }}
+
+    <div>
+      {{ form.nome.label_tag }}
+      {{ form.nome }}
+    </div>
+
+    <div>
+      {{ form.carboidratos.label_tag }}
+      {{ form.carboidratos }}
+    </div>
+
+    <div>
+      {{ form.proteinas.label_tag }}
+      {{ form.proteinas }}
+    </div>
+
+    <div>
+      {{ form.gorduras.label_tag }}
+      {{ form.gorduras }}
+    </div>
+
+    <button type="submit">Salvar refeição</button>
+  </form>
+</div>
+
+{% endblock %}
