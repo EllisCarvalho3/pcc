@@ -19,7 +19,11 @@ def criar_refeicao(request):
 
 @login_required
 def editar_refeicao(request, id):
-    refeicao = get_object_or_404(Refeicao, id=id, user=request.user)
+    refeicao = get_object_or_404(
+        Refeicao,
+        id=id,
+        user=request.user
+    )
 
     if request.method == "POST":
         form = RefeicaoForm(request.POST, instance=refeicao)
@@ -29,10 +33,18 @@ def editar_refeicao(request, id):
     else:
         form = RefeicaoForm(instance=refeicao)
 
-    return render(request, "refeicoes/form.html", {"form": form})
+    return render(request, "refeicoes/form.html", {
+        "form": form,
+        "editar": True
+    })
 
 @login_required
 def excluir_refeicao(request, id):
-    refeicao = get_object_or_404(Refeicao, id=id, user=request.user)
+    refeicao = get_object_or_404(
+        Refeicao,
+        id=id,
+        user=request.user
+    )
+
     refeicao.delete()
     return redirect("dashboard")

@@ -2,7 +2,14 @@
 {% block content %}
 
 <div class="card">
-  <h2>Adicionar Refeição</h2>
+
+  <h2>
+    {% if editar %}
+      Editar refeição
+    {% else %}
+      Adicionar refeição
+    {% endif %}
+  </h2>
 
   <form method="post">
     {% csrf_token %}
@@ -38,8 +45,15 @@
       {{ form.gorduras }}
     </div>
 
-    <button type="submit">Salvar refeição</button>
+    <button type="submit">
+      {% if editar %}
+        Salvar alterações
+      {% else %}
+        Salvar refeição
+      {% endif %}
+    </button>
   </form>
+
 </div>
 
 {% endblock %}
