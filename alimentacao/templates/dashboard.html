@@ -1,3 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- RESUMO DO DIA -->
+<div class="card">
+  <h2>Resumo do dia</h2>
+
+  <p><strong>Total consumido:</strong> {{ total|floatformat:0 }} kcal</p>
+
+  {% if perfil and perfil.meta_calorica %}
+    <p><strong>Meta diária:</strong> {{ perfil.meta_calorica|floatformat:0 }} kcal</p>
+
+    <div class="progress">
+      <div class="progress-fill" style="width: {{ percentual }}%;"></div>
+    </div>
+
+    <p class="percentual">
+      {{ percentual|floatformat:0 }}% da meta atingida
+    </p>
+  {% else %}
+    <p>Complete seu perfil para calcular a meta diária.</p>
+    <a href="{% url 'perfil' %}" class="btn">Completar perfil</a>
+  {% endif %}
+</div>
+
+<!-- REFEIÇÕES DO DIA -->
 <div class="card">
   <h2>Refeições de hoje</h2>
 
@@ -6,20 +32,27 @@
   {% if refeicoes %}
     <ul class="historico">
       {% for r in refeicoes %}
-        <li>
-          <strong>{{ r.nome }}</strong><br>
+        <li class="item-refeicao">
+          <strong>{{ r.nome }}</strong>
 
-          <small>
-            Porção consumida: {{ r.porcao }} g<br>
-            Valores por 100g →
-            Carbo: {{ r.carboidratos }} g |
-            Prot: {{ r.proteinas }} g |
-            Gord: {{ r.gorduras }} g
-          </small>
+          <div class="detalhes-refeicao">
+            <small>
+              Porção consumida: {{ r.porcao }} g<br>
+              Valores por 100g →
+              Carbo: {{ r.carboidratos }} g |
+              Prot: {{ r.proteinas }} g |
+              Gord: {{ r.gorduras }} g
+            </small>
+          </div>
 
+          <!-- AÇÕES -->
           <div class="acoes">
-            <a href="{% url 'editar_refeicao' r.id %}">Editar</a> |
+            <a href="{% url 'editar_refeicao' r.id %}" class="btn-secundario">
+              Editar
+            </a>
+
             <a href="{% url 'excluir_refeicao' r.id %}"
+               class="btn-perigo"
                onclick="return confirm('Deseja excluir esta refeição?');">
               Excluir
             </a>
@@ -31,3 +64,15 @@
     <p>Nenhuma refeição registrada hoje.</p>
   {% endif %}
 </div>
+
+<!-- FEEDBACK -->
+{% if feedback %}
+<div class="card">
+  <h2>Feedback nutricional</h2>
+  {% for msg in feedback %}
+    <p>{{ msg }}</p>
+  {% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}

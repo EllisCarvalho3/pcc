@@ -174,3 +174,45 @@ button:hover {
   font-size: 0.9rem;
   color: #374151;
 }
+
+.item-refeicao {
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.detalhes-refeicao {
+  margin-top: 6px;
+}
+
+.acoes {
+  margin-top: 8px;
+  display: flex;
+  gap: 10px;
+}
+
+.btn-secundario {
+  padding: 6px 12px;
+  background-color: #e0e0e0;
+  color: #333;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.btn-secundario:hover {
+  background-color: #d5d5d5;
+}
+
+.btn-perigo {
+  padding: 6px 12px;
+  background-color: #e74c3c;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.btn-perigo:hover {
+  background-color: #c0392b;
+}
