@@ -8,6 +8,12 @@
   <form method="post">
     {% csrf_token %}
 
+    {% if form.errors %}
+  <div class="form-errors">
+    {{ form.non_field_errors }}
+  </div>
+{% endif %}
+
     <div class="form-group">
       <label for="{{ form.peso.id_for_label }}">Peso (kg)</label>
       {{ form.peso }}
