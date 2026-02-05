@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- RESUMO DO DIA -->
 <div class="card">
   <h2>Resumo do dia</h2>
 
@@ -23,7 +22,6 @@
   {% endif %}
 </div>
 
-<!-- REFEIÇÕES DO DIA -->
 <div class="card">
   <h2>Refeições de hoje</h2>
 
@@ -44,8 +42,7 @@
               Gord: {{ r.gorduras }} g
             </small>
           </div>
-
-          <!-- AÇÕES -->
+          
           <div class="acoes">
             <a href="{% url 'editar_refeicao' r.id %}" class="btn-secundario">
               Editar
@@ -65,7 +62,6 @@
   {% endif %}
 </div>
 
-<!-- FEEDBACK -->
 {% if feedback %}
 <div class="card">
   <h2>Feedback nutricional</h2>
