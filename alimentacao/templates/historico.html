@@ -6,18 +6,20 @@
 {% for dia in dias %}
   <div class="card">
     <h3>{{ dia.data }}</h3>
-    <p><strong>Total:</strong> {{ dia.total|floatformat:0 }} kcal</p>
+    <p><strong>Total do dia:</strong> {{ dia.total|floatformat:0 }} kcal</p>
 
     <ul class="lista-alimentos">
       {% for r in dia.itens %}
         <li>
-          <strong>{{ r.nome }}</strong> —
-          {{ r.calorias|floatformat:0 }} kcal
-          <span class="macros">
-            (C {{ r.carboidratos }}g |
-             P {{ r.proteinas }}g |
-             G {{ r.gorduras }}g)
-          </span>
+          <strong>{{ r.nome }}</strong><br>
+
+          <small>
+            Porção: {{ r.porcao }} g<br>
+            Valores por 100g →
+            C {{ r.carboidratos }} g |
+            P {{ r.proteinas }} g |
+            G {{ r.gorduras }} g
+          </small>
         </li>
       {% endfor %}
     </ul>

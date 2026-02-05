@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="card">
-  <h2>Resumo do Dia</h2>
+  <h2>Resumo do dia</h2>
 
   <p><strong>Total consumido:</strong> {{ total|floatformat:0 }} kcal</p>
 
@@ -23,7 +23,7 @@
 </div>
 
 <div class="card">
-  <h2>Refeições de Hoje</h2>
+  <h2>Refeições de hoje</h2>
 
   <a href="{% url 'criar_refeicao' %}" class="btn">Adicionar refeição</a>
 
@@ -32,9 +32,14 @@
       {% for r in refeicoes %}
         <li>
           <strong>{{ r.nome }}</strong><br>
-          Carbo: {{ r.carboidratos }}g |
-          Prot: {{ r.proteinas }}g |
-          Gord: {{ r.gorduras }}g
+
+          <small>
+            Porção consumida: {{ r.porcao }} g<br>
+            Valores por 100g →
+            Carbo: {{ r.carboidratos }} g |
+            Prot: {{ r.proteinas }} g |
+            Gord: {{ r.gorduras }} g
+          </small>
         </li>
       {% endfor %}
     </ul>
@@ -45,7 +50,7 @@
 
 {% if feedback %}
 <div class="card">
-  <h2>Feedback Nutricional</h2>
+  <h2>Feedback nutricional</h2>
   {% for msg in feedback %}
     <p>{{ msg }}</p>
   {% endfor %}
