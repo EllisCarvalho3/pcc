@@ -1,55 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- REGISTRO DE REFEIÇÃO -->
-<div class="card">
-  <h2>Registrar Refeição</h2>
-
-  <form method="post">
-    {% csrf_token %}
-
-    {{ form.non_field_errors }}
-
-    <input
-      type="text"
-      name="nome"
-      placeholder="Alimento (ex: arroz)"
-      value="{{ form.nome.value|default_if_none:'' }}"
-      required
-    >
-
-    <input
-      type="number"
-      step="0.1"
-      name="carboidratos"
-      placeholder="Carboidratos (g)"
-      value="{{ form.carboidratos.value|default_if_none:'' }}"
-      required
-    >
-
-    <input
-      type="number"
-      step="0.1"
-      name="proteinas"
-      placeholder="Proteínas (g)"
-      value="{{ form.proteinas.value|default_if_none:'' }}"
-      required
-    >
-
-    <input
-      type="number"
-      step="0.1"
-      name="gorduras"
-      placeholder="Gorduras (g)"
-      value="{{ form.gorduras.value|default_if_none:'' }}"
-      required
-    >
-
-    <button type="submit">Adicionar refeição</button>
-  </form>
-</div>
-
-<!-- RESUMO DO DIA -->
 <div class="card">
   <h2>Resumo do Dia</h2>
 
@@ -67,38 +18,37 @@
     </p>
   {% else %}
     <p>Complete seu perfil para calcular a meta diária.</p>
+    <a href="{% url 'perfil' %}" class="btn">Completar perfil</a>
   {% endif %}
 </div>
 
-<!-- FEEDBACK NUTRICIONAL -->
-{% if feedback %}
 <div class="card">
-  <h2>Feedback Nutricional</h2>
-  <div class="feedback">
-    {% for msg in feedback %}
-      <p>{{ msg }}</p>
-    {% endfor %}
-  </div>
-</div>
-{% endif %}
+  <h2>Refeições de Hoje</h2>
 
-<!-- LISTA DE REFEIÇÕES DO DIA -->
-{% if refeicoes %}
-<div class="card">
-  <h2>Refeições Registradas</h2>
+  <a href="{% url 'criar_refeicao' %}" class="btn">➕ Adicionar refeição</a>
 
-  <ul class="historico">
-    {% for r in refeicoes %}
-      <li>
-        <strong>{{ r.nome }}</strong><br>
-        <span class="macros">
+  {% if refeicoes %}
+    <ul class="historico">
+      {% for r in refeicoes %}
+        <li>
+          <strong>{{ r.nome }}</strong><br>
           Carbo: {{ r.carboidratos }}g |
           Prot: {{ r.proteinas }}g |
           Gord: {{ r.gorduras }}g
-        </span>
-      </li>
-    {% endfor %}
-  </ul>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Nenhuma refeição registrada hoje.</p>
+  {% endif %}
+</div>
+
+{% if feedback %}
+<div class="card">
+  <h2>Feedback Nutricional</h2>
+  {% for msg in feedback %}
+    <p>{{ msg }}</p>
+  {% endfor %}
 </div>
 {% endif %}
 
