@@ -1,4 +1,3 @@
-
 def gerar_feedback(total, meta, carbo, prot, gord):
     pct = (total / meta) * 100 if meta else 0
 
