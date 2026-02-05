@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% block content %}
 
 <div class="card">
@@ -9,28 +9,36 @@
 
     {{ form.non_field_errors }}
 
-    <div>
-      {{ form.nome.label_tag }}
+    <div class="form-group">
+      <label>Alimento</label>
       {{ form.nome }}
     </div>
 
-    <div>
-      {{ form.carboidratos.label_tag }}
+    <div class="form-group">
+      <label>Porção consumida (g)</label>
+      {{ form.porcao }}
+    </div>
+
+    <hr>
+
+    <p><strong>Informações nutricionais (por 100g)</strong></p>
+
+    <div class="form-group">
+      <label>Carboidratos</label>
       {{ form.carboidratos }}
     </div>
 
-    <div>
-      {{ form.proteinas.label_tag }}
+    <div class="form-group">
+      <label>Proteínas</label>
       {{ form.proteinas }}
     </div>
 
-    <div>
-      {{ form.gorduras.label_tag }}
+    <div class="form-group">
+      <label>Gorduras</label>
       {{ form.gorduras }}
     </div>
 
     <button type="submit">Salvar refeição</button>
-    <a href="{% url 'dashboard' %}">Cancelar</a>
   </form>
 </div>
 
