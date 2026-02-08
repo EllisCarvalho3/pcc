@@ -7,7 +7,7 @@ from .services import calcular_meta
 
 @login_required
 def perfil_view(request):
-    # Garante que o usuário sempre tenha um perfil
+    # garante que o usuário sempre tenha um perfil
     perfil, created = Perfil.objects.get_or_create(user=request.user)
 
     if request.method == "POST":
@@ -17,7 +17,7 @@ def perfil_view(request):
             perfil = form.save(commit=False)
             perfil.user = request.user
 
-            # Calcula a meta SOMENTE se todos os dados estiverem preenchidos
+            # calcula a meta apenas se todos os dados estiverem preenchidos
             meta = calcular_meta(
                 perfil.peso,
                 perfil.altura,
@@ -26,7 +26,7 @@ def perfil_view(request):
                 perfil.objetivo
             )
 
-            # Só salva a meta se o cálculo for válido
+            # só salva a meta se o cálculo for válido
             if meta is not None:
                 perfil.meta_calorica = meta
 

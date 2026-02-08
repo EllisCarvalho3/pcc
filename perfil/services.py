@@ -1,5 +1,5 @@
 def calcular_meta(peso, altura, idade, atividade, objetivo):
-    # Proteção contra dados incompletos
+    # proteção contra dados incompletos
     if not all([peso, altura, idade, atividade, objetivo]):
         return None
 
