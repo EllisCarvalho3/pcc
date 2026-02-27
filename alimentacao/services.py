@@ -36,18 +36,21 @@ def buscar_alimento_api(nome):
         data = response.json()
 
         if data.get("products"):
-            produto = data["products"][0]
-            nutr = produto.get("nutriments", {})
+            for produto in data["products"]:
+                nutr = produto.get("nutriments", {})
 
-            return {
-                "nome": produto.get("product_name", nome),
-                "calorias": nutr.get("energy-kcal_100g", 0),
-                "proteinas": nutr.get("proteins_100g", 0),
-                "carboidratos": nutr.get("carbohydrates_100g", 0),
-                "gorduras": nutr.get("fat_100g", 0),
-            }
+                carbo = nutr.get("carbohydrates_100g")
+                prot = nutr.get("proteins_100g")
+                gord = nutr.get("fat_100g")
 
-    except Exception:
-        return None
+                if carbo is not None and prot is not None and gord is not None:
+                    return {
+                        "carboidratos": float(carbo),
+                        "proteinas": float(prot),
+                        "gorduras": float(gord),
+                    }
+
+    except Exception as e:
+        print("Erro API:", e)
 
     return None

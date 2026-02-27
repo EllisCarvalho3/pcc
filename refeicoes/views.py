@@ -8,18 +8,26 @@ from alimentacao.services import buscar_alimento_api
 def criar_refeicao(request):
     if request.method == "POST":
         form = RefeicaoForm(request.POST)
+        
         if form.is_valid():
             refeicao = form.save(commit=False)
             refeicao.user = request.user
-            dados_api = buscar_alimento_api(refeicao.nome)
 
-        if dados_api:
-            refeicao.carboidratos = dados_api["carboidratos"]
-            refeicao.proteinas = dados_api["proteinas"]
-            refeicao.gorduras = dados_api["gorduras"]
-            refeicao.calorias = dados_api["calorias"]
+            # 🔎 Busca na API
+            dados_api = buscar_alimento_api(refeicao.nome)
+            
+            print("Resultado API:", dados_api)
+
+            if dados_api:
+                refeicao.carboidratos = dados_api["carboidratos"]
+                refeicao.proteinas = dados_api["proteinas"]
+                refeicao.gorduras = dados_api["gorduras"]
+
+            # 💾 Sempre salva (com API ou manual)
             refeicao.save()
+
             return redirect("dashboard")
+
     else:
         form = RefeicaoForm()
 
