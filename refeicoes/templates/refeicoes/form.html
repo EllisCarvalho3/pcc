@@ -60,4 +60,34 @@ Se não encontrar, preencha manualmente.
 
 </div>
 
+<script>
+
+document.getElementById("id_nome").addEventListener("blur", function() {
+
+    let nome = this.value;
+
+    fetch(`/refeicoes/buscar-alimento/?nome=${nome}`)
+    .then(response => response.json())
+    .then(data => {
+
+        if(data.sucesso){
+
+            document.getElementById("id_carboidratos").value = data.carboidratos;
+            document.getElementById("id_proteinas").value = data.proteinas;
+            document.getElementById("id_gorduras").value = data.gorduras;
+
+            alert("Alimento encontrado na base nutricional ✔");
+
+        } else {
+
+            alert("Alimento não encontrado. Preencha manualmente.");
+
+        }
+
+    });
+
+});
+
+</script>
+
 {% endblock %}

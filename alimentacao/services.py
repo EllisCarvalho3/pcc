@@ -31,9 +31,22 @@ def buscar_alimento_api(nome):
         "json": 1
     }
 
+    headers = {
+        "User-Agent": "nutricao-estudante-app/1.0"
+    }
+
     try:
-        response = requests.get(url, params=params, timeout=5)
+        response = requests.get(url, params=params, headers=headers, timeout=15)
+        
+        print("API STATUS:", response.status_code)
+
+        if response.status_code != 200:
+            print("Erro HTTP:", response.status_code)
+            return None
+
         data = response.json()
+        
+        print("API STATUS:", response.status_code)
 
         if data.get("products"):
             for produto in data["products"]:
@@ -43,7 +56,7 @@ def buscar_alimento_api(nome):
                 prot = nutr.get("proteins_100g")
                 gord = nutr.get("fat_100g")
 
-                if carbo is not None and prot is not None and gord is not None:
+                if carbo and prot and gord:
                     return {
                         "carboidratos": float(carbo),
                         "proteinas": float(prot),

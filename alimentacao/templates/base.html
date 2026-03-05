@@ -8,6 +8,16 @@
 </head>
 <body>
 
+  {% if messages %}
+<div class="container mt-3">
+  {% for message in messages %}
+    <div class="alert alert-info">
+      {{ message }}
+    </div>
+  {% endfor %}
+</div>
+{% endif %}
+
 <header>
   <nav>
     <h1>Nuttrium</h1>

@@ -29,3 +29,15 @@ class RefeicaoForm(forms.ModelForm):
                 "placeholder": "Gorduras por 100g"
             }),
         }
+        
+class RefeicaoForm(forms.ModelForm):
+    class Meta:
+        model = Refeicao
+        fields = "__all__"
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields["carboidratos"].required = False
+        self.fields["proteinas"].required = False
+        self.fields["gorduras"].required = False

@@ -3,6 +3,27 @@ from django.contrib.auth.decorators import login_required
 from .models import Refeicao
 from .forms import RefeicaoForm
 from alimentacao.services import buscar_alimento_api
+from django.contrib import messages
+from django.http import JsonResponse
+from alimentacao.services import buscar_alimento_api
+
+
+@login_required
+def buscar_alimento(request):
+
+    nome = request.GET.get("nome")
+
+    dados = buscar_alimento_api(nome)
+
+    if dados:
+        return JsonResponse({
+            "sucesso": True,
+            "carboidratos": dados["carboidratos"],
+            "proteinas": dados["proteinas"],
+            "gorduras": dados["gorduras"],
+        })
+
+    return JsonResponse({"sucesso": False})
 
 @login_required
 def criar_refeicao(request):
@@ -13,17 +34,23 @@ def criar_refeicao(request):
             refeicao = form.save(commit=False)
             refeicao.user = request.user
 
-            # 🔎 Busca na API
+            # 🔎 Busca alimento na API
             dados_api = buscar_alimento_api(refeicao.nome)
-            
+
             print("Resultado API:", dados_api)
-
+                
             if dados_api:
-                refeicao.carboidratos = dados_api["carboidratos"]
-                refeicao.proteinas = dados_api["proteinas"]
-                refeicao.gorduras = dados_api["gorduras"]
+                porcao = refeicao.porcao
 
-            # 💾 Sempre salva (com API ou manual)
+                refeicao.carboidratos = (dados_api["carboidratos"] * porcao) / 100
+                refeicao.proteinas = (dados_api["proteinas"] * porcao) / 100
+                refeicao.gorduras = (dados_api["gorduras"] * porcao) / 100
+
+                messages.success(request, "Alimento encontrado automaticamente na base nutricional.")
+            else:
+                messages.warning(request, "Alimento não encontrado. Preencha os macronutrientes manualmente.")
+
+            # 💾 salva no banco
             refeicao.save()
 
             return redirect("dashboard")
