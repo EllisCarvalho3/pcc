@@ -6,24 +6,24 @@ from alimentacao.services import buscar_alimento_api
 from django.contrib import messages
 from django.http import JsonResponse
 from alimentacao.services import buscar_alimento_api
-
+from django.http import JsonResponse
+from alimentacao.services import buscar_alimento_api
 
 @login_required
 def buscar_alimento(request):
-
     nome = request.GET.get("nome")
 
     dados = buscar_alimento_api(nome)
 
     if dados:
         return JsonResponse({
-            "sucesso": True,
+            "encontrado": True,
             "carboidratos": dados["carboidratos"],
             "proteinas": dados["proteinas"],
-            "gorduras": dados["gorduras"],
+            "gorduras": dados["gorduras"]
         })
 
-    return JsonResponse({"sucesso": False})
+    return JsonResponse({"encontrado": False})
 
 @login_required
 def criar_refeicao(request):

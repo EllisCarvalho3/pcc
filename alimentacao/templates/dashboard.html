@@ -1,7 +1,4 @@
-{% extends 'base.html' %}
-{% block content %}
-
-<div class="card">
+{% extends 'base.ht<div class="card">
   <h2>Resumo do dia</h2>
 
   <p><strong>Total consumido:</strong> {{ total|floatformat:0 }} kcal</p>
@@ -20,7 +17,10 @@
     <p>Complete seu perfil para calcular a meta diária.</p>
     <a href="{% url 'perfil' %}" class="btn">Completar perfil</a>
   {% endif %}
-</div>
+</div>ml' %}
+{% block content %}
+
+
 
 <div class="card">
   <h2>Refeições de hoje</h2>

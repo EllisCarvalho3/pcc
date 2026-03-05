@@ -12,18 +12,20 @@ from alimentacao.services import gerar_feedback
 def dashboard(request):
 
     perfil = Perfil.objects.filter(user=request.user).first()
-
     refeicoes = Refeicao.objects.filter(user=request.user)
 
     total_calorias = sum(r.calorias() for r in refeicoes)
 
-    meta = perfil.meta_calorica if perfil else 0
+    # valor padrão para evitar erro
+    percentual = 0
 
-    percentual = (total_calorias / meta) * 100 if meta else 0
-    percentual = min(percentual, 100)
+    if perfil and perfil.meta_calorica:
+        meta = perfil.meta_calorica
+
+        percentual = (total_calorias / meta) * 100
+        percentual = min(percentual, 100)
 
     feedback = []
-
     if perfil and perfil.meta_calorica:
         feedback = gerar_feedback(
             total_calorias,

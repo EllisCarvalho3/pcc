@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 class Refeicao(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     nome = models.CharField(max_length=100)
+    quantidade = models.FloatField(default=100)
 
     porcao = models.FloatField(help_text="Quantidade consumida em gramas")
 
@@ -14,13 +15,16 @@ class Refeicao(models.Model):
     data = models.DateField(auto_now_add=True)
 
     def calorias(self):
-        fator = self.porcao / 100
-        return (
-            (self.carboidratos * 4 +
-             self.proteinas * 4 +
-             self.gorduras * 9)
-            * fator
-        )
+
+        fator = self.quantidade / 100
+
+        carbo = self.carboidratos * fator
+        prot = self.proteinas * fator
+        gord = self.gorduras * fator
+
+        return (carbo * 4) + (prot * 4) + (gord * 9)
+        
+        
 
 
 

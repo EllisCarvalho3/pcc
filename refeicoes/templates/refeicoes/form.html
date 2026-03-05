@@ -61,33 +61,33 @@ Se não encontrar, preencha manualmente.
 </div>
 
 <script>
+const campoNome = document.getElementById("id_nome");
 
-document.getElementById("id_nome").addEventListener("blur", function() {
+campoNome.addEventListener("blur", function(){
 
-    let nome = this.value;
+    const nome = campoNome.value;
 
     fetch(`/refeicoes/buscar-alimento/?nome=${nome}`)
     .then(response => response.json())
     .then(data => {
 
-        if(data.sucesso){
+        if(data.encontrado){
 
-            document.getElementById("id_carboidratos").value = data.carboidratos;
-            document.getElementById("id_proteinas").value = data.proteinas;
-            document.getElementById("id_gorduras").value = data.gorduras;
+            document.getElementById("id_carboidratos").value = data.carboidratos
+            document.getElementById("id_proteinas").value = data.proteinas
+            document.getElementById("id_gorduras").value = data.gorduras
 
-            alert("Alimento encontrado na base nutricional ✔");
+            alert("Alimento encontrado na base nutricional")
 
-        } else {
+        }else{
 
-            alert("Alimento não encontrado. Preencha manualmente.");
+            alert("Alimento não encontrado. Preencha manualmente.")
 
         }
 
-    });
+    })
 
-});
-
+})
 </script>
 
 {% endblock %}
