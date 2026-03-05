@@ -23,11 +23,18 @@ Se não encontrar, preencha manualmente.
 
     <div class="form-group">
       <label>Alimento</label>
-      {{ form.nome }}
-    </div>
 
-    <div class="form-group">
-      <label>Porção consumida (g)</label>
+<input 
+type="text" 
+name="nome" 
+id="id_nome" 
+autocomplete="off"
+placeholder="Digite o alimento..."
+>
+
+<div id="sugestoes" class="sugestoes"></div>
+
+<p id="status-api"></p>
       {{ form.porcao }}
     </div>
 
@@ -59,35 +66,87 @@ Se não encontrar, preencha manualmente.
   </form>
 
 </div>
-
 <script>
-const campoNome = document.getElementById("id_nome");
+document.addEventListener("DOMContentLoaded", function() {
 
-campoNome.addEventListener("blur", function(){
+    const campoNome = document.getElementById("id_nome")
+    const carbo = document.getElementById("id_carboidratos")
+    const prot = document.getElementById("id_proteinas")
+    const gord = document.getElementById("id_gorduras")
+    const status = document.getElementById("status-api")
 
-    const nome = campoNome.value;
+    campoNome.addEventListener("blur", function(){
 
-    fetch(`/refeicoes/buscar-alimento/?nome=${nome}`)
-    .then(response => response.json())
-    .then(data => {
+        let nome = campoNome.value
 
-        if(data.encontrado){
-
-            document.getElementById("id_carboidratos").value = data.carboidratos
-            document.getElementById("id_proteinas").value = data.proteinas
-            document.getElementById("id_gorduras").value = data.gorduras
-
-            alert("Alimento encontrado na base nutricional")
-
-        }else{
-
-            alert("Alimento não encontrado. Preencha manualmente.")
-
+        if(nome.length < 3){
+            return
         }
 
+        fetch(`/refeicoes/buscar-alimento/?nome=${nome}`)
+        .then(response => response.json())
+        .then(data => {
+
+            if(data.encontrado){
+
+                carbo.value = data.carboidratos
+                prot.value = data.proteinas
+                gord.value = data.gorduras
+
+                status.innerHTML = "✅ Alimento encontrado na base nutricional"
+
+            }else{
+
+                status.innerHTML = "⚠️ Alimento não encontrado. Preencha manualmente."
+
+            }
+
+        })
     })
 
 })
 </script>
 
+<script>
+
+const campo = document.getElementById("id_nome")
+const sugestoesBox = document.getElementById("sugestoes")
+
+campo.addEventListener("input", function(){
+
+    let valor = campo.value
+
+    if(valor.length < 2){
+        sugestoesBox.innerHTML = ""
+        return
+    }
+
+    fetch(`/refeicoes/autocomplete/?term=${valor}`)
+    .then(res => res.json())
+    .then(data => {
+
+        sugestoesBox.innerHTML = ""
+
+        data.forEach(item => {
+
+            let div = document.createElement("div")
+            div.classList.add("sugestao-item")
+            div.innerText = item
+
+            div.onclick = function(){
+
+                campo.value = item
+                sugestoesBox.innerHTML = ""
+
+            }
+
+            sugestoesBox.appendChild(div)
+
+        })
+
+    })
+
+})
+
+</script>
 {% endblock %}
