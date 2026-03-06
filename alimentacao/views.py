@@ -34,7 +34,7 @@ def dashboard(request):
         "total_gordura": round(total_gordura, 2),
     }
 
-    return render(request, "alimentacao/dashboard.html", context)
+    return render(request, "dashboard.html", context)
 
 @login_required
 def historico(request):
