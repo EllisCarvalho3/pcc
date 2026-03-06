@@ -13,28 +13,33 @@ def dashboard(request):
 
     refeicoes = Refeicao.objects.filter(user=request.user)
 
-    total_calorias = 0
-    total_carbo = 0
-    total_proteina = 0
-    total_gordura = 0
+    total = sum(r.calorias() for r in refeicoes)
 
-    for r in refeicoes:
+    perfil = getattr(request.user, "perfil", None)
 
-        total_calorias += r.calorias()
+    percentual = 0
+    feedback = []
 
-        total_carbo += r.carboidratos or 0
-        total_proteina += r.proteinas or 0
-        total_gordura += r.gorduras or 0
+    if perfil and perfil.meta_calorica:
 
-    context = {
+        percentual = (total / perfil.meta_calorica) * 100
+
+        if percentual < 80:
+            feedback.append("Você consumiu menos calorias que sua meta.")
+        elif percentual <= 110:
+            feedback.append("Você está dentro da meta diária.")
+        else:
+            feedback.append("Você ultrapassou sua meta calórica.")
+
+    contexto = {
         "refeicoes": refeicoes,
-        "total_calorias": round(total_calorias, 2),
-        "total_carbo": round(total_carbo, 2),
-        "total_proteina": round(total_proteina, 2),
-        "total_gordura": round(total_gordura, 2),
+        "total": total,
+        "perfil": perfil,
+        "percentual": percentual,
+        "feedback": feedback
     }
 
-    return render(request, "dashboard.html", context)
+    return render(request, "dashboard.html", contexto)
 
 @login_required
 def historico(request):
