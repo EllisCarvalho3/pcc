@@ -170,6 +170,51 @@ button:hover {
     background:#f3f4f6;
 }
 
+.container{
+  max-width:600px;
+  margin:auto;
+}
+
+.form-group{
+  margin-bottom:15px;
+}
+
+input{
+  width:100%;
+  padding:8px;
+}
+
+.btn{
+  padding:10px 16px;
+  background:#30cc69;
+  border:none;
+  border-radius:6px;
+  color:white;
+  cursor:pointer;
+}
+
+.sugestoes{
+  background:white;
+  border:1px solid #ccc;
+  max-height:150px;
+  overflow-y:auto;
+}
+
+.item-sugestao{
+  padding:8px;
+  cursor:pointer;
+}
+
+.item-sugestao:hover{
+  background:#f0f0f0;
+}
+
+.alert{
+  background:#f1f5f9;
+  padding:10px;
+  margin-bottom:15px;
+}
+
 .progress {
   width: 100%;
   height: 14px;

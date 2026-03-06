@@ -6,7 +6,7 @@ class RefeicaoForm(forms.ModelForm):
         model = Refeicao
         fields = [
             "nome",
-            "porcao",
+            "quantidade",
             "carboidratos",
             "proteinas",
             "gorduras",
@@ -16,7 +16,7 @@ class RefeicaoForm(forms.ModelForm):
             "nome": forms.TextInput(attrs={
                 "placeholder": "Ex: Feijão cozido"
             }),
-            "porcao": forms.NumberInput(attrs={
+            "quantidade": forms.NumberInput(attrs={
                 "placeholder": "Quantidade consumida (g)"
             }),
             "carboidratos": forms.NumberInput(attrs={

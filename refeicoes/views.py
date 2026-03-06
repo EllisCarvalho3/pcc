@@ -8,59 +8,40 @@ from django.http import JsonResponse
 from alimentacao.services import buscar_alimento_api
 from django.http import JsonResponse
 from alimentacao.services import buscar_alimento_api
+from .api import buscar_alimento_api
 import requests
 
-@login_required
-def buscar_alimento(request):
-    nome = request.GET.get("nome")
 
-    dados = buscar_alimento_api(nome)
 
-    if dados:
-        return JsonResponse({
-            "encontrado": True,
-            "carboidratos": dados["carboidratos"],
-            "proteinas": dados["proteinas"],
-            "gorduras": dados["gorduras"]
-        })
 
-    return JsonResponse({"encontrado": False})
+class Refeicao(models.Model):
 
-@login_required
-def criar_refeicao(request):
-    if request.method == "POST":
-        form = RefeicaoForm(request.POST)
-        
-        if form.is_valid():
-            refeicao = form.save(commit=False)
-            refeicao.user = request.user
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
-            # 🔎 Busca alimento na API
-            dados_api = buscar_alimento_api(refeicao.nome)
+    nome = models.CharField(max_length=200)
 
-            print("Resultado API:", dados_api)
-                
-            if dados_api:
-                porcao = refeicao.porcao
+    quantidade = models.FloatField(help_text="Quantidade consumida em gramas")
 
-                refeicao.carboidratos = (dados_api["carboidratos"] * porcao) / 100
-                refeicao.proteinas = (dados_api["proteinas"] * porcao) / 100
-                refeicao.gorduras = (dados_api["gorduras"] * porcao) / 100
+    # valores por 100g
+    carboidratos = models.FloatField(help_text="Carboidratos por 100g")
+    proteinas = models.FloatField(help_text="Proteínas por 100g")
+    gorduras = models.FloatField(help_text="Gorduras por 100g")
 
-                messages.success(request, "Alimento encontrado automaticamente na base nutricional.")
-            else:
-                messages.warning(request, "Alimento não encontrado. Preencha os macronutrientes manualmente.")
+    data = models.DateField(auto_now_add=True)
 
-            # 💾 salva no banco
-            refeicao.save()
+    def calorias(self):
 
-            return redirect("dashboard")
+        fator = self.quantidade / 100
 
-    else:
-        form = RefeicaoForm()
+        carbo = self.carboidratos * fator
+        prot = self.proteinas * fator
+        gord = self.gorduras * fator
 
-    return render(request, "refeicoes/form.html", {"form": form})
+        return (carbo * 4) + (prot * 4) + (gord * 9)
 
+    def __str__(self):
+        return f"{self.nome} ({self.quantidade}g)"
+    
 @login_required
 def editar_refeicao(request, id):
     refeicao = get_object_or_404(
@@ -94,32 +75,11 @@ def excluir_refeicao(request, id):
     return redirect("dashboard")
 
 
-@login_required
-def buscar_alimento_ajax(request):
-    nome = request.GET.get("nome")
-
-    if not nome:
-        return JsonResponse({"erro": "Nome não informado"})
-
-    dados = buscar_alimento_api(nome)
-
-    if dados:
-        return JsonResponse({
-            "encontrado": True,
-            "carboidratos": dados["carboidratos"],
-            "proteinas": dados["proteinas"],
-            "gorduras": dados["gorduras"]
-        })
-    else:
-        return JsonResponse({"encontrado": False})
     
 @login_required
-def autocomplete_alimentos(request):
+def autocomplete_alimento(request):
 
-    termo = request.GET.get("term")
-
-    if not termo:
-        return JsonResponse([], safe=False)
+    termo = request.GET.get("q")
 
     url = "https://world.openfoodfacts.org/cgi/search.pl"
 
@@ -128,22 +88,20 @@ def autocomplete_alimentos(request):
         "search_simple": 1,
         "action": "process",
         "json": 1,
-        "page_size": 5
+        "page_size": 5,
     }
 
-    try:
-        r = requests.get(url, params=params, timeout=10)
-        data = r.json()
+    response = requests.get(url, params=params)
 
-        resultados = []
+    data = response.json()
 
-        for produto in data.get("products", []):
-            nome = produto.get("product_name")
+    sugestoes = []
 
-            if nome:
-                resultados.append(nome)
+    for produto in data.get("products", []):
 
-        return JsonResponse(resultados, safe=False)
+        nome = produto.get("product_name")
 
-    except:
-        return JsonResponse([], safe=False)    
+        if nome:
+            sugestoes.append(nome)
+
+    return JsonResponse(sugestoes, safe=False)

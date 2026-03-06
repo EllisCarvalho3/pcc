@@ -1,152 +1,132 @@
 {% extends "base.html" %}
+
 {% block content %}
 
-<div class="card">
+<div class="container">
 
-  <h2>
-    {% if editar %}
-      Editar refeição
-    {% else %}
-      Adicionar refeição
-    {% endif %}
-  </h2>
+  <h1>Registrar refeição</h1>
 
-  <form method="post">
+  <!-- mensagens do Django -->
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <form method="POST">
+
     {% csrf_token %}
 
-    {{ form.non_field_errors }}
-
-   <p><small>
-O sistema tentará buscar automaticamente as informações nutricionais.
-Se não encontrar, preencha manualmente.
-</small></p>
-
+    <!-- NOME DO ALIMENTO -->
     <div class="form-group">
+
       <label>Alimento</label>
 
-<input 
-type="text" 
-name="nome" 
-id="id_nome" 
-autocomplete="off"
-placeholder="Digite o alimento..."
->
+      <input 
+        type="text"
+        name="nome"
+        id="id_nome"
+        placeholder="Digite o alimento..."
+        autocomplete="off"
+        required
+      >
 
-<div id="sugestoes" class="sugestoes"></div>
+      <div id="sugestoes" class="sugestoes"></div>
 
-<p id="status-api"></p>
-      {{ form.porcao }}
+      <p id="status-api"></p>
+
     </div>
 
-    <hr>
-    <p><strong>Informações nutricionais (por 100g)</strong></p>
+
+    <!-- QUANTIDADE -->
+    <div class="form-group">
+
+      <label>Quantidade consumida (g)</label>
+
+      {{ form.quantidade }}
+
+    </div>
+
+
+    <!-- MACROS -->
+    <h3>Macronutrientes (por 100g)</h3>
 
     <div class="form-group">
-      <label>Carboidratos</label>
+
+      <label>Carboidratos (g)</label>
+
       {{ form.carboidratos }}
+
     </div>
 
+
     <div class="form-group">
-      <label>Proteínas</label>
+
+      <label>Proteínas (g)</label>
+
       {{ form.proteinas }}
+
     </div>
+
 
     <div class="form-group">
-      <label>Gorduras</label>
+
+      <label>Gorduras (g)</label>
+
       {{ form.gorduras }}
+
     </div>
 
-    <button type="submit">
-      {% if editar %}
-        Salvar alterações
-      {% else %}
-        Salvar refeição
-      {% endif %}
+
+    <button type="submit" class="btn">
+      Salvar refeição
     </button>
+
   </form>
 
 </div>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
 
-    const campoNome = document.getElementById("id_nome")
-    const carbo = document.getElementById("id_carboidratos")
-    const prot = document.getElementById("id_proteinas")
-    const gord = document.getElementById("id_gorduras")
-    const status = document.getElementById("status-api")
 
-    campoNome.addEventListener("blur", function(){
-
-        let nome = campoNome.value
-
-        if(nome.length < 3){
-            return
-        }
-
-        fetch(`/refeicoes/buscar-alimento/?nome=${nome}`)
-        .then(response => response.json())
-        .then(data => {
-
-            if(data.encontrado){
-
-                carbo.value = data.carboidratos
-                prot.value = data.proteinas
-                gord.value = data.gorduras
-
-                status.innerHTML = "✅ Alimento encontrado na base nutricional"
-
-            }else{
-
-                status.innerHTML = "⚠️ Alimento não encontrado. Preencha manualmente."
-
-            }
-
-        })
-    })
-
-})
-</script>
-
+<!-- AUTOCOMPLETE DA API -->
 <script>
 
-const campo = document.getElementById("id_nome")
-const sugestoesBox = document.getElementById("sugestoes")
+const input = document.getElementById("id_nome")
+const sugestoes = document.getElementById("sugestoes")
 
-campo.addEventListener("input", function(){
+input.addEventListener("input", async () => {
 
-    let valor = campo.value
+    const termo = input.value
 
-    if(valor.length < 2){
-        sugestoesBox.innerHTML = ""
+    if (termo.length < 2) {
+        sugestoes.innerHTML = ""
         return
     }
 
-    fetch(`/refeicoes/autocomplete/?term=${valor}`)
-    .then(res => res.json())
-    .then(data => {
+    const res = await fetch(`/refeicoes/autocomplete/?q=${termo}`)
 
-        sugestoesBox.innerHTML = ""
+    const dados = await res.json()
 
-        data.forEach(item => {
+    sugestoes.innerHTML = ""
 
-            let div = document.createElement("div")
-            div.classList.add("sugestao-item")
-            div.innerText = item
+    dados.forEach(nome => {
 
-            div.onclick = function(){
+        const div = document.createElement("div")
 
-                campo.value = item
-                sugestoesBox.innerHTML = ""
+        div.innerText = nome
 
-            }
+        div.onclick = () => {
+            input.value = nome
+            sugestoes.innerHTML = ""
+        }
 
-            sugestoesBox.appendChild(div)
-
-        })
+        sugestoes.appendChild(div)
 
     })
 
 })
 
 </script>
+
 {% endblock %}

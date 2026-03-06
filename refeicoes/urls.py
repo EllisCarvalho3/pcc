@@ -6,5 +6,5 @@ urlpatterns = [
     path("editar/<int:id>/", views.editar_refeicao, name="editar_refeicao"),
     path("excluir/<int:id>/", views.excluir_refeicao, name="excluir_refeicao"),
     path("buscar-alimento/", views.buscar_alimento_ajax, name="buscar_alimento_ajax"),
-    path("autocomplete-alimentos/", views.autocomplete_alimentos, name="autocomplete_alimentos"),
+    path("autocomplete/", views.autocomplete_alimento, name="autocomplete"),
 ]
