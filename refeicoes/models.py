@@ -8,16 +8,34 @@ class Refeicao(models.Model):
 
     nome = models.CharField(max_length=200)
 
-    quantidade = models.FloatField(help_text="Quantidade consumida em gramas")
+    quantidade = models.FloatField(
+        help_text="Quantidade consumida em gramas"
+    )
 
-    # valores por 100g
-    carboidratos = models.FloatField(help_text="Carboidratos por 100g")
-    proteinas = models.FloatField(help_text="Proteínas por 100g")
-    gorduras = models.FloatField(help_text="Gorduras por 100g")
+    carboidratos = models.FloatField(
+        help_text="Carboidratos por 100g",
+        null=True,
+        blank=True
+    )
 
-    data = models.DateField(auto_now_add=True)
+    proteinas = models.FloatField(
+        help_text="Proteínas por 100g",
+        null=True,
+        blank=True
+    )
+
+    gorduras = models.FloatField(
+        help_text="Gorduras por 100g",
+        null=True,
+        blank=True
+    )
+
+    data = models.DateTimeField(auto_now_add=True)
 
     def calorias(self):
+
+        if not self.carboidratos:
+            return 0
 
         fator = self.quantidade / 100
 
@@ -28,4 +46,4 @@ class Refeicao(models.Model):
         return (carbo * 4) + (prot * 4) + (gord * 9)
 
     def __str__(self):
-        return f"{self.nome} ({self.quantidade}g)"
+        return self.nome
