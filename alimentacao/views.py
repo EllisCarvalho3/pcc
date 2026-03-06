@@ -11,37 +11,30 @@ from alimentacao.services import gerar_feedback
 @login_required
 def dashboard(request):
 
-    perfil = Perfil.objects.filter(user=request.user).first()
     refeicoes = Refeicao.objects.filter(user=request.user)
 
-    total_calorias = sum(r.calorias() for r in refeicoes)
+    total_calorias = 0
+    total_carbo = 0
+    total_proteina = 0
+    total_gordura = 0
 
-    # valor padrão para evitar erro
-    percentual = 0
+    for r in refeicoes:
 
-    if perfil and perfil.meta_calorica:
-        meta = perfil.meta_calorica
+        total_calorias += r.calorias()
 
-        percentual = (total_calorias / meta) * 100
-        percentual = min(percentual, 100)
+        total_carbo += r.carboidratos or 0
+        total_proteina += r.proteinas or 0
+        total_gordura += r.gorduras or 0
 
-    feedback = []
-    if perfil and perfil.meta_calorica:
-        feedback = gerar_feedback(
-            total_calorias,
-            perfil.meta_calorica,
-            sum(r.carboidratos for r in refeicoes),
-            sum(r.proteinas for r in refeicoes),
-            sum(r.gorduras for r in refeicoes),
-        )
-
-    return render(request, "dashboard.html", {
-        "perfil": perfil,
+    context = {
         "refeicoes": refeicoes,
-        "total": total_calorias,
-        "percentual": percentual,
-        "feedback": feedback,
-    })
+        "total_calorias": round(total_calorias, 2),
+        "total_carbo": round(total_carbo, 2),
+        "total_proteina": round(total_proteina, 2),
+        "total_gordura": round(total_gordura, 2),
+    }
+
+    return render(request, "alimentacao/dashboard.html", context)
 
 @login_required
 def historico(request):

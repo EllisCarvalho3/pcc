@@ -10,7 +10,7 @@
     <p><strong>Meta diária:</strong> {{ perfil.meta_calorica|floatformat:0 }} kcal</p>
  
     <div class="progress">
-      <div class="progress-fill" style="width: {{ percentual }}%;"></div>
+      <div class="progress-fill" style="width: {{ percentual|floatformat:0 }}%;"></div>
     </div>
 
     <p class="percentual">
@@ -35,11 +35,11 @@
 
           <div class="detalhes-refeicao">
             <small>
-              Porção consumida: {{ r.porcao }} g<br>
+              Porção consumida: {{ r.quantidade|floatformat:0 }} g<br>
               Valores por 100g →
-              Carbo: {{ r.carboidratos }} g |
-              Prot: {{ r.proteinas }} g |
-              Gord: {{ r.gorduras }} g
+              Carbo: {{ r.carboidratos|floatformat:1 }} g |
+              Prot: {{ r.proteinas|floatformat:1 }} g |
+              Gord: {{ r.gorduras|floatformat:1 }} g
             </small>
           </div>
           

@@ -184,15 +184,6 @@ input{
   padding:8px;
 }
 
-.btn{
-  padding:10px 16px;
-  background:#30cc69;
-  border:none;
-  border-radius:6px;
-  color:white;
-  cursor:pointer;
-}
-
 .sugestoes{
   background:white;
   border:1px solid #ccc;

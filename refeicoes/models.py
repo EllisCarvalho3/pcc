@@ -1,49 +1,26 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
 class Refeicao(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     nome = models.CharField(max_length=200)
 
-    quantidade = models.FloatField(
-        help_text="Quantidade consumida em gramas"
-    )
+    quantidade = models.FloatField()
 
-    carboidratos = models.FloatField(
-        help_text="Carboidratos por 100g",
-        null=True,
-        blank=True
-    )
-
-    proteinas = models.FloatField(
-        help_text="Proteínas por 100g",
-        null=True,
-        blank=True
-    )
-
-    gorduras = models.FloatField(
-        help_text="Gorduras por 100g",
-        null=True,
-        blank=True
-    )
+    carboidratos = models.FloatField(default=0)
+    proteinas = models.FloatField(default=0)
+    gorduras = models.FloatField(default=0)
 
     data = models.DateTimeField(auto_now_add=True)
 
     def calorias(self):
 
-        if not self.carboidratos:
-            return 0
+        carbo = self.carboidratos or 0
+        prot = self.proteinas or 0
+        gord = self.gorduras or 0
 
-        fator = self.quantidade / 100
+        calorias = (carbo * 4) + (prot * 4) + (gord * 9)
 
-        carbo = self.carboidratos * fator
-        prot = self.proteinas * fator
-        gord = self.gorduras * fator
-
-        return (carbo * 4) + (prot * 4) + (gord * 9)
-
-    def __str__(self):
-        return self.nome
+        return round(calorias, 2)
