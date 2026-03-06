@@ -5,37 +5,72 @@ from django.http import JsonResponse
 from .models import Refeicao
 from .forms import RefeicaoForm
 from .api import buscar_alimento_api
+
+@login_required
+def criar_refeicao(request):
+
+    if request.method == "POST":
+
+        form = RefeicaoForm(request.POST)
+
+        if form.is_valid():
+
+            refeicao = form.save(commit=False)
+            refeicao.user = request.user
+
+            # busca alimento na API
+            dados_api = buscar_alimento_api(refeicao.nome)
+
+            if dados_api:
+
+                quantidade = refeicao.quantidade
+
+                refeicao.carboidratos = (dados_api["carboidratos"] * quantidade) / 100
+                refeicao.proteinas = (dados_api["proteinas"] * quantidade) / 100
+                refeicao.gorduras = (dados_api["gorduras"] * quantidade) / 100
+
+                messages.success(request, "Alimento encontrado na base nutricional.")
+
+            else:
+                messages.warning(request, "Alimento não encontrado. Preencha manualmente.")
+
+            refeicao.save()
+
+            return redirect("dashboard")
+
+    else:
+        form = RefeicaoForm()
+
+    return render(request, "refeicoes/form.html", {"form": form})
     
 @login_required
 def editar_refeicao(request, id):
-    refeicao = get_object_or_404(
-        Refeicao,
-        id=id,
-        user=request.user
-    )
+
+    refeicao = get_object_or_404(Refeicao, id=id, user=request.user)
 
     if request.method == "POST":
+
         form = RefeicaoForm(request.POST, instance=refeicao)
+
         if form.is_valid():
             form.save()
+            messages.success(request, "Refeição atualizada.")
             return redirect("dashboard")
+
     else:
         form = RefeicaoForm(instance=refeicao)
 
-    return render(request, "refeicoes/form.html", {
-        "form": form,
-        "editar": True
-    })
+    return render(request, "refeicoes/form.html", {"form": form})
 
 @login_required
 def excluir_refeicao(request, id):
-    refeicao = get_object_or_404(
-        Refeicao,
-        id=id,
-        user=request.user
-    )
+
+    refeicao = get_object_or_404(Refeicao, id=id, user=request.user)
 
     refeicao.delete()
+
+    messages.success(request, "Refeição removida.")
+
     return redirect("dashboard")
 
 
@@ -45,27 +80,12 @@ def autocomplete_alimento(request):
 
     termo = request.GET.get("q")
 
-    url = "https://world.openfoodfacts.org/cgi/search.pl"
+    if not termo:
+        return JsonResponse({"resultados": []})
 
-    params = {
-        "search_terms": termo,
-        "search_simple": 1,
-        "action": "process",
-        "json": 1,
-        "page_size": 5,
-    }
+    dados = buscar_alimento_api(termo)
 
-    response = requests.get(url, params=params)
+    if not dados:
+        return JsonResponse({"resultados": []})
 
-    data = response.json()
-
-    sugestoes = []
-
-    for produto in data.get("products", []):
-
-        nome = produto.get("product_name")
-
-        if nome:
-            sugestoes.append(nome)
-
-    return JsonResponse(sugestoes, safe=False)
+    return JsonResponse(dados)
