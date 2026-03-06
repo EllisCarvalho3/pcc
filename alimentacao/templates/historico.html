@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h2>Histórico alimentar</h2>
+<h2>Histórico alimentar</h2> 
 
 {% for dia in dias %}
   <div class="card">
@@ -16,9 +16,9 @@
           <small>
             Porção: {{ r.porcao }} g<br>
             Valores por 100g →
-            C {{ r.carboidratos }} g |
-            P {{ r.proteinas }} g |
-            G {{ r.gorduras }} g
+            C {{ r.carboidratos|floatformat:1 }} g |
+            P {{ r.proteinas|floatformat:1 }} g |
+            G {{ r.gorduras|floatformat:1 }} g
           </small>
         </li>
       {% endfor %}

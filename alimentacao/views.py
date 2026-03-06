@@ -13,30 +13,79 @@ def dashboard(request):
 
     refeicoes = Refeicao.objects.filter(user=request.user)
 
-    total = sum(r.calorias() for r in refeicoes)
+    total_calorias = 0
+    total_carbo = 0
+    total_prot = 0
+    total_gord = 0
+
+    for r in refeicoes:
+
+        carbo = r.carboidratos or 0
+        prot = r.proteinas or 0
+        gord = r.gorduras or 0
+        qtd = r.quantidade or 0
+
+        fator = qtd / 100
+
+        carbo_total = carbo * fator
+        prot_total = prot * fator
+        gord_total = gord * fator
+
+        total_carbo += carbo_total
+        total_prot += prot_total
+        total_gord += gord_total
+
+        total_calorias += (carbo_total * 4) + (prot_total * 4) + (gord_total * 9)
 
     perfil = getattr(request.user, "perfil", None)
 
     percentual = 0
     feedback = []
 
+    # FEEDBACK CALÓRICO
     if perfil and perfil.meta_calorica:
 
-        percentual = (total / perfil.meta_calorica) * 100
+        percentual = (total_calorias / perfil.meta_calorica) * 100
 
         if percentual < 80:
-            feedback.append("Você consumiu menos calorias que sua meta.")
+            feedback.append(" Você está consumindo menos calorias que sua meta diária.")
         elif percentual <= 110:
-            feedback.append("Você está dentro da meta diária.")
+            feedback.append(" Seu consumo calórico está dentro da meta.")
         else:
-            feedback.append("Você ultrapassou sua meta calórica.")
+            feedback.append(" Você ultrapassou sua meta calórica diária.")
+
+    # FEEDBACK DE MACRONUTRIENTES
+    if total_calorias > 0:
+
+        perc_carbo = (total_carbo * 4) / total_calorias * 100
+        perc_prot = (total_prot * 4) / total_calorias * 100
+        perc_gord = (total_gord * 9) / total_calorias * 100
+
+        # referência nutricional média
+        if perc_prot < 10:
+            feedback.append(" Consumo de proteína baixo.")
+        elif perc_prot > 35:
+            feedback.append(" Consumo de proteína alto.")
+
+        if perc_carbo < 45:
+            feedback.append(" Consumo de carboidratos baixo.")
+        elif perc_carbo > 65:
+            feedback.append(" Consumo de carboidratos alto.")
+
+        if perc_gord < 20:
+            feedback.append(" Consumo de gorduras baixo.")
+        elif perc_gord > 35:
+            feedback.append(" Consumo de gorduras alto.")
+
+        if not feedback:
+            feedback.append(" Distribuição de macronutrientes equilibrada.")
 
     contexto = {
         "refeicoes": refeicoes,
-        "total": total,
+        "total": round(total_calorias, 2),
         "perfil": perfil,
         "percentual": percentual,
-        "feedback": feedback
+        "feedback": feedback,
     }
 
     return render(request, "dashboard.html", contexto)
