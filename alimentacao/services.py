@@ -37,8 +37,6 @@ def buscar_alimento_api(nome):
 
     try:
         response = requests.get(url, params=params, headers=headers, timeout=15)
-        
-        print("API STATUS:", response.status_code)
 
         if response.status_code != 200:
             print("Erro HTTP:", response.status_code)
@@ -56,7 +54,7 @@ def buscar_alimento_api(nome):
                 prot = nutr.get("proteins_100g")
                 gord = nutr.get("fat_100g")
 
-                if carbo and prot and gord:
+                if carbo is not None and prot is not None and gord is not None:
                     return {
                         "carboidratos": float(carbo),
                         "proteinas": float(prot),
