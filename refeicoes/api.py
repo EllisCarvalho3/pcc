@@ -1,32 +1,72 @@
 import requests
+from django.conf import settings
+
 
 def buscar_alimento_api(nome):
 
-    url = "https://world.openfoodfacts.org/cgi/search.pl"
+    url = "https://api.nal.usda.gov/fdc/v1/foods/search"
 
     params = {
-        "search_terms": nome,
-        "search_simple": 1,
-        "action": "process",
-        "json": 1,
-        "page_size": 1
+        "query": nome,
+        "api_key": settings.USDA_API_KEY,
+        "pageSize": 10
     }
 
-    resposta = requests.get(url, params=params)
+    try:
 
-    if resposta.status_code != 200:
-        return None
+        resposta = requests.get(
+            url,
+            params=params,
+            timeout=15
+        )
 
-    dados = resposta.json()
+        if resposta.status_code != 200:
+            print("Erro USDA:", resposta.status_code)
+            return None
 
-    if not dados["products"]:
-        return None
+        dados = resposta.json()
 
-    produto = dados["products"][0]
-    nutr = produto.get("nutriments", {})
+        alimentos = dados.get("foods", [])
 
-    return {
-        "carboidratos": nutr.get("carbohydrates_100g", 0),
-        "proteinas": nutr.get("proteins_100g", 0),
-        "gorduras": nutr.get("fat_100g", 0)
-    }
+        if not alimentos:
+            return None
+
+        for alimento in alimentos:
+
+            nutrientes = alimento.get("foodNutrients", [])
+
+            carbo = None
+            prot = None
+            gord = None
+
+            for nutriente in nutrientes:
+
+                nome_nutriente = nutriente.get(
+                    "nutrientName",
+                    ""
+                )
+
+                if nome_nutriente == "Carbohydrate, by difference":
+                    carbo = nutriente.get("value")
+
+                elif nome_nutriente == "Protein":
+                    prot = nutriente.get("value")
+
+                elif nome_nutriente == "Total lipid (fat)":
+                    gord = nutriente.get("value")
+
+            if (
+                carbo is not None and
+                prot is not None and
+                gord is not None
+            ):
+                return {
+                    "carboidratos": float(carbo),
+                    "proteinas": float(prot),
+                    "gorduras": float(gord)
+                }
+
+    except Exception as erro:
+        print("Erro USDA:", erro)
+
+    return None
