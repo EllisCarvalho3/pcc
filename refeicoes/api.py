@@ -1,15 +1,44 @@
+# refeicoes/api.py
+
 import requests
 from django.conf import settings
+TRADUCOES = {
+    "arroz": "rice",
+    "arroz branco": "white rice",
+    "arroz branco cozido": "cooked white rice",
+
+    "feijao": "beans",
+    "feijão": "beans",
+    "feijao cozido": "cooked beans",
+    "feijão cozido": "cooked beans",
+
+    "banana": "banana",
+    "maca": "apple",
+    "maçã": "apple",
+
+    "frango": "chicken",
+    "ovo": "egg",
+    "leite": "milk",
+    "pao": "bread",
+    "pão": "bread"
+}
 
 
 def buscar_alimento_api(nome):
+    
+    nome_busca = TRADUCOES.get(
+    nome.lower().strip(),
+    nome
+)
 
     url = "https://api.nal.usda.gov/fdc/v1/foods/search"
 
+    print(f"Busca: {nome} -> {nome_busca}")
+
     params = {
-        "query": nome,
+        "query": nome_busca,
         "api_key": settings.USDA_API_KEY,
-        "pageSize": 10
+        "pageSize": 20
     }
 
     try:
@@ -31,9 +60,31 @@ def buscar_alimento_api(nome):
         if not alimentos:
             return None
 
-        for alimento in alimentos:
+        alimentos_ordenados = sorted(
+            alimentos,
+            key=lambda a: (
+                a.get("dataType") != "Foundation",
+                a.get("dataType") != "SR Legacy",
+                a.get("dataType") != "Survey (FNDDS)"
+            )
+        )
 
-            nutrientes = alimento.get("foodNutrients", [])
+        for alimento in alimentos_ordenados:
+
+            descricao = alimento.get(
+                "description",
+                ""
+            ).lower()
+
+            busca = nome.lower()
+
+            if busca not in descricao:
+                continue
+
+            nutrientes = alimento.get(
+                "foodNutrients",
+                []
+            )
 
             carbo = None
             prot = None

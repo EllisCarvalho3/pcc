@@ -23,13 +23,9 @@ def dashboard(request):
         carbo = r.carboidratos or 0
         prot = r.proteinas or 0
         gord = r.gorduras or 0
-        qtd = r.quantidade or 0
-
-        fator = qtd / 100
-
-        carbo_total = carbo * fator
-        prot_total = prot * fator
-        gord_total = gord * fator
+        carbo_total = carbo
+        prot_total = prot
+        gord_total = gord
 
         total_carbo += carbo_total
         total_prot += prot_total
