@@ -1,35 +1,44 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="page-header">
+<div class="page-header reveal">
   <div>
     <p class="eyebrow">Histórico</p>
     <h1>Seu acompanhamento alimentar</h1>
   </div>
 </div>
 
-{% for dia in dias %}
-  <div class="card">
-    <h3>{{ dia.data }}</h3>
-    <p class="summary-pill">Total do dia: {{ dia.total|floatformat:0 }} kcal</p>
+<div class="timeline-shell">
+  {% for dia in dias %}
+    <article class="timeline-item reveal">
+      <div class="timeline-marker"></div>
+      <div class="card timeline-card">
+        <div class="timeline-header">
+          <div>
+            <p class="eyebrow">{{ dia.data }}</p>
+            <h3>Resumo do dia</h3>
+          </div>
+          <span class="summary-pill">{{ dia.total|floatformat:0 }} kcal</span>
+        </div>
 
-    <ul class="history-list">
-      {% for r in dia.itens %}
-        <li>
-          <strong>{{ r.nome }}</strong><br>
-          <span class="item-meta">
-            Porção: {{ r.porcao }} g<br>
-            Valores por 100g →
-            C {{ r.carboidratos|floatformat:1 }} g |
-            P {{ r.proteinas|floatformat:1 }} g |
-            G {{ r.gorduras|floatformat:1 }} g
-          </span>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
-{% empty %}
-  <div class="empty-state">Nenhum registro ainda.</div>
-{% endfor %}
+        <ul class="history-list">
+          {% for r in dia.itens %}
+            <li>
+              <strong>{{ r.nome }}</strong>
+              <span class="item-meta">
+                Porção: {{ r.porcao }} g ·
+                C {{ r.carboidratos|floatformat:1 }} g |
+                P {{ r.proteinas|floatformat:1 }} g |
+                G {{ r.gorduras|floatformat:1 }} g
+              </span>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </article>
+  {% empty %}
+    <div class="empty-state">Nenhum registro ainda.</div>
+  {% endfor %}
+</div>
 
 {% endblock %}

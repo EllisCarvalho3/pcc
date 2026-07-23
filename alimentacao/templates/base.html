@@ -7,8 +7,7 @@
   <title>Nuttraea | Monitoramento calórico</title>
   <link rel="stylesheet" href="{% static 'css/styles.css' %}?v={{ STATIC_VERSION }}">
 </head>
-<body>
-
+<body data-page="app">
   {% if messages %}
   <div class="message-stack">
     {% for message in messages %}
@@ -28,9 +27,45 @@
           <span class="pixel-word">t</span>
           <span class="pixel-word">t</span>
           <span class="pixel-word">r</span>
-          <span class="pixel-letter pixel-letter-boy" aria-hidden="true"></span>
-          <span class="pixel-letter pixel-letter-girl" aria-hidden="true"></span>
-          <span class="pixel-letter pixel-letter-red" aria-hidden="true"></span>
+          <span class="pixel-portrait" aria-hidden="true">
+            <svg viewBox="0 0 12 12" role="img">
+              <rect x="2" y="1" width="8" height="8" fill="#fff" stroke="#16771b" stroke-width="0.4" rx="1"/>
+              <rect x="3.5" y="2.2" width="1.5" height="1.5" fill="#f2c68b"/>
+              <rect x="7" y="2.2" width="1.5" height="1.5" fill="#f2c68b"/>
+              <rect x="4.2" y="3.8" width="3.6" height="2.2" fill="#f2c68b"/>
+              <rect x="4.8" y="4.2" width="0.7" height="0.7" fill="#2f2b2a"/>
+              <rect x="6.7" y="4.2" width="0.7" height="0.7" fill="#2f2b2a"/>
+              <rect x="5" y="5.2" width="2.2" height="0.5" fill="#6b4d2d"/>
+              <rect x="4.2" y="6.2" width="3.6" height="1.4" fill="#4a7533"/>
+              <rect x="3.8" y="7.6" width="4.4" height="0.8" fill="#2d4c1f"/>
+            </svg>
+          </span>
+          <span class="pixel-portrait" aria-hidden="true">
+            <svg viewBox="0 0 12 12" role="img">
+              <rect x="2" y="1" width="8" height="8" fill="#fff" stroke="#16771b" stroke-width="0.4" rx="1"/>
+              <rect x="3.2" y="2.2" width="5.6" height="2.2" fill="#3b2a23"/>
+              <rect x="3.8" y="2.9" width="1.2" height="1.2" fill="#f2c68b"/>
+              <rect x="5.8" y="2.9" width="1.2" height="1.2" fill="#f2c68b"/>
+              <rect x="4.4" y="4.2" width="3.2" height="2.1" fill="#4a2d1f"/>
+              <rect x="4.8" y="4.4" width="0.8" height="0.8" fill="#f1e1c0"/>
+              <rect x="6.2" y="4.4" width="0.8" height="0.8" fill="#f1e1c0"/>
+              <rect x="5.2" y="5.2" width="2.1" height="0.5" fill="#2e261f"/>
+              <rect x="4.4" y="6.4" width="3.2" height="1.2" fill="#4d6e2f"/>
+            </svg>
+          </span>
+          <span class="pixel-portrait" aria-hidden="true">
+            <svg viewBox="0 0 12 12" role="img">
+              <rect x="2" y="1" width="8" height="8" fill="#fff" stroke="#16771b" stroke-width="0.4" rx="1"/>
+              <rect x="3.2" y="2.2" width="5.6" height="2.2" fill="#b8673d"/>
+              <rect x="3.8" y="2.9" width="1.1" height="1.1" fill="#f2c68b"/>
+              <rect x="5.8" y="2.9" width="1.1" height="1.1" fill="#f2c68b"/>
+              <rect x="4.4" y="4.2" width="3.2" height="2.2" fill="#b8673d"/>
+              <rect x="4.8" y="4.4" width="0.8" height="0.8" fill="#f1e1c0"/>
+              <rect x="6.2" y="4.4" width="0.8" height="0.8" fill="#f1e1c0"/>
+              <rect x="5.2" y="5.2" width="2.1" height="0.5" fill="#8f3d31"/>
+              <rect x="4.4" y="6.4" width="3.2" height="1.2" fill="#4d6e2f"/>
+            </svg>
+          </span>
         </div>
       </a>
 
@@ -57,5 +92,88 @@
     {% block content %}{% endblock %}
   </main>
 
+  <footer class="site-footer">
+    <div class="footer-shell">
+      <div>
+        <p class="eyebrow">Nuttraea</p>
+        <h3>Monitore sua energia com clareza.</h3>
+      </div>
+      <div class="footer-links">
+        <a href="{% url 'home' %}">Sobre</a>
+        <a href="{% url 'login' %}">Entrar</a>
+        <a href="{% url 'cadastro' %}">Criar conta</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const header = document.querySelector('.site-header');
+      const body = document.body;
+      const setScrolled = () => {
+        header.classList.toggle('scrolled', window.scrollY > 8);
+      };
+      setScrolled();
+      window.addEventListener('scroll', setScrolled, { passive: true });
+
+      const revealItems = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.16 });
+
+      revealItems.forEach(item => observer.observe(item));
+
+      const counters = document.querySelectorAll('[data-counter]');
+      counters.forEach(counter => {
+        const target = Number(counter.dataset.counter);
+        const duration = 1200;
+        const start = performance.now();
+        const format = counter.dataset.suffix || '';
+        const step = (timestamp) => {
+          const progress = Math.min((timestamp - start) / duration, 1);
+          const current = Math.floor(progress * target);
+          counter.textContent = current.toLocaleString() + format;
+          if (progress < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      });
+
+      document.querySelectorAll('.btn, button, .nav-links a').forEach(el => {
+        el.addEventListener('click', function (event) {
+          if (event.detail === 0) return;
+          const ripple = document.createElement('span');
+          ripple.className = 'ripple';
+          const rect = el.getBoundingClientRect();
+          ripple.style.left = `${event.clientX - rect.left}px`;
+          ripple.style.top = `${event.clientY - rect.top}px`;
+          el.appendChild(ripple);
+          setTimeout(() => ripple.remove(), 560);
+        });
+      });
+
+      const page = body.getAttribute('data-page');
+      document.querySelectorAll('.nav-links a, .nav-links button').forEach(link => {
+        const href = link.getAttribute('href') || '';
+        if (page === 'home' && href.includes('home')) {
+          link.classList.add('active');
+        } else if (page === 'dashboard' && href.includes('dashboard')) {
+          link.classList.add('active');
+        } else if (page === 'history' && href.includes('historico')) {
+          link.classList.add('active');
+        } else if (page === 'profile' && href.includes('perfil')) {
+          link.classList.add('active');
+        } else if (page === 'login' && href.includes('login')) {
+          link.classList.add('active');
+        } else if (page === 'signup' && href.includes('cadastro')) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
 </body>
 </html>

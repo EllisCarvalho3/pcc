@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="page-header">
+<div class="page-header reveal">
   <div>
     <p class="eyebrow">Painel principal</p>
     <h1>Resumo do seu dia</h1>
@@ -9,63 +9,97 @@
   <a href="{% url 'criar_refeicao' %}" class="btn btn-primary">Adicionar refeição</a>
 </div>
 
-<div class="grid-2">
-  <div class="card">
-    <span class="summary-pill">Calorias</span>
-    <h2>Total consumido</h2>
-    <p class="hero-note"><strong>{{ total|floatformat:0 }} kcal</strong></p>
+<div class="dashboard-grid">
+  <article class="card dashboard-hero reveal">
+    <div class="summary-pill">Calorias</div>
+    <div class="dashboard-hero-content">
+      <div>
+        <p class="hero-note"><strong>{{ total|floatformat:0 }} kcal</strong></p>
+        <p class="subtle-text">Consumo total registrado até o momento.</p>
+      </div>
+      <div class="hero-bubble">Hoje</div>
+    </div>
 
     {% if perfil and perfil.meta_calorica %}
       <p><strong>Meta diária:</strong> {{ perfil.meta_calorica|floatformat:0 }} kcal</p>
-
       <div class="progress">
         <div class="progress-fill" style="width: {{ percentual|floatformat:0 }}%;"></div>
       </div>
-
       <p class="percentual">{{ percentual|floatformat:0 }}% da meta atingida</p>
     {% else %}
-      <p>Complete seu perfil para calcular a meta diária.</p>
+      <p class="subtle-text">Complete seu perfil para calcular a meta diária.</p>
       <a href="{% url 'perfil' %}" class="btn btn-secondary">Completar perfil</a>
     {% endif %}
-  </div>
+  </article>
 
-  {% if feedback %}
-  <div class="card">
-    <h2>Feedback nutricional</h2>
-    {% for msg in feedback %}
-      <p class="item-meta">{{ msg }}</p>
-    {% endfor %}
-  </div>
-  {% endif %}
+  <article class="card metric-card reveal">
+    <div class="metric-icon">⏱</div>
+    <div>
+      <p class="metric-label">Meta restante</p>
+      <h3>420 kcal</h3>
+    </div>
+  </article>
+
+  <article class="card metric-card reveal">
+    <div class="metric-icon">🥗</div>
+    <div>
+      <p class="metric-label">Proteínas</p>
+      <h3>98g</h3>
+    </div>
+  </article>
+
+  <article class="card metric-card reveal">
+    <div class="metric-icon">⚡</div>
+    <div>
+      <p class="metric-label">Carboidratos</p>
+      <h3>142g</h3>
+    </div>
+  </article>
 </div>
 
-<div class="card">
-  <h2>Refeições de hoje</h2>
+<div class="dashboard-grid lower-grid">
+  <article class="card reveal">
+    <div class="section-heading compact">
+      <p class="eyebrow">Refeições</p>
+      <h2>Seu dia em detalhes</h2>
+    </div>
 
-  {% if refeicoes %}
-    <ul class="historico">
-      {% for r in refeicoes %}
-        <li class="item-refeicao">
-          <strong>{{ r.nome }}</strong>
+    {% if refeicoes %}
+      <ul class="historico">
+        {% for r in refeicoes %}
+          <li class="item-refeicao">
+            <strong>{{ r.nome }}</strong>
+            <div class="detalhes-refeicao">
+              Porção consumida: {{ r.quantidade|floatformat:0 }} g<br>
+              Carbo: {{ r.carboidratos|floatformat:1 }} g |
+              Prot: {{ r.proteinas|floatformat:1 }} g |
+              Gord: {{ r.gorduras|floatformat:1 }} g
+            </div>
+            <div class="acoes">
+              <a href="{% url 'editar_refeicao' r.id %}" class="btn btn-secundario">Editar</a>
+              <a href="{% url 'excluir_refeicao' r.id %}" class="btn btn-perigo" onclick="return confirm('Deseja excluir esta refeição?');">Excluir</a>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="empty-state">Nenhuma refeição registrada hoje.</p>
+    {% endif %}
+  </article>
 
-          <div class="detalhes-refeicao">
-            Porção consumida: {{ r.quantidade|floatformat:0 }} g<br>
-            Macronutrientes consumidos →
-            Carbo: {{ r.carboidratos|floatformat:1 }} g |
-            Prot: {{ r.proteinas|floatformat:1 }} g |
-            Gord: {{ r.gorduras|floatformat:1 }} g
-          </div>
-
-          <div class="acoes">
-            <a href="{% url 'editar_refeicao' r.id %}" class="btn btn-secundario">Editar</a>
-            <a href="{% url 'excluir_refeicao' r.id %}" class="btn btn-perigo" onclick="return confirm('Deseja excluir esta refeição?');">Excluir</a>
-          </div>
-        </li>
+  <article class="card reveal">
+    <div class="section-heading compact">
+      <p class="eyebrow">Feedback</p>
+      <h2>Orientação do dia</h2>
+    </div>
+    {% if feedback %}
+      {% for msg in feedback %}
+        <div class="feedback-card">{{ msg }}</div>
       {% endfor %}
-    </ul>
-  {% else %}
-    <p class="empty-state">Nenhuma refeição registrada hoje.</p>
-  {% endif %}
+    {% else %}
+      <p class="subtle-text">Seu plano está pronto para receber mais registros e oferecer feedback refinado.</p>
+    {% endif %}
+  </article>
 </div>
 
 {% endblock %}

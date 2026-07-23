@@ -1,92 +1,98 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="meal-shell reveal">
+  <div class="card meal-intro">
+    <p class="eyebrow">Refeição</p>
+    <h1>Registrar refeição</h1>
+    <p class="subtle-text">Busque alimentos com um campo elegante e registre a refeição com mais praticidade.</p>
+  </div>
 
-<div class="card" style="max-width: 760px; margin: 0 auto;">
-  <p class="eyebrow">Refeição</p>
-  <h1>Registrar refeição</h1>
+  <div class="card meal-form-card">
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
 
-  {% if messages %}
-    {% for message in messages %}
-      <div class="alert">
-        {{ message }}
+    <form method="POST" class="modern-form">
+      {% csrf_token %}
+
+      <div class="form-group">
+        <label>Alimento</label>
+        <input
+          type="text"
+          name="nome"
+          id="id_nome"
+          placeholder="Digite o alimento..."
+          autocomplete="off"
+          required
+        >
+        <div id="sugestoes" class="sugestoes"></div>
+        <p id="status-api"></p>
       </div>
-    {% endfor %}
-  {% endif %}
 
-  <form method="POST">
-    {% csrf_token %}
+      <div class="form-group">
+        <label>Quantidade consumida (g)</label>
+        {{ form.quantidade }}
+      </div>
 
-    <div class="form-group">
-      <label>Alimento</label>
-      <input
-        type="text"
-        name="nome"
-        id="id_nome"
-        placeholder="Digite o alimento..."
-        autocomplete="off"
-        required
-      >
-      <div id="sugestoes" class="sugestoes"></div>
-      <p id="status-api"></p>
-    </div>
+      <h3>Macronutrientes (por 100g)</h3>
 
-    <div class="form-group">
-      <label>Quantidade consumida (g)</label>
-      {{ form.quantidade }}
-    </div>
+      <div class="form-group">
+        <label>Carboidratos (g)</label>
+        {{ form.carboidratos }}
+      </div>
 
-    <h3>Macronutrientes (por 100g)</h3>
+      <div class="form-group">
+        <label>Proteínas (g)</label>
+        {{ form.proteinas }}
+      </div>
 
-    <div class="form-group">
-      <label>Carboidratos (g)</label>
-      {{ form.carboidratos }}
-    </div>
+      <div class="form-group">
+        <label>Gorduras (g)</label>
+        {{ form.gorduras }}
+      </div>
 
-    <div class="form-group">
-      <label>Proteínas (g)</label>
-      {{ form.proteinas }}
-    </div>
-
-    <div class="form-group">
-      <label>Gorduras (g)</label>
-      {{ form.gorduras }}
-    </div>
-
-    <button type="submit" class="btn btn-primary">Salvar refeição</button>
-  </form>
+      <button type="submit" class="btn btn-primary">Salvar refeição</button>
+    </form>
+  </div>
 </div>
 
 <script>
 const input = document.getElementById("id_nome")
 const sugestoes = document.getElementById("sugestoes")
 
-input.addEventListener("input", async () => {
-  const termo = input.value
+if (input && sugestoes) {
+  input.addEventListener("input", async () => {
+    const termo = input.value
 
-  if (termo.length < 2) {
-    sugestoes.innerHTML = ""
-    return
-  }
-
-  const res = await fetch(`/refeicoes/autocomplete/?q=${termo}`)
-  const dados = await res.json()
-
-  sugestoes.innerHTML = ""
-
-  dados.forEach(nome => {
-    const div = document.createElement("div")
-    div.className = "item-sugestao"
-    div.innerText = nome
-
-    div.onclick = () => {
-      input.value = nome
+    if (termo.length < 2) {
       sugestoes.innerHTML = ""
+      return
     }
 
-    sugestoes.appendChild(div)
+    const res = await fetch(`/refeicoes/autocomplete/?q=${termo}`)
+    const dados = await res.json()
+
+    sugestoes.innerHTML = ""
+
+    dados.forEach(nome => {
+      const div = document.createElement("div")
+      div.className = "item-sugestao"
+      div.innerText = nome
+
+      div.onclick = () => {
+        input.value = nome
+        sugestoes.innerHTML = ""
+      }
+
+      sugestoes.appendChild(div)
+    })
   })
-})
+}
 </script>
 
 {% endblock %}

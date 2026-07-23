@@ -1,42 +1,197 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<section class="hero-panel">
+<section class="hero-panel reveal">
   <div class="hero-copy">
-    <p class="eyebrow">Monitoramento inteligente</p>
-    <h2>Seu consumo calórico sob controle, com clareza e propósito.</h2>
-    <p>O Nuttraea ajuda você a registrar refeições, acompanhar metas e entender melhor o equilíbrio entre energia e nutrição no seu dia a dia.</p>
+    <p class="eyebrow">App saúde & nutrição</p>
+    <h1>Seu acompanhamento calórico, claro, elegante e diário.</h1>
+    <p>O Nuttraea reúne registro alimentar, metas, histórico e clareza visual em uma experiência premium para quem quer cuidar da saúde com consistência.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="{% url 'login' %}">Começar agora</a>
       <a class="btn btn-secondary" href="{% url 'cadastro' %}">Criar conta</a>
     </div>
-    <p class="hero-note">Planeje melhor seus dias com um painel claro, objetivo e focado em metas reais.</p>
+    <div class="hero-highlights">
+      <span class="highlight-pill">Controle diário</span>
+      <span class="highlight-pill">Meta calórica</span>
+      <span class="highlight-pill">Histórico inteligente</span>
+    </div>
   </div>
 
-  <div class="hero-card">
-    <h3>O que você encontra aqui</h3>
-    <ul>
-      <li>Registro rápido de refeições e porções</li>
-      <li>Resumo diário com meta calórica</li>
-      <li>Histórico organizado para acompanhar evolução</li>
-    </ul>
+  <div class="hero-visual reveal">
+    <div class="showcase-card">
+      <div class="showcase-top">
+        <div>
+          <p class="eyebrow">Hoje</p>
+          <h3>Consumo em equilíbrio</h3>
+        </div>
+        <span class="status-badge">+12%</span>
+      </div>
+      <div class="showcase-meter">
+        <div class="meter-ring"></div>
+        <div>
+          <p class="meter-label">Meta restante</p>
+          <strong>420 kcal</strong>
+        </div>
+      </div>
+      <div class="showcase-grid">
+        <div class="mini-card">
+          <span>Proteínas</span>
+          <strong>98g</strong>
+        </div>
+        <div class="mini-card">
+          <span>Carboidratos</span>
+          <strong>142g</strong>
+        </div>
+        <div class="mini-card">
+          <span>Gorduras</span>
+          <strong>52g</strong>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="feature-grid">
-  <article class="feature-card">
-    <h3>Registro simples</h3>
-    <p>Adicione alimentos e acompanhe os valores de forma prática, sem complicação.</p>
-  </article>
+<section class="section-block reveal">
+  <div class="section-heading">
+    <p class="eyebrow">Benefícios</p>
+    <h2>Uma experiência construída para quem se importa com resultado e clareza.</h2>
+  </div>
+  <div class="feature-grid">
+    <article class="feature-card">
+      <div class="feature-icon">01</div>
+      <h3>Controle diário</h3>
+      <p>Visualize seu consumo de forma simples, com foco em clareza e consistência.</p>
+    </article>
 
-  <article class="feature-card">
-    <h3>Meta personalizada</h3>
-    <p>Seu perfil nutricional gera uma meta diária mais alinhada ao seu objetivo.</p>
-  </article>
+    <article class="feature-card">
+      <div class="feature-icon">02</div>
+      <h3>Meta calórica</h3>
+      <p>Organize o seu objetivo com indicadores visuais e acompanhamento contínuo.</p>
+    </article>
 
-  <article class="feature-card">
-    <h3>Visão clara</h3>
-    <p>O painel te mostra o progresso do dia com feedback objetivo e intuitivo.</p>
-  </article>
+    <article class="feature-card">
+      <div class="feature-icon">03</div>
+      <h3>Histórico</h3>
+      <p>Entenda a evolução do seu dia e identifique padrões com mais facilidade.</p>
+    </article>
+
+    <article class="feature-card">
+      <div class="feature-icon">04</div>
+      <h3>Macronutrientes</h3>
+      <p>Veja a composição nutricional das refeições com visão prática e objetiva.</p>
+    </article>
+
+    <article class="feature-card">
+      <div class="feature-icon">05</div>
+      <h3>Personalização</h3>
+      <p>Seu perfil orienta o acompanhamento para uma rotina mais alinhada ao seu objetivo.</p>
+    </article>
+
+    <article class="feature-card">
+      <div class="feature-icon">06</div>
+      <h3>Segurança</h3>
+      <p>Uma estrutura limpa e organizada reforça confiança, foco e continuidade.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section-block reveal">
+  <div class="section-heading">
+    <p class="eyebrow">Como funciona</p>
+    <h2>Em poucos passos, seu plano ganha forma.</h2>
+  </div>
+  <div class="steps-grid">
+    <article class="step-card">
+      <div class="step-number">01</div>
+      <h3>Crie sua conta</h3>
+      <p>Entre com uma conta segura e acesse rapidamente o painel principal.</p>
+    </article>
+    <article class="step-card">
+      <div class="step-number">02</div>
+      <h3>Complete seu perfil</h3>
+      <p>Defina peso, altura, idade e objetivo para estruturar a sua meta.</p>
+    </article>
+    <article class="step-card">
+      <div class="step-number">03</div>
+      <h3>Registre refeições</h3>
+      <p>Adicione alimentos e acompanhe os valores com maior rapidez e clareza.</p>
+    </article>
+    <article class="step-card">
+      <div class="step-number">04</div>
+      <h3>Acompanhe seu progresso</h3>
+      <p>Confira o dia, veja padrões e mantenha a rotina de forma consistente.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section-block reveal">
+  <div class="stats-band">
+    <div class="stat-block">
+      <strong data-counter="10000">0</strong>
+      <span>+10.000 refeições registradas</span>
+    </div>
+    <div class="stat-block">
+      <strong data-counter="98">0</strong>
+      <span>Precisão nutricional</span>
+    </div>
+    <div class="stat-block">
+      <strong data-counter="24">0</strong>
+      <span>Cálculo automático</span>
+    </div>
+    <div class="stat-block">
+      <strong data-counter="100">0</strong>
+      <span>Suporte à meta diária</span>
+    </div>
+  </div>
+</section>
+
+<section class="section-block reveal">
+  <div class="section-heading">
+    <p class="eyebrow">Depoimentos</p>
+    <h2>O que usuários imaginam ao viver a experiência Nuttraea.</h2>
+  </div>
+  <div class="testimonials-grid">
+    <article class="testimonial-card">
+      <div class="testimonial-head">
+        <div class="avatar">LM</div>
+        <div>
+          <h3>Larissa M.</h3>
+          <p>★★★★★</p>
+        </div>
+      </div>
+      <p>O sistema me faz sentir que estou conduzindo a minha rotina com mais organização e menos esforço.</p>
+    </article>
+    <article class="testimonial-card">
+      <div class="testimonial-head">
+        <div class="avatar">JP</div>
+        <div>
+          <h3>João P.</h3>
+          <p>★★★★★</p>
+        </div>
+      </div>
+      <p>O visual é muito mais profissional do que esperava. Dá vontade de voltar todo dia.</p>
+    </article>
+    <article class="testimonial-card">
+      <div class="testimonial-head">
+        <div class="avatar">CA</div>
+        <div>
+          <h3>Camila A.</h3>
+          <p>★★★★★</p>
+        </div>
+      </div>
+      <p>É impressionante como ele transforma uma rotina simples em algo leve, técnico e inspirador.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section-block reveal">
+  <div class="cta-panel">
+    <div>
+      <p class="eyebrow">Pronto para começar</p>
+      <h2>Comece hoje mesmo.</h2>
+      <p>Transforme o acompanhamento nutricional em uma rotina mais inteligente e bonita.</p>
+    </div>
+    <a class="btn btn-primary" href="{% url 'cadastro' %}">Criar conta</a>
+  </div>
 </section>
 {% endblock %}

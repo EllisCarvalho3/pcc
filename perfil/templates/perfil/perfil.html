@@ -1,45 +1,56 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="card" style="max-width: 760px; margin: 0 auto;">
-  <p class="eyebrow">Perfil</p>
-  <h2>Meu Perfil Nutricional</h2>
-
-  <form method="post" id="perfil-form">
-    {% csrf_token %}
-
-    <div class="form-group">
-      <label for="{{ form.peso.id_for_label }}">Peso (kg)</label>
-      {{ form.peso }}
+<div class="profile-shell reveal">
+  <div class="profile-summary card">
+    <div class="avatar-badge">N</div>
+    <p class="eyebrow">Perfil</p>
+    <h2>Configuração premium</h2>
+    <p class="subtle-text">Ajuste os dados do seu plano para deixar o acompanhamento ainda mais alinhado ao seu objetivo.</p>
+    <div class="profile-pill-row">
+      <span class="summary-pill">Meta personalizada</span>
+      <span class="summary-pill">Acompanhamento contínuo</span>
     </div>
+  </div>
 
-    <div class="form-group">
-      <label for="{{ form.altura.id_for_label }}">Altura (cm)</label>
-      {{ form.altura }}
-    </div>
+  <div class="card profile-form-card">
+    <form method="post" id="perfil-form" class="modern-form">
+      {% csrf_token %}
 
-    <div class="form-group">
-      <label for="{{ form.idade.id_for_label }}">Idade</label>
-      {{ form.idade }}
-    </div>
+      <div class="form-group">
+        <label for="{{ form.peso.id_for_label }}">Peso (kg)</label>
+        {{ form.peso }}
+      </div>
 
-    <div class="form-group">
-      <label for="{{ form.atividade.id_for_label }}">Nível de atividade</label>
-      {{ form.atividade }}
-    </div>
+      <div class="form-group">
+        <label for="{{ form.altura.id_for_label }}">Altura (cm)</label>
+        {{ form.altura }}
+      </div>
 
-    <div class="form-group">
-      <label for="{{ form.objetivo.id_for_label }}">Objetivo</label>
-      {{ form.objetivo }}
-    </div>
+      <div class="form-group">
+        <label for="{{ form.idade.id_for_label }}">Idade</label>
+        {{ form.idade }}
+      </div>
 
-    <button type="submit">Salvar perfil</button>
-  </form>
+      <div class="form-group">
+        <label for="{{ form.atividade.id_for_label }}">Nível de atividade</label>
+        {{ form.atividade }}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.objetivo.id_for_label }}">Objetivo</label>
+        {{ form.objetivo }}
+      </div>
+
+      <button type="submit">Salvar perfil</button>
+    </form>
+  </div>
 </div>
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("perfil-form");
+    if (!form) return;
     const fields = Array.from(
       form.querySelectorAll("input, select")
     ).filter(el => el.type !== "hidden" && !el.disabled);
