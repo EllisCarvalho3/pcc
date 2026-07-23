@@ -1,10 +1,42 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<section class="hero">
-  <h2>Monitore sua alimentação de forma simples e inteligente</h2>
-  <p>Um sistema pensado para estudantes com rotina corrida.</p>
+<section class="hero-panel">
+  <div class="hero-copy">
+    <p class="eyebrow">Monitoramento inteligente</p>
+    <h2>Seu consumo calórico sob controle, com clareza e propósito.</h2>
+    <p>O Nuttraea ajuda você a registrar refeições, acompanhar metas e entender melhor o equilíbrio entre energia e nutrição no seu dia a dia.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="{% url 'login' %}">Começar agora</a>
+      <a class="btn btn-secondary" href="{% url 'cadastro' %}">Criar conta</a>
+    </div>
+    <p class="hero-note">Planeje melhor seus dias com um painel claro, objetivo e focado em metas reais.</p>
+  </div>
 
-  <a class="btn" href="{% url 'login' %}">Começar agora</a>
+  <div class="hero-card">
+    <h3>O que você encontra aqui</h3>
+    <ul>
+      <li>Registro rápido de refeições e porções</li>
+      <li>Resumo diário com meta calórica</li>
+      <li>Histórico organizado para acompanhar evolução</li>
+    </ul>
+  </div>
+</section>
+
+<section class="feature-grid">
+  <article class="feature-card">
+    <h3>Registro simples</h3>
+    <p>Adicione alimentos e acompanhe os valores de forma prática, sem complicação.</p>
+  </article>
+
+  <article class="feature-card">
+    <h3>Meta personalizada</h3>
+    <p>Seu perfil nutricional gera uma meta diária mais alinhada ao seu objetivo.</p>
+  </article>
+
+  <article class="feature-card">
+    <h3>Visão clara</h3>
+    <p>O painel te mostra o progresso do dia com feedback objetivo e intuitivo.</p>
+  </article>
 </section>
 {% endblock %}

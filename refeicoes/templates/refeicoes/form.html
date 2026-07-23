@@ -2,11 +2,10 @@
 
 {% block content %}
 
-<div class="container">
-
+<div class="card" style="max-width: 760px; margin: 0 auto;">
+  <p class="eyebrow">Refeição</p>
   <h1>Registrar refeição</h1>
 
-  <!-- mensagens do Django -->
   {% if messages %}
     {% for message in messages %}
       <div class="alert">
@@ -16,15 +15,11 @@
   {% endif %}
 
   <form method="POST">
-
     {% csrf_token %}
 
-    <!-- NOME DO ALIMENTO -->
     <div class="form-group">
-
       <label>Alimento</label>
-
-      <input 
+      <input
         type="text"
         name="nome"
         id="id_nome"
@@ -32,101 +27,66 @@
         autocomplete="off"
         required
       >
-
       <div id="sugestoes" class="sugestoes"></div>
-
       <p id="status-api"></p>
-
     </div>
 
-
-    <!-- QUANTIDADE -->
     <div class="form-group">
-
       <label>Quantidade consumida (g)</label>
-
       {{ form.quantidade }}
-
     </div>
 
-
-    <!-- MACROS -->
     <h3>Macronutrientes (por 100g)</h3>
 
     <div class="form-group">
-
       <label>Carboidratos (g)</label>
-
       {{ form.carboidratos }}
-
     </div>
 
-
     <div class="form-group">
-
       <label>Proteínas (g)</label>
-
       {{ form.proteinas }}
-
     </div>
-
 
     <div class="form-group">
-
       <label>Gorduras (g)</label>
-
       {{ form.gorduras }}
-
     </div>
 
-
-    <button type="submit" class="btn">
-      Salvar refeição
-    </button>
-
+    <button type="submit" class="btn btn-primary">Salvar refeição</button>
   </form>
-
 </div>
 
-
-<!-- AUTOCOMPLETE DA API -->
 <script>
-
 const input = document.getElementById("id_nome")
 const sugestoes = document.getElementById("sugestoes")
 
 input.addEventListener("input", async () => {
+  const termo = input.value
 
-    const termo = input.value
+  if (termo.length < 2) {
+    sugestoes.innerHTML = ""
+    return
+  }
 
-    if (termo.length < 2) {
-        sugestoes.innerHTML = ""
-        return
+  const res = await fetch(`/refeicoes/autocomplete/?q=${termo}`)
+  const dados = await res.json()
+
+  sugestoes.innerHTML = ""
+
+  dados.forEach(nome => {
+    const div = document.createElement("div")
+    div.className = "item-sugestao"
+    div.innerText = nome
+
+    div.onclick = () => {
+      input.value = nome
+      sugestoes.innerHTML = ""
     }
 
-    const res = await fetch(`/refeicoes/autocomplete/?q=${termo}`)
-
-    const dados = await res.json()
-
-    sugestoes.innerHTML = ""
-
-    dados.forEach(nome => {
-
-        const div = document.createElement("div")
-
-        div.innerText = nome
-
-        div.onclick = () => {
-            input.value = nome
-            sugestoes.innerHTML = ""
-        }
-
-        sugestoes.appendChild(div)
-
-    })
-
+    sugestoes.appendChild(div)
+  })
 })
-
 </script>
 
 {% endblock %}

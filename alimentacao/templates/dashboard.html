@@ -1,31 +1,46 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="card">
-  <h2>Resumo do dia</h2>
+<div class="page-header">
+  <div>
+    <p class="eyebrow">Painel principal</p>
+    <h1>Resumo do seu dia</h1>
+  </div>
+  <a href="{% url 'criar_refeicao' %}" class="btn btn-primary">Adicionar refeição</a>
+</div>
 
-  <p><strong>Total consumido:</strong> {{ total|floatformat:0 }} kcal</p>
+<div class="grid-2">
+  <div class="card">
+    <span class="summary-pill">Calorias</span>
+    <h2>Total consumido</h2>
+    <p class="hero-note"><strong>{{ total|floatformat:0 }} kcal</strong></p>
 
-  {% if perfil and perfil.meta_calorica %}
-    <p><strong>Meta diária:</strong> {{ perfil.meta_calorica|floatformat:0 }} kcal</p>
- 
-    <div class="progress">
-      <div class="progress-fill" style="width: {{ percentual|floatformat:0 }}%;"></div>
-    </div>
+    {% if perfil and perfil.meta_calorica %}
+      <p><strong>Meta diária:</strong> {{ perfil.meta_calorica|floatformat:0 }} kcal</p>
 
-    <p class="percentual">
-      {{ percentual|floatformat:0 }}% da meta atingida
-    </p>
-  {% else %}
-    <p>Complete seu perfil para calcular a meta diária.</p>
-    <a href="{% url 'perfil' %}" class="btn">Completar perfil</a>
+      <div class="progress">
+        <div class="progress-fill" style="width: {{ percentual|floatformat:0 }}%;"></div>
+      </div>
+
+      <p class="percentual">{{ percentual|floatformat:0 }}% da meta atingida</p>
+    {% else %}
+      <p>Complete seu perfil para calcular a meta diária.</p>
+      <a href="{% url 'perfil' %}" class="btn btn-secondary">Completar perfil</a>
+    {% endif %}
+  </div>
+
+  {% if feedback %}
+  <div class="card">
+    <h2>Feedback nutricional</h2>
+    {% for msg in feedback %}
+      <p class="item-meta">{{ msg }}</p>
+    {% endfor %}
+  </div>
   {% endif %}
 </div>
 
 <div class="card">
   <h2>Refeições de hoje</h2>
-
-  <a href="{% url 'criar_refeicao' %}" class="btn">Adicionar refeição</a>
 
   {% if refeicoes %}
     <ul class="historico">
@@ -34,41 +49,23 @@
           <strong>{{ r.nome }}</strong>
 
           <div class="detalhes-refeicao">
-            <small>
-              Porção consumida: {{ r.quantidade|floatformat:0 }} g<br>
-              Macronutrientes consumidos →
-              Carbo: {{ r.carboidratos|floatformat:1 }} g |
-              Prot: {{ r.proteinas|floatformat:1 }} g |
-              Gord: {{ r.gorduras|floatformat:1 }} g
-            </small>
+            Porção consumida: {{ r.quantidade|floatformat:0 }} g<br>
+            Macronutrientes consumidos →
+            Carbo: {{ r.carboidratos|floatformat:1 }} g |
+            Prot: {{ r.proteinas|floatformat:1 }} g |
+            Gord: {{ r.gorduras|floatformat:1 }} g
           </div>
-          
-          <div class="acoes">
-            <a href="{% url 'editar_refeicao' r.id %}" class="btn-secundario">
-              Editar
-            </a>
 
-            <a href="{% url 'excluir_refeicao' r.id %}"
-               class="btn-perigo"
-               onclick="return confirm('Deseja excluir esta refeição?');">
-              Excluir
-            </a>
+          <div class="acoes">
+            <a href="{% url 'editar_refeicao' r.id %}" class="btn btn-secundario">Editar</a>
+            <a href="{% url 'excluir_refeicao' r.id %}" class="btn btn-perigo" onclick="return confirm('Deseja excluir esta refeição?');">Excluir</a>
           </div>
         </li>
       {% endfor %}
     </ul>
   {% else %}
-    <p>Nenhuma refeição registrada hoje.</p>
+    <p class="empty-state">Nenhuma refeição registrada hoje.</p>
   {% endif %}
 </div>
-
-{% if feedback %}
-<div class="card">
-  <h2>Feedback nutricional</h2>
-  {% for msg in feedback %}
-    <p>{{ msg }}</p>
-  {% endfor %}
-</div>
-{% endif %}
 
 {% endblock %}

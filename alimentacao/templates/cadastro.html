@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Criar conta</h2>
+<div class="card" style="max-width: 620px; margin: 0 auto;">
+  <p class="eyebrow">Cadastro</p>
+  <h2>Criar conta</h2>
 
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Cadastrar</button>
-</form>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Cadastrar</button>
+  </form>
+</div>
 {% endblock %}

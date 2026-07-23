@@ -1,31 +1,35 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h2>Histórico alimentar</h2> 
+<div class="page-header">
+  <div>
+    <p class="eyebrow">Histórico</p>
+    <h1>Seu acompanhamento alimentar</h1>
+  </div>
+</div>
 
 {% for dia in dias %}
   <div class="card">
     <h3>{{ dia.data }}</h3>
-    <p><strong>Total do dia:</strong> {{ dia.total|floatformat:0 }} kcal</p>
+    <p class="summary-pill">Total do dia: {{ dia.total|floatformat:0 }} kcal</p>
 
-    <ul class="lista-alimentos">
+    <ul class="history-list">
       {% for r in dia.itens %}
         <li>
           <strong>{{ r.nome }}</strong><br>
-
-          <small>
+          <span class="item-meta">
             Porção: {{ r.porcao }} g<br>
             Valores por 100g →
             C {{ r.carboidratos|floatformat:1 }} g |
             P {{ r.proteinas|floatformat:1 }} g |
             G {{ r.gorduras|floatformat:1 }} g
-          </small>
+          </span>
         </li>
       {% endfor %}
     </ul>
   </div>
 {% empty %}
-  <p>Nenhum registro ainda.</p>
+  <div class="empty-state">Nenhum registro ainda.</div>
 {% endfor %}
 
 {% endblock %}
