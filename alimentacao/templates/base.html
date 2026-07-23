@@ -1,52 +1,773 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Nuttrium</title>
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+            Nuttraea | Sistema Inteligente de Monitoramento do Consumo Calórico
+        {% endblock %}
+    </title>
+
+    <meta name="description"
+          content="Nuttraea - Sistema Inteligente para Monitoramento do Consumo Calórico Diário.">
+
+    <meta name="author"
+          content="Equipe Nuttraea">
+
+    <meta name="theme-color"
+          content="#2F9E44">
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <!-- Google Icons -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
+          rel="stylesheet">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+          href="{% static 'css/styles.css' %}">
+
+    {% block extra_css %}
+    {% endblock %}
+
 </head>
+
 <body>
 
-  {% if messages %}
-<div class="container mt-3">
-  {% for message in messages %}
-    <div class="alert alert-info">
-      {{ message }}
-    </div>
-  {% endfor %}
-</div>
-{% endif %}
+
+
+<!-- ==========================================
+                HEADER
+=========================================== -->
 
 <header>
-  <nav>
-    <h1>Nuttrium</h1>
-  <ul>
-{% if user.is_authenticated %}
-  <li><a href="{% url 'dashboard' %}">Início</a></li>
-  <li><a href="{% url 'historico' %}">Histórico</a></li>
-  <li><a href="{% url 'perfil' %}">Perfil</a></li>
 
-  <li>
-    <form method="post" action="{% url 'logout' %}">
-      {% csrf_token %}
-      <button type="submit" class="nav-link">Sair</button>
-    </form>
-  </li>
-{% else %}
-  <li><a href="{% url 'login' %}">Entrar</a></li>
-  <li><a href="{% url 'cadastro' %}">Criar conta</a></li>
-{% endif %}
+    <div class="navbar">
 
-</ul>
+        <!-- ======================
+                LOGO
+        ======================= -->
+
+        <a href="{% url 'home' %}"
+           class="logo">
+
+            <div class="logo-icon">
+
+                N
+
+            </div>
+
+            <div class="logo-text">
+
+                <span class="logo-normal">
+
+                    NUTTR
+
+                </span>
+
+                <span class="logo-pixel">
+
+                    <span class="pixel-letter pixel-boy">
+
+                        a
+
+                    </span>
+
+                    <span class="pixel-letter pixel-black">
+
+                        e
+
+                    </span>
+
+                    <span class="pixel-letter pixel-red">
+
+                        a
+
+                    </span>
+
+                </span>
+
+            </div>
+
+        </a>
 
 
-  </nav>
+
+        <!-- ======================
+                MENU
+        ======================= -->
+
+        <nav class="nav-menu">
+
+            <ul>
+
+                {% if user.is_authenticated %}
+
+                    <li>
+
+                        <a href="{% url 'dashboard' %}">
+
+                            Dashboard
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="{% url 'criar_refeicao' %}">
+
+                            Refeições
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="{% url 'historico' %}">
+
+                            Histórico
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="{% url 'perfil' %}">
+
+                            Perfil
+
+                        </a>
+
+                    </li>
+
+                {% else %}
+
+                    <li>
+
+                        <a href="{% url 'home' %}">
+
+                            Início
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="#beneficios">
+
+                            Benefícios
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="#funciona">
+
+                            Como funciona
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="#contato">
+
+                            Contato
+
+                        </a>
+
+                    </li>
+
+                {% endif %}
+
+            </ul>
+
+        </nav>
+
+                <!-- ======================
+                AÇÕES DA NAVBAR
+        ======================= -->
+
+        <div class="nav-actions">
+
+            {% if user.is_authenticated %}
+
+                <div class="user-area">
+
+                    <div class="user-avatar">
+
+                        {{ user.first_name|default:user.username|slice:":1"|upper }}
+
+                    </div>
+
+                    <div class="user-info">
+
+                        <strong>
+
+                            {% if user.first_name %}
+                                {{ user.first_name }}
+                            {% else %}
+                                {{ user.username }}
+                            {% endif %}
+
+                        </strong>
+
+                        <small>
+
+                            Bem-vindo(a)
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+                <form method="POST"
+                      action="{% url 'logout' %}">
+
+                    {% csrf_token %}
+
+                    <button
+                        class="btn-nav btn-login"
+                        type="submit">
+
+                        Sair
+
+                    </button>
+
+                </form>
+
+            {% else %}
+
+                <a href="{% url 'login' %}"
+                   class="btn-nav btn-login">
+
+                    Entrar
+
+                </a>
+
+                <a href="{% url 'cadastro' %}"
+                   class="btn-nav btn-register">
+
+                    Criar Conta
+
+                </a>
+
+            {% endif %}
+
+        </div>
+
+
+
+        <!-- ======================
+                MENU MOBILE
+        ======================= -->
+
+        <button
+            class="mobile-menu"
+            id="mobile-menu"
+            aria-label="Abrir Menu">
+
+            <span></span>
+
+        </button>
+
+    </div>
+
 </header>
 
+
+
+<!-- ==========================================
+            MENU RESPONSIVO
+=========================================== -->
+
+<nav class="mobile-navigation"
+     id="mobile-navigation">
+
+    <ul>
+
+        {% if user.is_authenticated %}
+
+            <li>
+
+                <a href="{% url 'dashboard' %}">
+
+                    Dashboard
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="{% url 'criar_refeicao' %}">
+
+                    Refeições
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="{% url 'historico' %}">
+
+                    Histórico
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="{% url 'perfil' %}">
+
+                    Perfil
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <form method="POST"
+                      action="{% url 'logout' %}">
+
+                    {% csrf_token %}
+
+                    <button
+                        class="btn-nav btn-login w-100">
+
+                        Sair
+
+                    </button>
+
+                </form>
+
+            </li>
+
+        {% else %}
+
+            <li>
+
+                <a href="{% url 'home' %}">
+
+                    Início
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="#beneficios">
+
+                    Benefícios
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="#funciona">
+
+                    Como funciona
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="#contato">
+
+                    Contato
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="{% url 'login' %}"
+                   class="btn btn-primary w-100">
+
+                    Entrar
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="{% url 'cadastro' %}"
+                   class="btn btn-secondary w-100">
+
+                    Criar Conta
+
+                </a>
+
+            </li>
+
+        {% endif %}
+
+    </ul>
+
+</nav>
+
+
+
+<!-- ==========================================
+            MENSAGENS DJANGO
+=========================================== -->
+
+{% if messages %}
+
+<section class="container mt-3">
+
+    {% for message in messages %}
+
+        <div class="alert">
+
+            {{ message }}
+
+        </div>
+
+    {% endfor %}
+
+</section>
+
+{% endif %}
+
+
+
+<!-- ==========================================
+                CONTEÚDO
+=========================================== -->
+
 <main>
-  {% block content %}{% endblock %}
+
+    {% block content %}
+
+    {% endblock %}
+
 </main>
 
+<!-- ==========================================
+                FOOTER
+=========================================== -->
+
+<footer id="contato" class="footer">
+
+    <div class="container footer-grid">
+
+        <!-- ==========================
+                SOBRE
+        =========================== -->
+
+        <div class="footer-brand">
+
+            <div class="footer-logo">
+
+                <div class="logo-icon">
+
+                    N
+
+                </div>
+
+                <div class="logo-text">
+
+                    <span class="logo-normal">
+
+                        NUTTR
+
+                    </span>
+
+                    <span class="logo-pixel">
+
+                        <span class="pixel-letter pixel-boy">a</span>
+
+                        <span class="pixel-letter pixel-black">e</span>
+
+                        <span class="pixel-letter pixel-red">a</span>
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <p>
+
+                O Nuttraea é um sistema inteligente desenvolvido para
+                auxiliar estudantes e usuários no monitoramento do
+                consumo calórico diário, promovendo hábitos alimentares
+                mais saudáveis através de tecnologia, simplicidade e
+                organização.
+
+            </p>
+
+        </div>
+
+        <!-- ==========================
+                LINKS
+        =========================== -->
+
+        <div class="footer-column">
+
+            <h4>
+
+                Navegação
+
+            </h4>
+
+            <ul>
+
+                <li>
+
+                    <a href="{% url 'home' %}">
+
+                        Início
+
+                    </a>
+
+                </li>
+
+                {% if user.is_authenticated %}
+
+                <li>
+
+                    <a href="{% url 'dashboard' %}">
+
+                        Dashboard
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="{% url 'historico' %}">
+
+                        Histórico
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="{% url 'perfil' %}">
+
+                        Perfil
+
+                    </a>
+
+                </li>
+
+                {% endif %}
+
+            </ul>
+
+        </div>
+
+        <!-- ==========================
+                SISTEMA
+        =========================== -->
+
+        <div class="footer-column">
+
+            <h4>
+
+                Sistema
+
+            </h4>
+
+            <ul>
+
+                <li>
+
+                    Controle de refeições
+
+                </li>
+
+                <li>
+
+                    Monitoramento calórico
+
+                </li>
+
+                <li>
+
+                    Histórico alimentar
+
+                </li>
+
+                <li>
+
+                    Dashboard inteligente
+
+                </li>
+
+            </ul>
+
+        </div>
+
+        <!-- ==========================
+                CONTATO
+        =========================== -->
+
+        <div class="footer-column">
+
+            <h4>
+
+                Contato
+
+            </h4>
+
+            <ul>
+
+                <li>
+
+                    contato@nuttraea.com
+
+                </li>
+
+                <li>
+
+                    IF Baiano
+
+                </li>
+
+                <li>
+
+                    Guanambi - BA
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================
+            COPYRIGHT
+    =========================== -->
+
+    <div class="footer-bottom">
+
+        <div class="container footer-bottom-content">
+
+            <span>
+
+                © {% now "Y" %} Nuttraea.
+                Todos os direitos reservados.
+
+            </span>
+
+            <span>
+
+                Desenvolvido em Django ❤️
+
+            </span>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<!-- ==========================================
+        BOTÃO VOLTAR AO TOPO
+=========================================== -->
+
+<button
+    id="backToTop"
+    class="back-to-top"
+    aria-label="Voltar ao topo">
+
+    ↑
+
+</button>
+
+<!-- ==========================================
+            JAVASCRIPT
+=========================================== -->
+
+<script>
+
+const backButton = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+
+    if(window.scrollY > 300){
+
+        backButton.classList.add("show");
+
+    }else{
+
+        backButton.classList.remove("show");
+
+    }
+
+});
+
+backButton.addEventListener("click", ()=>{
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+});
+
+const mobileButton = document.getElementById("mobile-menu");
+
+const mobileNavigation =
+document.getElementById("mobile-navigation");
+
+mobileButton.addEventListener("click",()=>{
+
+    mobileNavigation.classList.toggle("active");
+
+});
+
+</script>
+
+{% block extra_js %}
+
+{% endblock %}
+
 </body>
+
 </html>
+
