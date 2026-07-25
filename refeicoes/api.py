@@ -5,22 +5,29 @@ from django.conf import settings
 TRADUCOES = {
     "arroz": "rice",
     "arroz branco": "white rice",
-    "arroz branco cozido": "cooked white rice",
 
     "feijao": "beans",
     "feijão": "beans",
-    "feijao cozido": "cooked beans",
-    "feijão cozido": "cooked beans",
 
     "banana": "banana",
     "maca": "apple",
     "maçã": "apple",
+    "uva": "grape",
+    "morango": "strawberry",
+    "manga": "mango",
 
     "frango": "chicken",
     "ovo": "egg",
     "leite": "milk",
     "pao": "bread",
-    "pão": "bread"
+    "pão": "bread",
+    "peixe": "fish",
+    
+    "tomate": "tomato",
+    "alface": "lettuce",
+    "cenoura": "carrot",
+    "brocolis": "broccoli",
+    
 }
 
 
