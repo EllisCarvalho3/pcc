@@ -33,26 +33,26 @@
   </article>
 
   <article class="card metric-card reveal">
-    <div class="metric-icon">⏱</div>
+    <div class="metric-icon"></div>
     <div>
       <p class="metric-label">Meta restante</p>
-      <h3>420 kcal</h3>
+      <h3>{{ meta_restante|floatformat:0 }} kcal</h3>
     </div>
   </article>
 
   <article class="card metric-card reveal">
-    <div class="metric-icon">🥗</div>
+    <div class="metric-icon"></div>
     <div>
       <p class="metric-label">Proteínas</p>
-      <h3>98g</h3>
+      <h3>{{ total_proteinas|floatformat:0 }}g</h3>
     </div>
   </article>
 
   <article class="card metric-card reveal">
-    <div class="metric-icon">⚡</div>
+    <div class="metric-icon"></div>
     <div>
       <p class="metric-label">Carboidratos</p>
-      <h3>142g</h3>
+      <h3>{{ total_carboidratos|floatformat:0 }}g</h3>
     </div>
   </article>
 </div>

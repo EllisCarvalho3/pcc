@@ -1,12 +1,15 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login
-from django.contrib.auth.decorators import login_required
 from collections import defaultdict
 
+from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django.shortcuts import redirect, render
+
+from alimentacao.services import gerar_feedback
 from perfil.models import Perfil
 from refeicoes.models import Refeicao
-from alimentacao.services import gerar_feedback
+
 
 @login_required
 def dashboard(request):
@@ -19,19 +22,15 @@ def dashboard(request):
     total_gord = 0
 
     for r in refeicoes:
-
         carbo = r.carboidratos or 0
         prot = r.proteinas or 0
         gord = r.gorduras or 0
-        carbo_total = carbo
-        prot_total = prot
-        gord_total = gord
 
-        total_carbo += carbo_total
-        total_prot += prot_total
-        total_gord += gord_total
+        total_carbo += carbo
+        total_prot += prot
+        total_gord += gord
 
-        total_calorias += (carbo_total * 4) + (prot_total * 4) + (gord_total * 9)
+        total_calorias += (carbo * 4) + (prot * 4) + (gord * 9)
 
     perfil = getattr(request.user, "perfil", None)
 
@@ -76,9 +75,17 @@ def dashboard(request):
         if not feedback:
             feedback.append(" Distribuição de macronutrientes equilibrada.")
 
+    meta_restante = 0
+    if perfil and perfil.meta_calorica:
+        meta_restante = round(max(perfil.meta_calorica - total_calorias, 0), 2)
+
     contexto = {
         "refeicoes": refeicoes,
         "total": round(total_calorias, 2),
+        "total_carboidratos": round(total_carbo, 2),
+        "total_proteinas": round(total_prot, 2),
+        "total_gorduras": round(total_gord, 2),
+        "meta_restante": meta_restante,
         "perfil": perfil,
         "percentual": percentual,
         "feedback": feedback,
@@ -124,4 +131,37 @@ def cadastrar(request):
 
 
 def home(request):
-    return render(request, "home.html")
+    
+    total_refeicoes = Refeicao.objects.count()
+
+    total_usuarios = User.objects.count()
+
+    usuarios_com_perfil = Perfil.objects.exclude(
+        meta_calorica__isnull=True
+    ).count()
+
+    refeicoes_com_macros = Refeicao.objects.exclude(
+        carboidratos=0,
+        proteinas=0,
+        gorduras=0
+    ).count()
+
+    if total_refeicoes > 0:
+        precisao = round(
+            (refeicoes_com_macros / total_refeicoes) * 100
+        )
+    else:
+        precisao = 0
+
+    contexto = {
+        "total_refeicoes": total_refeicoes,
+        "precisao": precisao,
+        "calculos": refeicoes_com_macros,
+        "usuarios_meta": usuarios_com_perfil,
+    }
+
+    return render(
+        request,
+        "home.html",
+        contexto
+    )
