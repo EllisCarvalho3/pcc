@@ -113,12 +113,16 @@ body::before {
   position: absolute;
   inset: 0;
   opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
   transform: scale(0.98);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity .6s ease, transform .6s ease;
 }
 
 .carousel-slide.active {
   opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
   transform: scale(1);
 }
 

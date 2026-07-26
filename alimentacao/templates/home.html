@@ -147,36 +147,52 @@
     <a class="btn btn-primary" href="{% url 'cadastro' %}">Criar conta</a>
   </div>
 </section>
-
 <script>
-  const slides = Array.from(document.querySelectorAll('.carousel-slide'));
-  const prevBtn = document.querySelector('.carousel-btn.prev');
-  const nextBtn = document.querySelector('.carousel-btn.next');
-  let currentIndex = 0;
-  let intervalId;
+document.addEventListener("DOMContentLoaded", () => {
 
-  function showSlide(index) {
-    currentIndex = (index + slides.length) % slides.length;
-    slides.forEach((slide, i) => slide.classList.toggle('active', i === currentIndex));
-  }
+    const slides = document.querySelectorAll(".carousel-slide");
+    const prevBtn = document.querySelector(".carousel-btn.prev");
+    const nextBtn = document.querySelector(".carousel-btn.next");
 
-  function startAutoPlay() {
-    clearInterval(intervalId);
-    intervalId = setInterval(() => showSlide(currentIndex + 1), 3000);
-  }
+    if (!slides.length) return;
 
-  prevBtn?.addEventListener('click', () => {
-    showSlide(currentIndex - 1);
+    let currentIndex = 0;
+    let intervalId;
+
+    function showSlide(index) {
+        currentIndex = (index + slides.length) % slides.length;
+
+        slides.forEach((slide, i) => {
+            slide.classList.toggle("active", i === currentIndex);
+        });
+    }
+
+    function nextSlide() {
+        showSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+        showSlide(currentIndex - 1);
+    }
+
+    function startAutoPlay() {
+        clearInterval(intervalId);
+        intervalId = setInterval(nextSlide, 3000);
+    }
+
+    prevBtn?.addEventListener("click", () => {
+        prevSlide();
+        startAutoPlay();
+    });
+
+    nextBtn?.addEventListener("click", () => {
+        nextSlide();
+        startAutoPlay();
+    });
+
+    showSlide(0);
     startAutoPlay();
-  });
 
-  nextBtn?.addEventListener('click', () => {
-    showSlide(currentIndex + 1);
-    startAutoPlay();
-  });
-
-  showSlide(0);
-  startAutoPlay();
+});
 </script>
-
 {% endblock %}
