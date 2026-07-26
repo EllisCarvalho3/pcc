@@ -12,30 +12,13 @@
       <a class="btn btn-secondary" href="{% url 'cadastro' %}">Criar conta</a>
     </div>
   </div>
-
-  <div class="hero-visual reveal">
-    <div class="carousel-card">
-      <div class="carousel-frame">
-        <div class="carousel-slide active">
-          <img src="{% static 'images/carousel-1.png' %}" alt="Foto 1 do carrossel" onerror="this.src='{% static 'images/logo.png' %}';">
+<div class="hero-visual reveal">
+    <div class="logo-card">
+        <div class="logo-circle">
+            <img src="{% static 'images/1.png' %}" alt="Logo Nuttraea">
         </div>
-        <div class="carousel-slide">
-          <img src="{% static 'images/carousel-2.png' %}" alt="Foto 2 do carrossel" onerror="this.src='{% static 'images/logo.png' %}';">
-        </div>
-        <div class="carousel-slide">
-          <img src="{% static 'images/carousel-3.png' %}" alt="Foto 3 do carrossel" onerror="this.src='{% static 'images/logo.png' %}';">
-        </div>
-        <div class="carousel-slide">
-          <img src="{% static 'images/carousel-4.png' %}" alt="Foto 4 do carrossel" onerror="this.src='{% static 'images/logo.png' %}';">
-        </div>
-        <div class="carousel-slide">
-          <img src="{% static 'images/carousel-5.png' %}" alt="Foto 5 do carrossel" onerror="this.src='{% static 'images/logo.png' %}';">
-        </div>
-        <button type="button" class="carousel-btn prev" aria-label="Voltar imagem">&#10094;</button>
-        <button type="button" class="carousel-btn next" aria-label="Próxima imagem">&#10095;</button>
-      </div>
     </div>
-  </div>
+</div>
 </section>
 
 <section class="section-block reveal">
@@ -147,52 +130,6 @@
     <a class="btn btn-primary" href="{% url 'cadastro' %}">Criar conta</a>
   </div>
 </section>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
 
-    const slides = document.querySelectorAll(".carousel-slide");
-    const prevBtn = document.querySelector(".carousel-btn.prev");
-    const nextBtn = document.querySelector(".carousel-btn.next");
 
-    if (!slides.length) return;
-
-    let currentIndex = 0;
-    let intervalId;
-
-    function showSlide(index) {
-        currentIndex = (index + slides.length) % slides.length;
-
-        slides.forEach((slide, i) => {
-            slide.classList.toggle("active", i === currentIndex);
-        });
-    }
-
-    function nextSlide() {
-        showSlide(currentIndex + 1);
-    }
-
-    function prevSlide() {
-        showSlide(currentIndex - 1);
-    }
-
-    function startAutoPlay() {
-        clearInterval(intervalId);
-        intervalId = setInterval(nextSlide, 3000);
-    }
-
-    prevBtn?.addEventListener("click", () => {
-        prevSlide();
-        startAutoPlay();
-    });
-
-    nextBtn?.addEventListener("click", () => {
-        nextSlide();
-        startAutoPlay();
-    });
-
-    showSlide(0);
-    startAutoPlay();
-
-});
-</script>
 {% endblock %}
