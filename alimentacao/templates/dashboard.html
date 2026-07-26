@@ -32,29 +32,38 @@
     {% endif %}
   </article>
 
-  <article class="card metric-card reveal">
-    <div class="metric-icon"></div>
+ <article class="card metric-card reveal">
     <div>
-      <p class="metric-label">Meta restante</p>
-      <h3>{{ meta_restante|floatformat:0 }} kcal</h3>
-    </div>
-  </article>
+        <p class="metric-label">Meta restante</p>
+        <h3>{{ meta_restante|floatformat:0 }} kcal</h3>
 
-  <article class="card metric-card reveal">
-    <div class="metric-icon"></div>
-    <div>
-      <p class="metric-label">Proteínas</p>
-      <h3>{{ total_proteinas|floatformat:0 }}g</h3>
+        <div class="metric-icon">
+            <i class="fa-brands fa-nutritionix"></i>
+        </div>
     </div>
-  </article>
+</article>
 
-  <article class="card metric-card reveal">
-    <div class="metric-icon"></div>
+<article class="card metric-card reveal">
     <div>
-      <p class="metric-label">Carboidratos</p>
-      <h3>{{ total_carboidratos|floatformat:0 }}g</h3>
+        <p class="metric-label">Proteínas</p>
+        <h3>{{ total_proteinas|floatformat:0 }}g</h3>
+
+        <div class="metric-icon">
+            <i class="fa-solid fa-egg"></i>
+        </div>
     </div>
-  </article>
+</article>
+
+<article class="card metric-card reveal">
+    <div>
+        <p class="metric-label">Carboidratos</p>
+        <h3>{{ total_carboidratos|floatformat:0 }}g</h3>
+
+        <div class="metric-icon">
+            <i class="fa-solid fa-wheat-awn"></i>
+        </div>
+    </div>
+</article>
 </div>
 
 <div class="dashboard-grid lower-grid">

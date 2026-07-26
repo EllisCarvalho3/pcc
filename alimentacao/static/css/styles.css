@@ -573,6 +573,74 @@ button {
   }
 }
 
+
+/* cardzin do dashboard com icons */
+
+.metric-card{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.metric-icon{
+    width:58px;
+    height:58px;
+
+    flex-shrink:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:16px;
+
+    background:linear-gradient(
+        135deg,
+        rgba(33,150,83,.12),
+        rgba(33,150,83,.05)
+    );
+
+    color:var(--verde-principal);
+
+    font-size:1.55rem;
+}
+
+.metric-card h3{
+    margin:0;
+    text-align:center;
+}
+
+.metric-label{
+    margin-bottom:6px;
+    text-align:center;
+    align-items:center;
+}
+
+.metric-card{
+    text-align: center;
+}
+
+.metric-card .metric-icon{
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+      text-align:center;
+}
+
+.metric-card .metric-icon i{
+    font-size: 2rem;
+    color: var(--verde-principal);
+    opacity: .85;
+      text-align:center;
+}
+
+
+
+/* cardzin do dashboard com icons */
+
+
+
 .mini-card,
 .metric-card,
 .feedback-card,
