@@ -3,7 +3,9 @@
 {% block content %}
 <div class="profile-shell reveal">
   <div class="profile-summary card">
-    <div class="avatar-badge">N</div>
+    <div class="avatar-badge">
+    {{ request.user.username|first|upper }}
+</div>
     <p class="eyebrow">Perfil</p>
     <h2>Configuração premium</h2>
     <p class="subtle-text">Ajuste os dados do seu plano para deixar o acompanhamento ainda mais alinhado ao seu objetivo.</p>
