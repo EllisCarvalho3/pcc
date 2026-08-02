@@ -1,9 +1,14 @@
-# Nuttrium
+# Nuttraea
 
-![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python&logoColor=white)
-![Django](https://img.shields.io/badge/Django-Framework-092E20?logo=django&logoColor=white)
-![SQLite](https://img.shields.io/badge/SQLite-Database-003B57?logo=sqlite&logoColor=white)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-5-7952B3?logo=bootstrap&logoColor=white)
+ <div style="display: inline_block"><br>
+  <img align="center" alt="Js" height="30" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg">
+  <img align="center" alt="HTML" height="30" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg">
+  <img align="center" alt="CSS" height="30" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg">
+  <img align="center" alt="Bootstrap" height="30" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-original.svg">
+  <img align="center" alt="Python" height="30" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg">
+</div>
+
+#
 
 Sistema web desenvolvido em **Python** utilizando o framework **Django**, destinado ao monitoramento do consumo calórico diário de estudantes, promovendo maior consciência alimentar por meio do registro de refeições, cálculo automático de calorias e definição de metas nutricionais personalizadas.
 
@@ -14,15 +19,15 @@ Sistema web desenvolvido em **Python** utilizando o framework **Django**, destin
 *A imagem abaixo apresenta uma visão geral da interface do sistema.*
 
 <p align="center">
-    <img src="imagens/demonstracao_sistema.png" alt="Tela inicial do sistema" width="900">
+    <img src="alimentacao/templates/imagens/demonstracao_sistema.png" alt="Tela inicial do sistema" width="600">
 </p>
 
 
 ---
 
-# Sobre o Projeto
+# Sobre o projeto
 
-O **Nuttrium** é uma plataforma web desenvolvida para auxiliar estudantes no acompanhamento da alimentação diária de forma simples, intuitiva e acessível.
+O **Nuttraea** é uma plataforma web desenvolvida para auxiliar estudantes no acompanhamento da alimentação diária de forma simples, intuitiva e acessível.
 
 O sistema permite registrar refeições consumidas ao longo do dia, calcular automaticamente o total de calorias ingeridas, comparar esse valor com uma meta calórica personalizada e fornecer feedback nutricional ao usuário.
 
@@ -34,11 +39,11 @@ O desenvolvimento do sistema busca integrar tecnologia, educação e saúde, inc
 
 # Objetivos
 
-## Objetivo Geral
+## Objetivo geral
 
 Desenvolver um sistema inteligente, acessível e intuitivo para auxiliar estudantes no monitoramento da ingestão calórica diária, promovendo maior consciência alimentar.
 
-## Objetivos Específicos
+## Objetivos específicos
 
 - Registrar refeições diárias dos usuários;
 - Calcular automaticamente calorias e macronutrientes;
@@ -64,7 +69,7 @@ Desenvolver um sistema inteligente, acessível e intuitivo para auxiliar estudan
 
 ---
 
-# Tecnologias Utilizadas
+# Tecnologias utilizadas
 
 - Python
 - Django
@@ -76,7 +81,7 @@ Desenvolver um sistema inteligente, acessível e intuitivo para auxiliar estudan
 
 ---
 
-# Documentação Oficial
+# Documentação oficial
 
 Durante o desenvolvimento do projeto foi utilizada como principal referência a documentação oficial do framework Django, conforme as boas práticas recomendadas para implementação das funcionalidades.
 
@@ -86,12 +91,12 @@ https://docs.djangoproject.com/en/6.0/
 
 ---
 
-# Arquitetura do Projeto
+# Arquitetura do projeto
 
 O projeto foi organizado em aplicações Django independentes, favorecendo a modularização e a manutenção do código.
 
 ```text
-NUTTRIUM/
+PCC/
 
 ├── alimentacao/
 ├── perfil/
@@ -115,7 +120,7 @@ git clone <URL_DO_REPOSITORIO>
 Entrar na pasta
 
 ```bash
-cd Nuttrium
+cd Nuttraea
 ```
 
 ---
@@ -186,7 +191,7 @@ Ao permitir o monitoramento diário da alimentação, o Nuttrium busca incentiva
 
 - Prof. Reinaldo Monteiro Cotrim
 
-**Equipe do Projeto**
+**Equipe do projeto**
 
 - Álvaro Guedes
 - Anna Lívia Magalhães
@@ -194,7 +199,7 @@ Ao permitir o monitoramento diário da alimentação, o Nuttrium busca incentiva
 
 ---
 
-# Desenvolvimento do Software
+# Desenvolvimento do software
 
 Embora o projeto tenha sido desenvolvido em equipe no contexto acadêmico, todo o desenvolvimento do software, incluindo análise, modelagem, implementação do sistema, interface e integração entre os módulos, foi realizado por:
 
@@ -202,6 +207,6 @@ Embora o projeto tenha sido desenvolvido em equipe no contexto acadêmico, todo 
 
 ---
 
-# 📄 Licença
+# Licença
 
-Projeto desenvolvido para fins acadêmicos como parte das atividades do curso Técnico em Informática para Internet.
+Projeto desenvolvido como requisito parcial para a aprovação no Curso Técnico em Informática para Internet.
