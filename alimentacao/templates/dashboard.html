@@ -32,38 +32,62 @@
     {% endif %}
   </article>
 
- <article class="card metric-card reveal">
-    <div>
+  <!-- compact metric row: keeps original styles intact, adds a new scoped layout for these four cards -->
+  <div class="metric-row">
+    <article class="card metric-card reveal compact">
+      <div>
         <p class="metric-label">Meta restante</p>
         <h3>{{ meta_restante|floatformat:0 }} kcal</h3>
 
         <div class="metric-icon">
-            <i class="fa-brands fa-nutritionix"></i>
+          <i class="fa-brands fa-nutritionix"></i>
         </div>
-    </div>
-</article>
+      </div>
+    </article>
 
-<article class="card metric-card reveal">
-    <div>
+    <article class="card metric-card reveal compact">
+      <div>
         <p class="metric-label">Proteínas</p>
         <h3>{{ total_proteinas|floatformat:0 }}g</h3>
 
         <div class="metric-icon">
-            <i class="fa-solid fa-egg"></i>
+          <i class="fa-solid fa-egg"></i>
         </div>
-    </div>
-</article>
+      </div>
+    </article>
 
-<article class="card metric-card reveal">
-    <div>
+    <article class="card metric-card reveal compact">
+      <div>
         <p class="metric-label">Carboidratos</p>
         <h3>{{ total_carboidratos|floatformat:0 }}g</h3>
 
         <div class="metric-icon">
-            <i class="fa-solid fa-wheat-awn"></i>
+          <i class="fa-solid fa-wheat-awn"></i>
         </div>
-    </div>
-</article>
+      </div>
+    </article>
+
+    <article class="card metric-card reveal compact">
+      <div>
+        <p class="metric-label">Gorduras</p>
+        <h3>{{ total_gorduras|floatformat:0 }}g</h3>
+
+        <div class="metric-icon">
+          <i class="fa-solid fa-hamburger"></i>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <style>
+    /* Scoped styles for the compact metric row (keeps original CSS untouched) */
+    .metric-row{display:flex;gap:12px;align-items:stretch;justify-content:space-between;grid-column:span 3}
+    .metric-row .metric-card.compact{flex:1;min-width:0;padding:14px;border-radius:16px}
+    .metric-row .metric-card.compact .metric-icon{width:44px;height:44px;border-radius:12px;font-size:1.4rem;margin-top:12px;display:flex;align-items:center;justify-content:center}
+    .metric-row .metric-card.compact h3{font-size:1.05rem}
+    @media (max-width:1100px){.metric-row{flex-wrap:wrap}.metric-row .metric-card.compact{flex:0 0 48%;margin-bottom:8px}}
+    @media (max-width:640px){.metric-row .metric-card.compact{flex:0 0 100%}}
+  </style>
 </div>
 
 <div class="dashboard-grid lower-grid">
