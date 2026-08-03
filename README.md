@@ -1,18 +1,8 @@
 # Nuttraea
 
- <div style="display: inline_block"><br>
-  <img align="center" alt="Js" height="30" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg">
-  <img align="center" alt="HTML" height="30" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg">
-  <img align="center" alt="CSS" height="30" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg">
-  <img align="center" alt="Bootstrap" height="30" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-original.svg">
-  <img align="center" alt="Python" height="30" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg">
-</div>
-
-#
-
 Sistema web desenvolvido em **Python** utilizando o framework **Django**, destinado ao monitoramento do consumo calórico diário de estudantes, promovendo maior consciência alimentar por meio do registro de refeições, cálculo automático de calorias e definição de metas nutricionais personalizadas.
 
----
+# 
 
 # Demonstração
 
@@ -96,7 +86,7 @@ https://docs.djangoproject.com/en/6.0/
 O projeto foi organizado em aplicações Django independentes, favorecendo a modularização e a manutenção do código.
 
 ```text
-PCC/
+ideias_pcc/
 
 ├── alimentacao/
 ├── perfil/
@@ -120,7 +110,7 @@ git clone <URL_DO_REPOSITORIO>
 Entrar na pasta
 
 ```bash
-cd Nuttraea
+cd ideias_pcc
 ```
 
 ---
@@ -181,7 +171,7 @@ http://127.0.0.1:8000/
 
 O desenvolvimento do sistema fundamenta-se na promoção da alimentação saudável entre estudantes, considerando que a rotina escolar frequentemente dificulta o planejamento alimentar e favorece o consumo de alimentos ultraprocessados.
 
-Ao permitir o monitoramento diário da alimentação, o Nuttrium busca incentivar escolhas alimentares mais conscientes e contribuir para o bem-estar e o desempenho acadêmico dos usuários.
+Ao permitir o monitoramento diário da alimentação, o Nuttraea busca incentivar escolhas alimentares mais conscientes e contribuir para o bem-estar e o desempenho acadêmico dos usuários.
 
 ---
 
