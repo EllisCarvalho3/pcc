@@ -3,22 +3,27 @@
 
 {% block content %}
 <section class="hero-panel reveal">
-  <div class="hero-copy">
-    <p class="eyebrow">App saúde & nutrição</p>
-    <h1>Seu acompanhamento calórico, claro, elegante e diário.</h1>
-    <p>O Nuttraea reúne registro alimentar, metas, histórico e clareza visual em uma experiência premium para quem quer cuidar da saúde com consistência.</p>
-    <div class="hero-actions">
-      <a class="btn btn-primary" href="{% url 'login' %}">Começar agora</a>
-      <a class="btn btn-secondary" href="{% url 'cadastro' %}">Criar conta</a>
-    </div>
-  </div>
-<div class="hero-visual reveal">
-    <div class="logo-card">
-        <div class="logo-circle">
-            <img src="{% static 'images/1.png' %}" alt="logo">
+
+    <div class="hero-copy">
+        <p class="eyebrow">App saúde & nutrição</p>
+
+        <h1>Seu acompanhamento calórico, claro, elegante e diário.</h1>
+
+        <p>
+            O Nuttraea reúne registro alimentar, metas, histórico e clareza visual em
+            uma experiência premium para quem quer cuidar da saúde com consistência.
+        </p>
+
+        <div class="hero-actions">
+            <a class="btn btn-primary" href="{% url 'login' %}">Começar agora</a>
+            <a class="btn btn-secondary" href="{% url 'cadastro' %}">Criar conta</a>
         </div>
     </div>
+
+  <div class="hero-visual">
+    <img class="hero-logo" src="{% static 'images/1.png' %}" alt="Logo Nuttraea">
 </div>
+
 </section>
 
 <section class="section-block reveal">
