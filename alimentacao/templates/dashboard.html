@@ -4,7 +4,7 @@
 <div class="page-header reveal">
   <div>
     <p class="eyebrow">Painel principal</p>
-    <h1>Resumo do seu dia</h1>
+    <h1>Resumo de hoje</h1>
   </div>
   <a href="{% url 'criar_refeicao' %}" class="btn btn-primary">Adicionar refeição</a>
 </div>
@@ -15,7 +15,7 @@
     <div class="dashboard-hero-content">
       <div>
         <p class="hero-note"><strong>{{ total|floatformat:0 }} kcal</strong></p>
-        <p class="subtle-text">Consumo total registrado até o momento.</p>
+        <p class="subtle-text">Consumo total registrado hoje.</p>
       </div>
       <div class="hero-bubble">Hoje</div>
     </div>

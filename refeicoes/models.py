@@ -17,9 +17,11 @@ class Refeicao(models.Model):
 
     def calorias(self):
 
-        carbo = self.carboidratos or 0
-        prot = self.proteinas or 0
-        gord = self.gorduras or 0
+        fator = self.quantidade / 100
+
+        carbo = (self.carboidratos or 0) * fator
+        prot = (self.proteinas or 0) * fator
+        gord = (self.gorduras or 0) * fator
 
         calorias = (carbo * 4) + (prot * 4) + (gord * 9)
 

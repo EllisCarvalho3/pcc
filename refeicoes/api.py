@@ -7,7 +7,7 @@ TRADUCOES = {
     "arroz branco": "white rice",
 
     "feijao": "beans",
-    "feijão": "beans",
+    "feijão": "beans", 
 
     "banana": "banana",
     "maca": "apple",

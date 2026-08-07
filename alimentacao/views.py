@@ -10,11 +10,28 @@ from alimentacao.services import gerar_feedback
 from perfil.models import Perfil
 from refeicoes.models import Refeicao
 
+from django.utils import timezone
+from datetime import timedelta
 
 @login_required
 def dashboard(request):
 
-    refeicoes = Refeicao.objects.filter(user=request.user)
+    hoje = timezone.localdate()
+
+    inicio = timezone.make_aware(
+    timezone.datetime.combine(
+        hoje,
+        timezone.datetime.min.time()
+    )
+)
+
+    fim = inicio + timedelta(days=1)
+
+    refeicoes = Refeicao.objects.filter(
+    user=request.user,
+    data__gte=inicio,
+    data__lt=fim
+)
 
     total_calorias = 0
     total_carbo = 0
@@ -22,15 +39,22 @@ def dashboard(request):
     total_gord = 0
 
     for r in refeicoes:
-        carbo = r.carboidratos or 0
-        prot = r.proteinas or 0
-        gord = r.gorduras or 0
+
+        fator = r.quantidade / 100
+
+        carbo = (r.carboidratos or 0) * fator
+        prot = (r.proteinas or 0) * fator
+        gord = (r.gorduras or 0) * fator
 
         total_carbo += carbo
         total_prot += prot
         total_gord += gord
 
-        total_calorias += (carbo * 4) + (prot * 4) + (gord * 9)
+        total_calorias += (
+            (carbo * 4) +
+            (prot * 4) +
+            (gord * 9)
+        )
 
     perfil = getattr(request.user, "perfil", None)
 
@@ -43,11 +67,19 @@ def dashboard(request):
         percentual = (total_calorias / perfil.meta_calorica) * 100
 
         if percentual < 80:
-            feedback.append(" Você está consumindo menos calorias que sua meta diária.")
+            feedback.append(
+                "Você está consumindo menos calorias que sua meta diária."
+            )
+
         elif percentual <= 110:
-            feedback.append(" Seu consumo calórico está dentro da meta.")
+            feedback.append(
+                "Seu consumo calórico está dentro da meta."
+            )
+
         else:
-            feedback.append(" Você ultrapassou sua meta calórica diária.")
+            feedback.append(
+                "Você ultrapassou sua meta calórica diária."
+            )
 
     # FEEDBACK DE MACRONUTRIENTES
     if total_calorias > 0:
@@ -56,28 +88,37 @@ def dashboard(request):
         perc_prot = (total_prot * 4) / total_calorias * 100
         perc_gord = (total_gord * 9) / total_calorias * 100
 
-        # referência nutricional média
         if perc_prot < 10:
-            feedback.append(" Consumo de proteína baixo.")
+            feedback.append("Consumo de proteína baixo.")
         elif perc_prot > 35:
-            feedback.append(" Consumo de proteína alto.")
+            feedback.append("Consumo de proteína alto.")
 
         if perc_carbo < 45:
-            feedback.append(" Consumo de carboidratos baixo.")
+            feedback.append("Consumo de carboidratos baixo.")
         elif perc_carbo > 65:
-            feedback.append(" Consumo de carboidratos alto.")
+            feedback.append("Consumo de carboidratos alto.")
 
         if perc_gord < 20:
-            feedback.append(" Consumo de gorduras baixo.")
+            feedback.append("Consumo de gorduras baixo.")
         elif perc_gord > 35:
-            feedback.append(" Consumo de gorduras alto.")
+            feedback.append("Consumo de gorduras alto.")
 
-        if not feedback:
-            feedback.append(" Distribuição de macronutrientes equilibrada.")
+        if (
+            10 <= perc_prot <= 35 and
+            45 <= perc_carbo <= 65 and
+            20 <= perc_gord <= 35
+        ):
+            feedback.append(
+                "Distribuição de macronutrientes equilibrada."
+            )
 
     meta_restante = 0
+
     if perfil and perfil.meta_calorica:
-        meta_restante = round(max(perfil.meta_calorica - total_calorias, 0), 2)
+        meta_restante = round(
+            max(perfil.meta_calorica - total_calorias, 0),
+            2
+        )
 
     contexto = {
         "refeicoes": refeicoes,
@@ -91,7 +132,11 @@ def dashboard(request):
         "feedback": feedback,
     }
 
-    return render(request, "dashboard.html", contexto)
+    return render(
+        request,
+        "dashboard.html",
+        contexto
+    )
 
 @login_required
 def historico(request):
@@ -100,11 +145,13 @@ def historico(request):
     dias = defaultdict(list)
 
     for r in refeicoes:
-        dias[r.data].append(r)
+        dias[r.data.date()].append(r)
 
     historico_formatado = []
 
-    for data, itens in dias.items():
+    for data in sorted(dias.keys(), reverse=True):
+
+        itens = dias[data]
         total = sum(r.calorias() for r in itens)
         historico_formatado.append({
             "data": data,
