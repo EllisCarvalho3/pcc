@@ -25,7 +25,7 @@
 </div>
 
 </section>
-
+<br><br>
 <section class="section-block reveal"><style>
     .carousel-wrap {
       max-width: 920px;
@@ -52,24 +52,34 @@
       display: block;
       margin: 0 auto;
     }
-    .carousel-dots {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 18px;
-    }
-    .carousel-dot {
-      width: 1px;
-      height: 1px;
-      border-radius: 50%;
-      border: none;
-      background: rgba(12, 84, 24, 0.18);
-      cursor: pointer;
-      transition: background 0.25s ease;
-    }
-    .carousel-dot.active {
-      background: rgba(13, 60, 22, 0.75);
-    }
+   .carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.carousel-dot {
+  width: 7px;
+  height: 7px;
+  min-width: 7px;
+  min-height: 7px;
+  max-width: 7px;
+  max-height: 7px;
+  padding: 0;
+  margin: 0;
+  border-radius: 50%;
+  border: none;
+  background: rgba(12, 84, 24, 0.18);
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+  flex-shrink: 0;
+  appearance: none;
+}
+
+.carousel-dot.active {
+  background: rgba(13, 60, 22, 0.75);
+}
     @media (max-width: 768px) {
       .carousel-slide img {
         width: auto;
@@ -80,7 +90,7 @@
   </style>
   <div class="section-heading">
     <p class="eyebrow">Benefícios</p>
-    <h2>Veja a experiência em destaque com imagens automáticas.</h2>
+    <h2>Conheça os benefícios em usar o Nuttraea.</h2>
   </div>
   <div class="carousel-wrap">
     <div class="carousel-track">
