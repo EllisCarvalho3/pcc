@@ -26,49 +26,111 @@
 
 </section>
 
-<section class="section-block reveal">
+<section class="section-block reveal"><style>
+    .carousel-wrap {
+      max-width: 920px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12);
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.8s ease;
+      will-change: transform;
+    }
+    .carousel-slide {
+      min-width: 100%;
+      box-sizing: border-box;
+    }
+    .carousel-slide img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      display: block;
+    }
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .carousel-dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 80%;
+      border: none;
+      background: rgba(12, 84, 24, 0.18);
+      cursor: pointer;
+      transition: background 0.25s ease;
+    }
+    .carousel-dot.active {
+      background: rgba(13, 60, 22, 0.75);
+    }
+    @media (max-width: 768px) {
+      .carousel-slide img {
+        height: 280px;
+      }
+    }
+  </style>
   <div class="section-heading">
     <p class="eyebrow">Benefícios</p>
-    <h2>Uma experiência construída para quem se importa com resultado e clareza.</h2>
+    <h2>Veja a experiência em destaque com imagens automáticas.</h2>
   </div>
-  <div class="feature-grid">
-    <article class="feature-card">
-      <div class="feature-icon">01</div>
-      <h3>Controle diário</h3>
-      <p>Visualize seu consumo de forma simples, com foco em clareza e consistência.</p>
-    </article>
-
-    <article class="feature-card">
-      <div class="feature-icon">02</div>
-      <h3>Meta calórica</h3>
-      <p>Organize o seu objetivo com indicadores visuais e acompanhamento contínuo.</p>
-    </article>
-
-    <article class="feature-card">
-      <div class="feature-icon">03</div>
-      <h3>Histórico</h3>
-      <p>Entenda a evolução do seu dia e identifique padrões com mais facilidade.</p>
-    </article>
-
-    <article class="feature-card">
-      <div class="feature-icon">04</div>
-      <h3>Macronutrientes</h3>
-      <p>Veja a composição nutricional das refeições com visão prática e objetiva.</p>
-    </article>
-
-    <article class="feature-card">
-      <div class="feature-icon">05</div>
-      <h3>Personalização</h3>
-      <p>Seu perfil orienta o acompanhamento para uma rotina mais alinhada ao seu objetivo.</p>
-    </article>
-
-    <article class="feature-card">
-      <div class="feature-icon">06</div>
-      <h3>Segurança</h3>
-      <p>Uma estrutura limpa e organizada reforça confiança, foco e continuidade.</p>
-    </article>
+  <div class="carousel-wrap">
+    <div class="carousel-track">
+      <div class="carousel-slide"><img src="{% static 'images/b1.jpg' %}" alt="Visão geral da plataforma"></div>
+      <div class="carousel-slide"><img src="{% static 'images/b2.jpg' %}" alt="Registro de refeições"></div>
+      <div class="carousel-slide"><img src="{% static 'images/b3.jpg' %}" alt="Metas e objetivos"></div>
+      <div class="carousel-slide"><img src="{% static 'images/b4.jpg' %}" alt="Histórico de alimentação"></div>
+      <div class="carousel-slide"><img src="{% static 'images/b5.jpg' %}" alt="Macronutrientes detalhados"></div>
+      <div class="carousel-slide"><img src="{% static 'images/b6.jpg' %}" alt="Acompanhamento contínuo"></div>
+    </div>
+  </div>
+  <div class="carousel-dots">
+    <button class="carousel-dot active" type="button" data-slide="0"></button>
+    <button class="carousel-dot" type="button" data-slide="1"></button>
+    <button class="carousel-dot" type="button" data-slide="2"></button>
+    <button class="carousel-dot" type="button" data-slide="3"></button>
+    <button class="carousel-dot" type="button" data-slide="4"></button>
+    <button class="carousel-dot" type="button" data-slide="5"></button>
   </div>
 </section>
+
+<script>
+  (function() {
+    var track = document.querySelector('.carousel-track');
+    var slides = document.querySelectorAll('.carousel-slide');
+    var dots = document.querySelectorAll('.carousel-dot');
+    if (!track || slides.length === 0) {
+      return;
+    }
+    var currentIndex = 0;
+    function goToSlide(index) {
+      currentIndex = (index + slides.length) % slides.length;
+      track.style.transform = 'translateX(' + (-currentIndex * 100) + '%)';
+      dots.forEach(function(dot, dotIndex) {
+        dot.classList.toggle('active', dotIndex === currentIndex);
+      });
+    }
+    dots.forEach(function(dot) {
+      dot.addEventListener('click', function() {
+        goToSlide(parseInt(this.dataset.slide, 10));
+        resetTimer();
+      });
+    });
+    var interval = setInterval(function() {
+      goToSlide(currentIndex + 1);
+    }, 3000);
+    function resetTimer() {
+      clearInterval(interval);
+      interval = setInterval(function() {
+        goToSlide(currentIndex + 1);
+      }, 3000);
+    }
+  })();
+</script>
 
 <section class="section-block reveal">
   <div class="section-heading">
