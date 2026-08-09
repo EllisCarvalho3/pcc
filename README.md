@@ -1,4 +1,4 @@
-# Nuttraea
+# Nuttraea 
 
 Sistema web desenvolvido em **Python** utilizando o framework **Django**, destinado ao monitoramento do consumo calórico diário de estudantes, promovendo maior consciência alimentar por meio do registro de refeições, cálculo automático de calorias e definição de metas nutricionais personalizadas.
 
