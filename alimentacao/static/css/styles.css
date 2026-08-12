@@ -1177,3 +1177,435 @@ textarea:focus {
     align-items: flex-start;
   }
 }
+
+:root {
+  --verde-principal: var(--verde);
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+  display: block;
+}
+
+body,
+html {
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+button,
+input,
+select,
+textarea {
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 1200px) {
+  .page-shell,
+  .message-stack,
+  .site-footer .footer-shell,
+  .top-nav {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .page-header,
+  .cta-panel {
+    gap: 14px;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .showcase-grid,
+  .stats-band,
+  .steps-grid,
+  .testimonials-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 980px) {
+  .site-header .top-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .brand-link {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero-panel,
+  .auth-shell,
+  .profile-shell,
+  .meal-shell,
+  .lower-grid,
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-copy h1,
+  .page-header h1,
+  .page-header h2,
+  .section-heading h2,
+  .auth-panel h2,
+  .meal-intro h1,
+  .profile-summary h2 {
+    font-size: clamp(1.7rem, 5vw, 2.3rem);
+    line-height: 1.2;
+  }
+
+  .cta-panel {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .stats-band {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard-grid,
+  .showcase-grid,
+  .steps-grid,
+  .testimonials-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .carousel,
+  .carousel-inner,
+  .carousel-item,
+  .carousel-item img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+  }
+
+  .carousel {
+    overflow: hidden;
+    border-radius: 18px;
+  }
+}
+
+@media (max-width: 760px) {
+  .page-shell {
+    padding: 22px 16px 42px;
+  }
+
+  .top-nav {
+    padding: 14px 16px;
+    gap: 12px;
+  }
+
+  .brand-logo {
+    height: 46px;
+    max-width: 180px;
+  }
+
+  .nav-links {
+    gap: 8px;
+  }
+
+  .nav-links a,
+  .nav-links button {
+    padding: 9px 10px;
+    font-size: 0.9rem;
+  }
+
+  .hero-panel,
+  .card,
+  .feature-card,
+  .step-card,
+  .testimonial-card,
+  .auth-panel,
+  .profile-summary,
+  .meal-intro,
+  .profile-form-card,
+  .meal-form-card,
+  .cta-panel {
+    padding: 18px;
+  }
+
+  .hero-actions,
+  .acoes {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-actions .btn,
+  .acoes .btn,
+  .hero-actions button,
+  .acoes button {
+    width: 100%;
+  }
+
+  .hero-copy p,
+  .subtle-text,
+  .feature-card p,
+  .step-card p,
+  .testimonial-card p,
+  .auth-panel p,
+  .profile-summary p,
+  .meal-intro p {
+    font-size: 0.96rem;
+    line-height: 1.7;
+  }
+
+  .feature-grid,
+  .steps-grid,
+  .testimonials-grid,
+  .stats-band,
+  .dashboard-grid,
+  .showcase-grid,
+  .lower-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-header,
+  .section-heading,
+  .showcase-top,
+  .timeline-header,
+  .testimonial-head,
+  .dashboard-hero-content,
+  .cta-panel {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .stats-band {
+    padding: 16px;
+  }
+
+  .stat-block strong {
+    font-size: 1.35rem;
+  }
+
+  .site-footer {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .footer-shell {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .carousel {
+    border-radius: 16px;
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 540px) {
+  .brand-logo {
+    height: 40px;
+    max-width: 150px;
+  }
+
+  .nav-links {
+    justify-content: flex-start;
+  }
+
+  .nav-links a,
+  .nav-links button {
+    padding: 8px 10px;
+    font-size: 0.82rem;
+  }
+
+  .page-header h1,
+  .page-header h2,
+  .hero-copy h1,
+  .hero-copy h2,
+  .section-heading h2,
+  .meal-intro h1,
+  .profile-summary h2,
+  .auth-panel h2 {
+    font-size: clamp(1.45rem, 7vw, 1.8rem);
+  }
+
+  .eyebrow {
+    letter-spacing: 0.12em;
+    font-size: 0.68rem;
+  }
+
+  .hero-highlights,
+  .summary-pill,
+  .highlight-pill {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .showcase-meter {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .meter-ring {
+    width: 72px;
+    height: 72px;
+    border-width: 10px;
+  }
+
+  .metric-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .metric-card .metric-icon {
+    margin-top: 0;
+  }
+
+  .timeline-shell {
+    padding-left: 12px;
+  }
+
+  .timeline-item {
+    margin-left: 0;
+  }
+
+  .timeline-marker {
+    left: -16px;
+  }
+
+  .message-stack {
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 420px) {
+  .top-nav,
+  .page-shell,
+  .site-footer {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .brand-link {
+    justify-content: center;
+  }
+
+  .hero-logo {
+    width: 170px;
+  }
+
+  .hero-copy h1,
+  .page-header h1,
+  .page-header h2,
+  .section-heading h2 {
+    font-size: 1.55rem;
+  }
+
+  .btn,
+  button {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+
+  .mini-card,
+  .metric-card,
+  .feedback-card,
+  .step-card,
+  .testimonial-card,
+  .auth-panel,
+  .profile-summary,
+  .meal-intro,
+  .profile-form-card,
+  .meal-form-card {
+    padding: 16px;
+  }
+
+  .carousel,
+  .carousel-inner,
+  .carousel-item,
+  .carousel-item img {
+    min-height: 180px;
+  }
+}
+
+.carousel,
+.carousel-inner,
+.carousel-item,
+.carousel-item img {
+  max-width: 100%;
+  width: 100%;
+}
+
+.carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  margin: 0 auto;
+}
+
+.carousel-inner {
+  display: flex;
+  align-items: stretch;
+}
+
+.carousel-item {
+  min-width: 100%;
+  display: block;
+}
+
+.carousel-item img {
+  height: auto;
+  object-fit: cover;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(22, 119, 27, 0.82);
+  border: none;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  background: rgba(22, 119, 27, 1);
+}
+
+@media (max-width: 900px) {
+  .carousel {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .carousel {
+    border-radius: 14px;
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 34px;
+    height: 34px;
+  }
+}
