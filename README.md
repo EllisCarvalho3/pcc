@@ -86,13 +86,14 @@ https://docs.djangoproject.com/en/6.0/
 O projeto foi organizado em aplicações Django independentes, favorecendo a modularização e a manutenção do código.
 
 ```text
-    pcc/
+pcc/
 ├── alimentacao/
 ├── perfil/
 ├── refeicoes/
 ├── core/
 ├── manage.py
 ├── db.sqlite3
+├── requirements.txt
 └── README.md
 ```
 
@@ -103,7 +104,7 @@ O projeto foi organizado em aplicações Django independentes, favorecendo a mod
 ## Clonar o repositório
 
 ```bash
-git clone <https://github.com/EllisCarvalho3/pcc.git>
+git clone https://github.com/EllisCarvalho3/pcc.git
 ```
 
 Entrar na pasta
@@ -145,7 +146,6 @@ pip install -r requirements.txt
 ## Executar migrações
 
 ```bash
-python manage.py makemigrations
 
 python manage.py migrate
 ```
