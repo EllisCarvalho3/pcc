@@ -86,7 +86,7 @@ https://docs.djangoproject.com/en/6.0/
 O projeto foi organizado em aplicações Django independentes, favorecendo a modularização e a manutenção do código.
 
 ```text
-
+    pcc/
 ├── alimentacao/
 ├── perfil/
 ├── refeicoes/
