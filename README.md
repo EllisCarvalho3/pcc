@@ -86,8 +86,7 @@ https://docs.djangoproject.com/en/6.0/
 O projeto foi organizado em aplicações Django independentes, favorecendo a modularização e a manutenção do código.
 
 ```text
-ideias_pcc/
-
+    pcc/
 ├── alimentacao/
 ├── perfil/
 ├── refeicoes/
@@ -110,7 +109,7 @@ git clone <https://github.com/EllisCarvalho3/pcc.git>
 Entrar na pasta
 
 ```bash
-cd ideias_pcc
+cd pcc
 ```
 
 ---
@@ -183,9 +182,9 @@ Ao permitir o monitoramento diário da alimentação, o Nuttraea busca incentiva
 
 **Equipe do projeto**
 
+- Ellis Carvalho Xavier
 - Álvaro Guedes
 - Anna Lívia Magalhães
-- Ellis Carvalho Xavier
 
 ---
 
