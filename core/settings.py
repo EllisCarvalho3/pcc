@@ -20,12 +20,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^!nov)k^qd74$r6lbt79s!ytrdjxn@-o2!*^$bt-yrtw91-mmm'
+SECRET_KEY = os.environ.get(
+    'SECRET_KEY',
+    'django-insecure-^!nov)k^qd74$r6lbt79s!ytrdjxn@-o2!*^$bt-yrtw91-mmm'
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+import os
 
-ALLOWED_HOSTS = []
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '.onrender.com',
+]
 
 
 # Application definition
@@ -44,12 +53,14 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -120,6 +131,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'alimentacao' / 'static']
+SECRET_KEY = os.environ.get(
+    'SECRET_KEY',
+    'django-insecure-^!nov)k^qd74$r6lbt79s!ytrdjxn@-o2!*^$bt-yrtw91-mmm'
+)
 STATIC_VERSION = '2'
 
 LOGIN_REDIRECT_URL = 'dashboard'
