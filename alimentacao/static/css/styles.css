@@ -1021,6 +1021,9 @@ textarea:focus {
   text-align: center;
   color: var(--cinza);
 }
+
+
+
 /* =========================================================
    RESPONSIVIDADE GERAL - NUTTRAEA
    ========================================================= */
@@ -2072,4 +2075,784 @@ code {
         width: 32px;
         height: 32px;
     }
+}
+
+/* =========================================================
+   TEMA CLARO / ESCURO
+   NUTTRAEA
+   ========================================================= */
+
+
+/* =========================================================
+   VARIÁVEIS DO TEMA CLARO
+   ========================================================= */
+
+:root {
+
+    color-scheme: light;
+
+    --verde-principal: #16771b;
+    --verde-secundario: #2d9b35;
+    --verde-claro: #e8f6ea;
+    --verde-suave: #f1faf2;
+
+    --fundo: #f4faf5;
+    --fundo-secundario: #edf7ef;
+
+    --superficie: #ffffff;
+    --superficie-2: #f8fcf9;
+
+    --texto: #304a37;
+    --texto-principal: #16771b;
+    --texto-secundario: #64766a;
+
+    --borda: #d5e8d8;
+    --borda-forte: #c5ddc9;
+
+    --sombra:
+        0 14px 35px rgba(27, 92, 36, 0.08);
+
+    --sombra-card:
+        0 12px 30px rgba(27, 92, 36, 0.07);
+
+    --input-bg: #ffffff;
+    --input-text: #304a37;
+    --placeholder: #8a9b90;
+
+    --header-bg: #ffffff;
+    --footer-bg: #edf7ef;
+
+    --link: #53695a;
+    --link-hover: #16771b;
+
+    --alert-bg: #e8f6ea;
+    --alert-text: #17651d;
+
+    --theme-transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+
+}
+
+
+/* =========================================================
+   VARIÁVEIS DO TEMA ESCURO
+   ========================================================= */
+
+:root[data-theme="dark"] {
+
+    color-scheme: dark;
+
+    --verde-principal: #6ed878;
+    --verde-secundario: #52c95f;
+    --verde-claro: #18371e;
+    --verde-suave: #14281a;
+
+    --fundo: #0d1510;
+    --fundo-secundario: #111c14;
+
+    --superficie: #18211b;
+    --superficie-2: #1d2820;
+
+    --texto: #dce9df;
+    --texto-principal: #78df82;
+    --texto-secundario: #a7b8aa;
+
+    --borda: #304238;
+    --borda-forte: #405447;
+
+    --sombra:
+        0 14px 35px rgba(0, 0, 0, 0.28);
+
+    --sombra-card:
+        0 12px 30px rgba(0, 0, 0, 0.25);
+
+    --input-bg: #111a14;
+    --input-text: #e2eee4;
+    --placeholder: #829387;
+
+    --header-bg: #111a14;
+    --footer-bg: #111c14;
+
+    --link: #b7c7ba;
+    --link-hover: #79df83;
+
+    --alert-bg: #19351e;
+    --alert-text: #91e99a;
+
+}
+
+
+/* =========================================================
+   TRANSIÇÃO SUAVE
+   ========================================================= */
+
+html,
+body,
+.site-header,
+.top-nav,
+.page-shell,
+.site-footer,
+.card,
+.feature-card,
+.step-card,
+.testimonial-card,
+.auth-panel,
+.profile-summary,
+.meal-intro,
+.profile-form-card,
+.meal-form-card,
+.metric-card,
+.cta-panel,
+.hero-panel,
+input,
+select,
+textarea,
+button,
+.nav-links a,
+.footer-links a,
+.alert {
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* =========================================================
+   BASE
+   ========================================================= */
+
+html {
+    background: var(--fundo);
+}
+
+body {
+    background: var(--fundo);
+    color: var(--texto);
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.site-header {
+    background: var(--header-bg);
+    border-bottom: 1px solid var(--borda);
+    box-shadow: var(--sombra);
+}
+
+.top-nav {
+    background: transparent;
+}
+
+.brand-logo {
+    transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.nav-links a,
+.nav-links button,
+.nav-link {
+    color: var(--link);
+}
+
+.nav-links a:hover,
+.nav-links button:hover,
+.nav-link:hover {
+    color: var(--link-hover);
+}
+
+.nav-links a.active,
+.nav-links button.active,
+.nav-link.active {
+    color: var(--verde-principal);
+}
+
+
+/* =========================================================
+   PÁGINAS
+   ========================================================= */
+
+.page-shell {
+    background: var(--fundo);
+    color: var(--texto);
+}
+
+
+/* =========================================================
+   TÍTULOS
+   ========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--texto-principal);
+}
+
+
+/* =========================================================
+   TEXTOS
+   ========================================================= */
+
+p {
+    color: var(--texto);
+}
+
+.subtle-text {
+    color: var(--texto-secundario);
+}
+
+.eyebrow {
+    color: var(--verde-principal);
+}
+
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.card,
+.feature-card,
+.step-card,
+.testimonial-card,
+.auth-panel,
+.profile-summary,
+.meal-intro,
+.profile-form-card,
+.meal-form-card,
+.metric-card,
+.mini-card,
+.feedback-card {
+    background: var(--superficie);
+    color: var(--texto);
+    border-color: var(--borda);
+    box-shadow: var(--sombra-card);
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero-panel {
+    background: var(--superficie);
+    color: var(--texto);
+    border-color: var(--borda);
+    box-shadow: var(--sombra-card);
+}
+
+
+/* =========================================================
+   CTA
+   ========================================================= */
+
+.cta-panel {
+    background: var(--superficie);
+    color: var(--texto);
+    border-color: var(--borda);
+}
+
+
+/* =========================================================
+   STATS
+   ========================================================= */
+
+.stats-band {
+    background: var(--superficie);
+    color: var(--texto);
+    border-color: var(--borda);
+}
+
+
+/* =========================================================
+   PILLS
+   ========================================================= */
+
+.summary-pill,
+.highlight-pill,
+.hero-highlights,
+.showcase-meter,
+.metric-label {
+    background: var(--verde-suave);
+    color: var(--verde-principal);
+    border-color: var(--borda);
+}
+
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+input,
+select,
+textarea {
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    border-color: var(--borda);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--placeholder);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--verde-principal);
+    box-shadow:
+        0 0 0 3px rgba(110, 216, 120, 0.13);
+    outline: none;
+}
+
+
+/* =========================================================
+   BOTÕES
+   ========================================================= */
+
+button,
+.btn {
+    color: #ffffff;
+}
+
+.btn-primary,
+.btn-success,
+button[type="submit"] {
+    background: var(--verde-principal);
+    border-color: var(--verde-principal);
+}
+
+.btn-primary:hover,
+.btn-success:hover,
+button[type="submit"]:hover {
+    background: var(--verde-secundario);
+    border-color: var(--verde-secundario);
+}
+
+
+/* =========================================================
+   ALERTAS
+   ========================================================= */
+
+.alert {
+    background: var(--alert-bg);
+    color: var(--alert-text);
+    border-color: var(--borda);
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.site-footer {
+    background: var(--footer-bg);
+    color: var(--texto);
+    border-top: 1px solid var(--borda);
+}
+
+.footer-shell {
+    color: var(--texto);
+}
+
+.footer-links a {
+    color: var(--link);
+}
+
+.footer-links a:hover {
+    color: var(--link-hover);
+}
+
+
+/* =========================================================
+   BOTÃO DE TEMA
+   ========================================================= */
+
+.theme-switch {
+    flex-shrink: 0;
+    font-size: 15px;
+    position: relative;
+    display: inline-block;
+    width: 4em;
+    height: 2.2em;
+    border-radius: 30px;
+    box-shadow:
+        0 0 10px rgba(0, 0, 0, 0.12);
+}
+
+
+/* Remove checkbox original */
+
+.theme-switch input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+
+/* Corpo */
+
+.theme-switch .slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+
+    background-color: #18231b;
+
+    transition:
+        background-color 0.4s ease,
+        box-shadow 0.4s ease;
+
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+
+/* Sol / lua */
+
+.theme-switch .slider::before {
+    position: absolute;
+    content: "";
+
+    height: 1.2em;
+    width: 1.2em;
+
+    border-radius: 50%;
+
+    left: 0.5em;
+    bottom: 0.5em;
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+
+    transition-timing-function:
+        cubic-bezier(0.81, -0.04, 0.38, 1.5);
+
+    box-shadow:
+        inset 8px -4px 0 0 #ffffff;
+}
+
+
+/* Tema claro */
+
+.theme-switch input:checked + .slider {
+    background-color: #51a95a;
+}
+
+.theme-switch input:checked + .slider::before {
+    transform: translateX(1.8em);
+
+    box-shadow:
+        inset 15px -4px 0 15px #ffcf48;
+}
+
+
+/* Estrelas */
+
+.theme-switch .star {
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background-color: #ffffff;
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+.theme-switch .star_1 {
+    left: 2.5em;
+    top: 0.5em;
+}
+
+.theme-switch .star_2 {
+    left: 2.2em;
+    top: 1.2em;
+}
+
+.theme-switch .star_3 {
+    left: 3em;
+    top: 0.9em;
+}
+
+
+/* Estrelas desaparecem no tema claro */
+
+.theme-switch input:checked ~ .slider .star {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+
+/* Nuvem */
+
+.theme-switch .cloud {
+    width: 3.5em;
+
+    position: absolute;
+
+    bottom: -1.4em;
+    left: -1.1em;
+
+    opacity: 0;
+
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease;
+}
+
+
+/* Nuvem aparece no tema claro */
+
+.theme-switch input:checked ~ .slider .cloud {
+    opacity: 1;
+}
+
+
+/* =========================================================
+   HOVER DO BOTÃO DE TEMA
+   ========================================================= */
+
+.theme-switch:hover .slider {
+    box-shadow:
+        0 0 0 3px rgba(110, 216, 120, 0.12);
+}
+
+
+/* =========================================================
+   ACESSIBILIDADE
+   ========================================================= */
+
+.theme-switch input:focus-visible + .slider {
+    outline: 2px solid var(--verde-principal);
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   RIPPLE
+   ========================================================= */
+
+.ripple {
+    background: rgba(255, 255, 255, 0.35);
+}
+
+
+/* =========================================================
+   TEMA ESCURO - ELEMENTOS ESPECÍFICOS
+   ========================================================= */
+
+:root[data-theme="dark"] .site-header.scrolled {
+    background: rgba(17, 26, 20, 0.94);
+}
+
+:root[data-theme="dark"] .hero-panel {
+    background:
+        linear-gradient(
+            135deg,
+            #18251b,
+            #142018
+        );
+}
+
+:root[data-theme="dark"] .metric-card {
+    background: #18211b;
+}
+
+:root[data-theme="dark"] .metric-icon {
+    background: #203b25;
+    color: #78df82;
+}
+
+
+/* =========================================================
+   TABELAS
+   ========================================================= */
+
+table {
+    color: var(--texto);
+    background: var(--superficie);
+}
+
+th {
+    background: var(--verde-suave);
+    color: var(--verde-principal);
+}
+
+td {
+    background: var(--superficie);
+    color: var(--texto);
+    border-color: var(--borda);
+}
+
+
+/* =========================================================
+   LINKS GERAIS
+   ========================================================= */
+
+a {
+    color: var(--link-hover);
+}
+
+a:hover {
+    color: var(--verde-principal);
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE DO BOTÃO DE TEMA
+   ========================================================= */
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+
+/* Desktop */
+
+@media (min-width: 981px) {
+
+    .top-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .brand-link {
+        flex-shrink: 0;
+    }
+
+    .nav-actions {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+    }
+
+    .nav-links {
+        margin: 0;
+    }
+
+}
+
+
+/* Tablet */
+
+@media (max-width: 980px) {
+
+    .nav-actions {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .nav-links {
+        width: auto;
+        margin: 0;
+    }
+
+}
+
+
+/* Celular */
+
+@media (max-width: 760px) {
+
+    .nav-actions {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: nowrap;
+        gap: 9px;
+    }
+
+    .nav-links {
+        width: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 0;
+    }
+
+    .theme-switch {
+        width: 3.7em;
+        height: 2em;
+        font-size: 14px;
+    }
+
+}
+
+
+/* Celulares pequenos */
+
+@media (max-width: 540px) {
+
+    .nav-actions {
+        gap: 7px;
+    }
+
+    .theme-switch {
+        width: 3.5em;
+        height: 1.95em;
+        font-size: 13px;
+    }
+
+    .nav-links {
+        gap: 3px 6px;
+    }
+
+    .nav-links a,
+    .nav-links button {
+        font-size: 0.8rem;
+        padding: 7px 8px;
+    }
+
+}
+
+
+/* Celulares muito pequenos */
+
+@media (max-width: 420px) {
+
+    .nav-actions {
+        gap: 5px;
+    }
+
+    .theme-switch {
+        width: 3.3em;
+        height: 1.85em;
+        font-size: 12px;
+    }
+
+    .nav-links a,
+    .nav-links button {
+        font-size: 0.75rem;
+        padding: 6px 6px;
+    }
+
 }

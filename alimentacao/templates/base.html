@@ -1,136 +1,620 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
   <title>Nuttraea | Monitoramento calórico</title>
-  <link rel="icon" type="image/svg+xml" href="{% static 'images/iconif.png' %}">
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}?v={{ STATIC_VERSION }}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-</head>
-<body data-page="app">
-  {% if messages %}
-  <div class="message-stack">
-    {% for message in messages %}
-      <div class="alert">
-        {{ message }}
-      </div>
-    {% endfor %}
-  </div>
-  {% endif %}
 
-  <header class="site-header">
-    <nav class="top-nav">
-      <a class="brand-link" href="{% url 'home' %}">
-        <img class="brand-logo" src="{% static 'images/logo.png' %}" alt="Nuttraea logo" />
-      </a>
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="{% static 'images/iconif.png' %}"
+  >
 
-      <ul class="nav-links">
-        {% if user.is_authenticated %}
-          <li><a href="{% url 'dashboard' %}">Início</a></li>
-          <li><a href="{% url 'historico' %}">Histórico</a></li>
-          <li><a href="{% url 'perfil' %}">Perfil</a></li>
-          <li>
-            <form method="post" action="{% url 'logout' %}">
-              {% csrf_token %}
-              <button type="submit" class="nav-link">Sair</button>
-            </form>
-          </li>
-        {% else %}
-          <li><a href="{% url 'login' %}">Entrar</a></li>
-          <li><a href="{% url 'cadastro' %}">Criar conta</a></li>
-        {% endif %}
-      </ul>
-    </nav>
-  </header>
+  <link
+    rel="stylesheet"
+    href="{% static 'css/styles.css' %}?v={{ STATIC_VERSION }}"
+  >
 
-  <main class="page-shell">
-    {% block content %}{% endblock %}
-  </main>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  >
 
-  <footer class="site-footer">
-    <div class="footer-shell">
-      <div>
-        <p class="eyebrow">Copyright &copy; 2026 Ellis Carvalho Xavier | Nuttraea</p>
-        <h3>Monitore sua energia com clareza.</h3>
-      </div>
-      <div class="footer-links">
-        <a href="{% url 'home' %}">Sobre</a>
-        <a href="{% url 'login' %}">Entrar</a>
-        <a href="{% url 'cadastro' %}">Criar conta</a>
-      </div>
-    </div>
-  </footer>
+  <!-- =====================================================
+       APLICA O TEMA ANTES DA PÁGINA APARECER
+       Evita aquele "flash" branco ao abrir uma página
+       quando o usuário já escolheu o tema escuro.
+       ===================================================== -->
 
   <script>
+    (function () {
+
+      const temaSalvo = localStorage.getItem('nuttraea-theme');
+
+      if (temaSalvo === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+
+    })();
+  </script>
+
+</head>
+
+
+<body data-page="app">
+
+  {% if messages %}
+
+    <div class="message-stack">
+
+      {% for message in messages %}
+
+        <div class="alert">
+          {{ message }}
+        </div>
+
+      {% endfor %}
+
+    </div>
+
+  {% endif %}
+
+
+  <!-- =====================================================
+       HEADER
+       ===================================================== -->
+
+  <header class="site-header">
+
+    <nav class="top-nav">
+
+      <!-- LOGO -->
+
+      <a
+        class="brand-link"
+        href="{% url 'home' %}"
+        aria-label="Nuttraea - Página inicial"
+      >
+
+        <img
+          class="brand-logo"
+          src="{% static 'images/logo.png' %}"
+          alt="Nuttraea logo"
+        />
+
+      </a>
+
+
+      <!-- =================================================
+           LINKS + BOTÃO DE TEMA
+           ================================================= -->
+
+      <div class="nav-actions">
+
+        <ul class="nav-links">
+
+          {% if user.is_authenticated %}
+
+            <li>
+              <a href="{% url 'dashboard' %}">
+                Início
+              </a>
+            </li>
+
+            <li>
+              <a href="{% url 'historico' %}">
+                Histórico
+              </a>
+            </li>
+
+            <li>
+              <a href="{% url 'perfil' %}">
+                Perfil
+              </a>
+            </li>
+
+            <li>
+
+              <form
+                method="post"
+                action="{% url 'logout' %}"
+              >
+
+                {% csrf_token %}
+
+                <button
+                  type="submit"
+                  class="nav-link"
+                >
+                  Sair
+                </button>
+
+              </form>
+
+            </li>
+
+          {% else %}
+
+            <li>
+              <a href="{% url 'login' %}">
+                Entrar
+              </a>
+            </li>
+
+            <li>
+              <a href="{% url 'cadastro' %}">
+                Criar conta
+              </a>
+            </li>
+
+          {% endif %}
+
+        </ul>
+
+
+        <!-- =================================================
+             BOTÃO DE TEMA
+             ================================================= -->
+
+        <label
+          class="theme-switch switch"
+          title="Alterar tema"
+          aria-label="Alterar tema"
+        >
+
+          <input
+            type="checkbox"
+            id="theme-checkbox"
+            checked
+            aria-label="Alternar entre tema claro e escuro"
+          >
+
+          <span class="slider">
+
+            <!-- ESTRELAS -->
+
+            <span class="star star_1"></span>
+            <span class="star star_2"></span>
+            <span class="star star_3"></span>
+
+
+            <!-- NUVEM -->
+
+            <svg
+              viewBox="0 0 16 16"
+              class="cloud_1 cloud"
+              aria-hidden="true"
+            >
+
+              <path
+                transform="matrix(.77976 0 0 .78395-299.99-418.63)"
+                fill="#fff"
+                d="m391.84 540.91c-.421-.329-.949-.524-1.523-.524-1.351 0-2.451 1.084-2.485 2.435-1.395.526-2.388 1.88-2.388 3.466 0 1.874 1.385 3.423 3.182 3.667v.034h12.73v-.006c1.775-.104 3.182-1.584 3.182-3.395 0-1.747-1.309-3.186-2.994-3.379.007-.106.011-.214.011-.322 0-2.707-2.271-4.901-5.072-4.901-2.073 0-3.856 1.202-4.643 2.925"
+              ></path>
+
+            </svg>
+
+          </span>
+
+        </label>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+
+  <!-- =====================================================
+       CONTEÚDO
+       ===================================================== -->
+
+  <main class="page-shell">
+
+    {% block content %}{% endblock %}
+
+  </main>
+
+
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
+
+  <footer class="site-footer">
+
+    <div class="footer-shell">
+
+      <div>
+
+        <p class="eyebrow">
+          Copyright &copy; 2026 Ellis Carvalho Xavier | Nuttraea
+        </p>
+
+        <h3>
+          Monitore sua energia com clareza.
+        </h3>
+
+      </div>
+
+
+      <div class="footer-links">
+
+        <a href="{% url 'home' %}">
+          Sobre
+        </a>
+
+        <a href="{% url 'login' %}">
+          Entrar
+        </a>
+
+        <a href="{% url 'cadastro' %}">
+          Criar conta
+        </a>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =====================================================
+       JAVASCRIPT GERAL
+       ===================================================== -->
+
+  <script>
+
     document.addEventListener('DOMContentLoaded', function () {
+
+      /* ===================================================
+         HEADER SCROLL
+         =================================================== */
+
       const header = document.querySelector('.site-header');
       const body = document.body;
-      const setScrolled = () => {
-        header.classList.toggle('scrolled', window.scrollY > 8);
-      };
-      setScrolled();
-      window.addEventListener('scroll', setScrolled, { passive: true });
 
-      const revealItems = document.querySelectorAll('.reveal');
-      const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            obs.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.16 });
+      if (header) {
 
-      revealItems.forEach(item => observer.observe(item));
+        const setScrolled = () => {
 
-      const counters = document.querySelectorAll('[data-counter]');
-      counters.forEach(counter => {
-        const target = Number(counter.dataset.counter);
-        const duration = 1200;
-        const start = performance.now();
-        const format = counter.dataset.suffix || '';
-        const step = (timestamp) => {
-          const progress = Math.min((timestamp - start) / duration, 1);
-          const current = Math.floor(progress * target);
-          counter.textContent = current.toLocaleString() + format;
-          if (progress < 1) requestAnimationFrame(step);
+          header.classList.toggle(
+            'scrolled',
+            window.scrollY > 8
+          );
+
         };
-        requestAnimationFrame(step);
-      });
 
-      document.querySelectorAll('.btn, button, .nav-links a').forEach(el => {
-        el.addEventListener('click', function (event) {
-          if (event.detail === 0) return;
-          const ripple = document.createElement('span');
-          ripple.className = 'ripple';
-          const rect = el.getBoundingClientRect();
-          ripple.style.left = `${event.clientX - rect.left}px`;
-          ripple.style.top = `${event.clientY - rect.top}px`;
-          el.appendChild(ripple);
-          setTimeout(() => ripple.remove(), 560);
+        setScrolled();
+
+        window.addEventListener(
+          'scroll',
+          setScrolled,
+          { passive: true }
+        );
+
+      }
+
+
+      /* ===================================================
+         REVEAL
+         =================================================== */
+
+      const revealItems =
+        document.querySelectorAll('.reveal');
+
+      if ('IntersectionObserver' in window) {
+
+        const observer = new IntersectionObserver(
+          (entries, obs) => {
+
+            entries.forEach(entry => {
+
+              if (entry.isIntersecting) {
+
+                entry.target.classList.add('visible');
+
+                obs.unobserve(entry.target);
+
+              }
+
+            });
+
+          },
+          {
+            threshold: 0.16
+          }
+        );
+
+        revealItems.forEach(item => {
+          observer.observe(item);
         });
+
+      } else {
+
+        revealItems.forEach(item => {
+          item.classList.add('visible');
+        });
+
+      }
+
+
+      /* ===================================================
+         CONTADORES
+         =================================================== */
+
+      const counters =
+        document.querySelectorAll('[data-counter]');
+
+      counters.forEach(counter => {
+
+        const target =
+          Number(counter.dataset.counter);
+
+        const duration = 1200;
+
+        const start = performance.now();
+
+        const format =
+          counter.dataset.suffix || '';
+
+        const step = (timestamp) => {
+
+          const progress =
+            Math.min(
+              (timestamp - start) / duration,
+              1
+            );
+
+          const current =
+            Math.floor(progress * target);
+
+          counter.textContent =
+            current.toLocaleString('pt-BR') + format;
+
+          if (progress < 1) {
+
+            requestAnimationFrame(step);
+
+          }
+
+        };
+
+        requestAnimationFrame(step);
+
       });
 
-      const page = body.getAttribute('data-page');
-      document.querySelectorAll('.nav-links a, .nav-links button').forEach(link => {
-        const href = link.getAttribute('href') || '';
-        if (page === 'home' && href.includes('home')) {
-          link.classList.add('active');
-        } else if (page === 'dashboard' && href.includes('dashboard')) {
-          link.classList.add('active');
-        } else if (page === 'history' && href.includes('historico')) {
-          link.classList.add('active');
-        } else if (page === 'profile' && href.includes('perfil')) {
-          link.classList.add('active');
-        } else if (page === 'login' && href.includes('login')) {
-          link.classList.add('active');
-        } else if (page === 'signup' && href.includes('cadastro')) {
-          link.classList.add('active');
+
+      /* ===================================================
+         RIPPLE DOS BOTÕES
+         =================================================== */
+
+      document
+        .querySelectorAll(
+          '.btn, button, .nav-links a'
+        )
+        .forEach(el => {
+
+          el.addEventListener(
+            'click',
+            function (event) {
+
+              if (event.detail === 0) {
+                return;
+              }
+
+              const ripple =
+                document.createElement('span');
+
+              ripple.className = 'ripple';
+
+              const rect =
+                el.getBoundingClientRect();
+
+              ripple.style.left =
+                `${event.clientX - rect.left}px`;
+
+              ripple.style.top =
+                `${event.clientY - rect.top}px`;
+
+              el.appendChild(ripple);
+
+              setTimeout(() => {
+
+                ripple.remove();
+
+              }, 560);
+
+            }
+          );
+
+        });
+
+
+      /* ===================================================
+         LINK ATIVO
+         =================================================== */
+
+      const page =
+        body.getAttribute('data-page');
+
+      document
+        .querySelectorAll(
+          '.nav-links a, .nav-links button'
+        )
+        .forEach(link => {
+
+          const href =
+            link.getAttribute('href') || '';
+
+          if (
+            page === 'home' &&
+            href.includes('home')
+          ) {
+
+            link.classList.add('active');
+
+          }
+
+          else if (
+            page === 'dashboard' &&
+            href.includes('dashboard')
+          ) {
+
+            link.classList.add('active');
+
+          }
+
+          else if (
+            page === 'history' &&
+            href.includes('historico')
+          ) {
+
+            link.classList.add('active');
+
+          }
+
+          else if (
+            page === 'profile' &&
+            href.includes('perfil')
+          ) {
+
+            link.classList.add('active');
+
+          }
+
+          else if (
+            page === 'login' &&
+            href.includes('login')
+          ) {
+
+            link.classList.add('active');
+
+          }
+
+          else if (
+            page === 'signup' &&
+            href.includes('cadastro')
+          ) {
+
+            link.classList.add('active');
+
+          }
+
+        });
+
+
+      /* ===================================================
+         SISTEMA DE TEMA
+         =================================================== */
+
+      const themeCheckbox =
+        document.getElementById('theme-checkbox');
+
+      const root =
+        document.documentElement;
+
+
+      function aplicarTema(tema) {
+
+        if (tema === 'dark') {
+
+          root.setAttribute(
+            'data-theme',
+            'dark'
+          );
+
+          if (themeCheckbox) {
+            themeCheckbox.checked = false;
+          }
+
+        } else {
+
+          root.setAttribute(
+            'data-theme',
+            'light'
+          );
+
+          if (themeCheckbox) {
+            themeCheckbox.checked = true;
+          }
+
         }
-      });
+
+      }
+
+
+      function salvarTema(tema) {
+
+        localStorage.setItem(
+          'nuttraea-theme',
+          tema
+        );
+
+      }
+
+
+      /* Recupera o tema salvo */
+
+      const temaSalvo =
+        localStorage.getItem('nuttraea-theme');
+
+
+      if (temaSalvo === 'dark') {
+
+        aplicarTema('dark');
+
+      } else {
+
+        aplicarTema('light');
+
+      }
+
+
+      /* Alterna o tema */
+
+      if (themeCheckbox) {
+
+        themeCheckbox.addEventListener(
+          'change',
+          function () {
+
+            if (themeCheckbox.checked) {
+
+              aplicarTema('light');
+
+              salvarTema('light');
+
+            } else {
+
+              aplicarTema('dark');
+
+              salvarTema('dark');
+
+            }
+
+          }
+        );
+
+      }
+
     });
+
   </script>
+
+
+  {% block extra_js %}{% endblock %}
+
 </body>
+
 </html>
