@@ -142,8 +142,7 @@ body::before {
 
 .nav-links a:hover,
 .nav-links a:focus,
-.nav-links button:hover,
-.nav-links a.active {
+.nav-links button:hover {
   color: var(--verde-escuro);
   background: rgba(76, 175, 80, 0.08);
   transform: translateY(-1px);
