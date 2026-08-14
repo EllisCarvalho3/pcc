@@ -14,622 +14,6 @@
 }
 
 
-
-
-
-
-
-
-/* =========================================================
-   NUTTRAEA — SISTEMA DE TEMA CLARO / ESCURO
-   ========================================================= */
-
-
-/* =========================================================
-   1. CORES DO TEMA CLARO
-   ========================================================= */
-
-:root {
-    color-scheme: light;
- --verde: #4CAF50;
-  --verde-escuro: #16771b;
-  --verde-claro: #e8f7eb;
-  --fundo: #f5f8f6;
-  --card: rgba(255,255,255,0.94);
-  --texto: #22412b;
-  --cinza: #5f7566;
-  --borda: #dcefe2;
-  --sombra: 0 18px 45px rgba(22, 119, 27, 0.10);
-  --radius: 24px;
-}
-
-
-/* =========================================================
-   2. CORES DO TEMA ESCURO
-   ========================================================= */
-
-:root[data-theme="dark"] {
-    color-scheme: dark;
-
-    --verde-principal: #7BE28A;
-    --verde-secundario: #5FD06E;
-
-    --fundo: #0b120e;
-    --fundo-secundario: #101813;
-
-    --superficie: #151d18;
-    --superficie-2: #1b241f;
-
-    --card: #151d18;
-
-    --texto: #e6f1e8;
-    --texto-principal: #f4fff6;
-    --texto-secundario: #a8b8ad;
-
-    --borda: #2b3a31;
-    --borda-forte: #405347;
-
-    --header-bg: rgba(11, 18, 14, 0.88);
-    --footer-bg: #0f1712;
-
-    --input-bg: #101713;
-    --input-text: #edf7ef;
-    --placeholder: #7f9185;
-
-    --link: #d4e4d7;
-    --link-hover: #7BE28A;
-
-    --pill-bg: #173021;
-
-    --sombra: 0 18px 45px rgba(0,0,0,.35);
-    --sombra-card: 0 12px 32px rgba(0,0,0,.32);
-}
-
-
-/* =========================================================
-   3. TRANSIÇÃO ENTRE OS TEMAS
-   ========================================================= */
-
-html,
-body,
-.site-header,
-.top-nav,
-.page-shell,
-.site-footer,
-.card,
-.feature-card,
-.step-card,
-.testimonial-card,
-.auth-panel,
-.profile-summary,
-.meal-intro,
-.profile-form-card,
-.meal-form-card,
-.metric-card,
-.mini-card,
-.feedback-card,
-.hero-panel,
-.cta-panel,
-.stats-band,
-input,
-select,
-textarea,
-button,
-.nav-links a,
-.nav-links button {
-    transition:
-        background-color 0.3s ease,
-        color 0.3s ease,
-        border-color 0.3s ease,
-        box-shadow 0.3s ease;
-}
-
-
-/* =========================================================
-   4. FUNDO GERAL
-   ========================================================= */
-
-html,
-body {
-    background:
-    radial-gradient(circle at top left, rgba(76, 175, 80, 0.12), transparent 30%),
-    linear-gradient(135deg, #f8fcf8 0%, #eef8ef 100%);
-  color: var(--texto);
-  min-height: 100vh;
-}
-
-
-/* =========================================================
-   5. HEADER / NAVBAR
-   ========================================================= */
-
-.site-header {
-    background-color: var(--header-bg);
-    border-bottom-color: var(--borda);
-    box-shadow: var(--sombra);
-}
-
-.top-nav {
-    background-color: transparent;
-}
-
-.nav-links a,
-.nav-links button,
-.nav-link {
-    color: var(--link);
-}
-
-.nav-links a:hover,
-.nav-links button:hover,
-.nav-link:hover {
-    color: var(--link-hover);
-}
-
-.nav-links a.active,
-.nav-links button.active,
-.nav-link.active {
-    color: var(--verde-principal);
-}
-
-
-/* =========================================================
-   6. CONTEÚDO
-   ========================================================= */
-
-.page-shell {
-    background-color: var(--fundo);
-    color: var(--texto);
-}
-
-
-/* =========================================================
-   7. TÍTULOS E TEXTOS
-   ========================================================= */
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    color: var(--texto-principal);
-}
-
-p {
-    color: var(--texto);
-}
-
-.subtle-text {
-    color: var(--texto-secundario);
-}
-
-.eyebrow {
-    color: var(--verde-principal);
-}
-
-
-/* =========================================================
-   8. CARDS
-   ========================================================= */
-
-.card,
-.feature-card,
-.step-card,
-.testimonial-card,
-.auth-panel,
-.profile-summary,
-.meal-intro,
-.profile-form-card,
-.meal-form-card,
-.metric-card,
-.mini-card,
-.feedback-card,
-.hero-panel,
-.cta-panel,
-.stats-band {
-    background-color: var(--superficie);
-    color: var(--texto);
-    border-color: var(--borda);
-    box-shadow: var(--sombra-card);
-}
-
-
-/* =========================================================
-   9. PILLS / ETIQUETAS
-   ========================================================= */
-
-.summary-pill,
-.highlight-pill,
-.hero-highlights,
-.showcase-meter,
-.metric-label {
-    background-color: var(--pill-bg);
-    color: var(--verde-principal);
-    border-color: var(--borda);
-}
-
-
-/* =========================================================
-   10. CAMPOS DE FORMULÁRIO
-   ========================================================= */
-
-input,
-select,
-textarea {
-    background-color: var(--input-bg);
-    color: var(--input-text);
-    border-color: var(--borda);
-}
-
-input::placeholder,
-textarea::placeholder {
-    color: var(--placeholder);
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-    border-color: var(--verde-principal);
-    outline: none;
-
-    box-shadow:
-        0 0 0 3px rgba(110, 216, 120, 0.13);
-}
-
-
-/* =========================================================
-   11. BOTÕES
-   ========================================================= */
-
-.btn-primary,
-.btn-success,
-button[type="submit"] {
-    background-color: var(--verde-principal);
-    border-color: var(--verde-principal);
-    color: #ffffff;
-}
-
-.btn-primary:hover,
-.btn-success:hover,
-button[type="submit"]:hover {
-    background-color: var(--verde-secundario);
-    border-color: var(--verde-secundario);
-}
-
-
-/* =========================================================
-   12. FOOTER
-   ========================================================= */
-
-.site-footer {
-    background-color: var(--footer-bg);
-    color: var(--texto);
-    border-top-color: var(--borda);
-}
-
-.footer-shell {
-    color: var(--texto);
-}
-
-.footer-links a {
-    color: var(--link);
-}
-
-.footer-links a:hover {
-    color: var(--link-hover);
-}
-
-
-/* =========================================================
-   13. BOTÃO DE TROCA DE TEMA
-   ========================================================= */
-
-/*
-   IMPORTANTE:
-   O input é escondido para que NÃO apareça o checkbox
-   azul padrão do navegador.
-*/
-
-.theme-switch {
-    position: relative;
-    display: inline-block;
-
-    width: 4em;
-    height: 2.2em;
-
-    flex-shrink: 0;
-
-    font-size: 15px;
-}
-
-
-/* Esconde completamente o checkbox */
-
-.theme-switch input,
-.switch.theme-switch input {
-    position: absolute;
-
-    width: 1px;
-    height: 1px;
-
-    padding: 0;
-    margin: -1px;
-
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-
-    white-space: nowrap;
-    border: 0;
-}
-
-
-/* Corpo do botão */
-
-.theme-switch .slider {
-    position: absolute;
-
-    inset: 0;
-
-    cursor: pointer;
-
-    overflow: hidden;
-
-    border-radius: 30px;
-
-    background-color: #18231b;
-
-    box-shadow:
-        inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-
-    transition:
-        background-color 0.4s ease,
-        box-shadow 0.4s ease;
-}
-
-
-/* =========================================================
-   LUA / SOL
-   ========================================================= */
-
-.theme-switch .slider::before {
-    content: "";
-
-    position: absolute;
-
-    width: 1.2em;
-    height: 1.2em;
-
-    left: 0.5em;
-    bottom: 0.5em;
-
-    border-radius: 50%;
-
-    background: transparent;
-
-    box-shadow:
-        inset 8px -4px 0 0 #ffffff;
-
-    transition:
-        transform 0.4s ease,
-        box-shadow 0.4s ease;
-
-    transition-timing-function:
-        cubic-bezier(0.81, -0.04, 0.38, 1.5);
-}
-
-
-/* =========================================================
-   TEMA CLARO — SOL
-   ========================================================= */
-
-.theme-switch input:checked + .slider {
-    background-color: #51a95a;
-}
-
-.theme-switch input:checked + .slider::before {
-    transform: translateX(1.8em);
-
-    box-shadow:
-        inset 15px -4px 0 15px #ffcf48;
-}
-
-
-/* =========================================================
-   ESTRELAS
-   ========================================================= */
-
-.theme-switch .star {
-    position: absolute;
-
-    width: 5px;
-    height: 5px;
-
-    border-radius: 50%;
-
-    background-color: #ffffff;
-
-    transition:
-        opacity 0.3s ease,
-        transform 0.3s ease;
-}
-
-.theme-switch .star_1 {
-    left: 2.5em;
-    top: 0.5em;
-}
-
-.theme-switch .star_2 {
-    left: 2.2em;
-    top: 1.2em;
-}
-
-.theme-switch .star_3 {
-    left: 3em;
-    top: 0.9em;
-}
-
-
-/* Estrelas desaparecem no tema claro */
-
-.theme-switch input:checked ~ .slider .star {
-    opacity: 0;
-    transform: scale(0.5);
-}
-
-
-/* =========================================================
-   NUVEM
-   ========================================================= */
-
-.theme-switch .cloud {
-    position: absolute;
-
-    width: 3.5em;
-
-    left: -1.1em;
-    bottom: -1.4em;
-
-    opacity: 0;
-
-    transition:
-        opacity 0.4s ease,
-        transform 0.4s ease;
-}
-
-
-/* Nuvem aparece no tema claro */
-
-.theme-switch input:checked ~ .slider .cloud {
-    opacity: 1;
-}
-
-
-/* =========================================================
-   HOVER
-   ========================================================= */
-
-.theme-switch:hover .slider {
-    box-shadow:
-        0 0 0 3px rgba(110, 216, 120, 0.12);
-}
-
-
-/* =========================================================
-   FOCO PELO TECLADO
-   ========================================================= */
-
-.theme-switch input:focus-visible + .slider {
-    outline: 2px solid var(--verde-principal);
-    outline-offset: 3px;
-}
-
-
-/* =========================================================
-   14. POSIÇÃO DO BOTÃO AO LADO DA NAVEGAÇÃO
-   ========================================================= */
-
-.nav-actions {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    gap: 12px;
-}
-
-
-/* =========================================================
-   15. TEMA ESCURO — AJUSTES ESPECÍFICOS
-   ========================================================= */
-
-:root[data-theme="dark"] .site-header.scrolled {
-    background-color: rgba(17, 26, 20, 0.94);
-}
-
-:root[data-theme="dark"] .metric-icon {
-    background-color: #203b25;
-    color: #78df82;
-}
-
-
-:root[data-theme="dark"] .card,
-:root[data-theme="dark"] .auth-panel,
-:root[data-theme="dark"] .feature-card,
-:root[data-theme="dark"] .step-card,
-:root[data-theme="dark"] .testimonial-card,
-:root[data-theme="dark"] .metric-card,
-:root[data-theme="dark"] .mini-card,
-:root[data-theme="dark"] .feedback-card,
-:root[data-theme="dark"] .profile-summary,
-:root[data-theme="dark"] .profile-form-card,
-:root[data-theme="dark"] .meal-form-card,
-:root[data-theme="dark"] .meal-intro,
-:root[data-theme="dark"] .hero-panel,
-:root[data-theme="dark"] .cta-panel,
-:root[data-theme="dark"] .stats-band {
-    background: var(--superficie);
-    color: var(--texto);
-    border: 1px solid var(--borda);
-    box-shadow: var(--sombra-card);
-}
-
-:root[data-theme="dark"] .card h1,
-:root[data-theme="dark"] .card h2,
-:root[data-theme="dark"] .card h3,
-:root[data-theme="dark"] .card h4,
-:root[data-theme="dark"] .card p {
-    color: var(--texto);
-}
-
-
-:root[data-theme="dark"] .hero-visual {
-    background:
-        linear-gradient(145deg,
-            #18221c,
-            #121914);
-    border: 1px solid var(--borda);
-    box-shadow: var(--sombra-card);
-}
-
-:root[data-theme="dark"] .hero-logo {
-    filter:
-        brightness(1.02)
-        contrast(1.04);
-}
-
-
-
-:root[data-theme="dark"] .meal-card,
-:root[data-theme="dark"] .food-card,
-:root[data-theme="dark"] .refeicao-card,
-:root[data-theme="dark"] .meal-item,
-:root[data-theme="dark"] .historico-card {
-    background: var(--superficie);
-    border: 1px solid var(--borda);
-    color: var(--texto);
-}
-
-:root[data-theme="dark"] .meal-card * ,
-:root[data-theme="dark"] .food-card * ,
-:root[data-theme="dark"] .refeicao-card * ,
-:root[data-theme="dark"] .meal-item * ,
-:root[data-theme="dark"] .historico-card * {
-    color: inherit;
-}
-
-:root[data-theme="dark"] .macro-value {
-    color: var(--verde-principal);
-}
-
-
-
-
-
-
-
-
-
-
-
 * {
   margin: 0;
   padding: 0;
@@ -2784,4 +2168,704 @@ code {
 
         font-size: 12px;
     }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================================
+   NUTTRAEA — SISTEMA DE TEMA CLARO / ESCURO
+   ========================================================= */
+
+
+/* =========================================================
+   1. CORES DO TEMA CLARO
+   ========================================================= */
+
+:root {
+    color-scheme: light;
+ --verde: #4CAF50;
+  --verde-escuro: #16771b;
+  --verde-claro: #e8f7eb;
+  --fundo: #f5f8f6;
+  --card: rgba(255,255,255,0.94);
+  --texto: #22412b;
+  --cinza: #5f7566;
+  --borda: #dcefe2;
+  --sombra: 0 18px 45px rgba(22, 119, 27, 0.10);
+  --radius: 24px;
+}
+
+
+/* =========================================================
+   2. CORES DO TEMA ESCURO
+   ========================================================= */
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+
+    --verde-principal: #7BE28A;
+    --verde-secundario: #5FD06E;
+
+    --fundo: #0b120e;
+    --fundo-secundario: #101813;
+
+    --superficie: #151d18;
+    --superficie-2: #1b241f;
+
+    --card: #151d18;
+
+    --texto: #e6f1e8;
+    --texto-principal: #f4fff6;
+    --texto-secundario: #a8b8ad;
+
+    --borda: #2b3a31;
+    --borda-forte: #405347;
+
+    --header-bg: rgba(11, 18, 14, 0.88);
+    --footer-bg: #0f1712;
+
+    --input-bg: #101713;
+    --input-text: #edf7ef;
+    --placeholder: #7f9185;
+
+    --link: #d4e4d7;
+    --link-hover: #7BE28A;
+
+    --pill-bg: #173021;
+
+    --sombra: 0 18px 45px rgba(0,0,0,.35);
+    --sombra-card: 0 12px 32px rgba(0,0,0,.32);
+}
+
+
+/* =========================================================
+   3. TRANSIÇÃO ENTRE OS TEMAS
+   ========================================================= */
+
+html,
+body,
+.site-header,
+.top-nav,
+.page-shell,
+.site-footer,
+.card,
+.feature-card,
+.step-card,
+.testimonial-card,
+.auth-panel,
+.profile-summary,
+.meal-intro,
+.profile-form-card,
+.meal-form-card,
+.metric-card,
+.mini-card,
+.feedback-card,
+.hero-panel,
+.cta-panel,
+.stats-band,
+input,
+select,
+textarea,
+button,
+.nav-links a,
+.nav-links button {
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* =========================================================
+   4. FUNDO GERAL
+   ========================================================= */
+
+html,
+body {
+    background:
+    radial-gradient(circle at top left, rgba(76, 175, 80, 0.12), transparent 30%),
+    linear-gradient(135deg, #f8fcf8 0%, #eef8ef 100%);
+  color: var(--texto);
+  min-height: 100vh;
+}
+
+
+/* =========================================================
+   5. HEADER / NAVBAR
+   ========================================================= */
+
+.site-header {
+    background-color: var(--header-bg);
+    border-bottom-color: var(--borda);
+    box-shadow: var(--sombra);
+}
+
+.top-nav {
+    background-color: transparent;
+}
+
+.nav-links a,
+.nav-links button,
+.nav-link {
+    color: var(--link);
+}
+
+.nav-links a:hover,
+.nav-links button:hover,
+.nav-link:hover {
+    color: var(--link-hover);
+}
+
+.nav-links a.active,
+.nav-links button.active,
+.nav-link.active {
+    color: var(--verde-principal);
+}
+
+
+/* =========================================================
+   6. CONTEÚDO
+   ========================================================= */
+
+.page-shell {
+    background-color: var(--fundo);
+    color: var(--texto);
+}
+
+
+/* =========================================================
+   7. TÍTULOS E TEXTOS
+   ========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--texto-principal);
+}
+
+p {
+    color: var(--texto);
+}
+
+.subtle-text {
+    color: var(--texto-secundario);
+}
+
+.eyebrow {
+    color: var(--verde-principal);
+}
+
+
+/* =========================================================
+   8. CARDS
+   ========================================================= */
+
+.card,
+.feature-card,
+.step-card,
+.testimonial-card,
+.auth-panel,
+.profile-summary,
+.meal-intro,
+.profile-form-card,
+.meal-form-card,
+.metric-card,
+.mini-card,
+.feedback-card,
+.hero-panel,
+.cta-panel,
+.stats-band {
+    background-color: var(--superficie);
+    color: var(--texto);
+    border-color: var(--borda);
+    box-shadow: var(--sombra-card);
+}
+
+
+/* =========================================================
+   9. PILLS / ETIQUETAS
+   ========================================================= */
+
+.summary-pill,
+.highlight-pill,
+.hero-highlights,
+.showcase-meter,
+.metric-label {
+    background-color: var(--pill-bg);
+    color: var(--verde-principal);
+    border-color: var(--borda);
+}
+
+
+/* =========================================================
+   10. CAMPOS DE FORMULÁRIO
+   ========================================================= */
+
+input,
+select,
+textarea {
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    border-color: var(--borda);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--placeholder);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--verde-principal);
+    outline: none;
+
+    box-shadow:
+        0 0 0 3px rgba(110, 216, 120, 0.13);
+}
+
+
+/* =========================================================
+   11. BOTÕES
+   ========================================================= */
+
+.btn-primary,
+.btn-success,
+button[type="submit"] {
+    background-color: var(--verde-principal);
+    border-color: var(--verde-principal);
+    color: #ffffff;
+}
+
+.btn-primary:hover,
+.btn-success:hover,
+button[type="submit"]:hover {
+    background-color: var(--verde-secundario);
+    border-color: var(--verde-secundario);
+}
+
+
+/* =========================================================
+   12. FOOTER
+   ========================================================= */
+
+.site-footer {
+    background-color: var(--footer-bg);
+    color: var(--texto);
+    border-top-color: var(--borda);
+}
+
+.footer-shell {
+    color: var(--texto);
+}
+
+.footer-links a {
+    color: var(--link);
+}
+
+.footer-links a:hover {
+    color: var(--link-hover);
+}
+
+
+/* =========================================================
+   13. BOTÃO DE TROCA DE TEMA
+   ========================================================= */
+
+/*
+   IMPORTANTE:
+   O input é escondido para que NÃO apareça o checkbox
+   azul padrão do navegador.
+*/
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+
+    width: 4em;
+    height: 2.2em;
+
+    flex-shrink: 0;
+
+    font-size: 15px;
+}
+
+
+/* Esconde completamente o checkbox */
+
+.theme-switch input,
+.switch.theme-switch input {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    padding: 0;
+    margin: -1px;
+
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+
+    white-space: nowrap;
+    border: 0;
+}
+
+
+/* Corpo do botão */
+
+.theme-switch .slider {
+    position: absolute;
+
+    inset: 0;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    border-radius: 30px;
+
+    background-color: #18231b;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+
+    transition:
+        background-color 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+
+/* =========================================================
+   LUA / SOL
+   ========================================================= */
+
+.theme-switch .slider::before {
+    content: "";
+
+    position: absolute;
+
+    width: 1.2em;
+    height: 1.2em;
+
+    left: 0.5em;
+    bottom: 0.5em;
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    box-shadow:
+        inset 8px -4px 0 0 #ffffff;
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+
+    transition-timing-function:
+        cubic-bezier(0.81, -0.04, 0.38, 1.5);
+}
+
+
+/* =========================================================
+   TEMA CLARO — SOL
+   ========================================================= */
+
+.theme-switch input:checked + .slider {
+    background-color: #51a95a;
+}
+
+.theme-switch input:checked + .slider::before {
+    transform: translateX(1.8em);
+
+    box-shadow:
+        inset 15px -4px 0 15px #ffcf48;
+}
+
+
+/* =========================================================
+   ESTRELAS
+   ========================================================= */
+
+.theme-switch .star {
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background-color: #ffffff;
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+.theme-switch .star_1 {
+    left: 2.5em;
+    top: 0.5em;
+}
+
+.theme-switch .star_2 {
+    left: 2.2em;
+    top: 1.2em;
+}
+
+.theme-switch .star_3 {
+    left: 3em;
+    top: 0.9em;
+}
+
+
+/* Estrelas desaparecem no tema claro */
+
+.theme-switch input:checked ~ .slider .star {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+
+/* =========================================================
+   NUVEM
+   ========================================================= */
+
+.theme-switch .cloud {
+    position: absolute;
+
+    width: 3.5em;
+
+    left: -1.1em;
+    bottom: -1.4em;
+
+    opacity: 0;
+
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease;
+}
+
+
+/* Nuvem aparece no tema claro */
+
+.theme-switch input:checked ~ .slider .cloud {
+    opacity: 1;
+}
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+.theme-switch:hover .slider {
+    box-shadow:
+        0 0 0 3px rgba(110, 216, 120, 0.12);
+}
+
+
+/* =========================================================
+   FOCO PELO TECLADO
+   ========================================================= */
+
+.theme-switch input:focus-visible + .slider {
+    outline: 2px solid var(--verde-principal);
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   14. POSIÇÃO DO BOTÃO AO LADO DA NAVEGAÇÃO
+   ========================================================= */
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+}
+
+
+/* =========================================================
+   15. TEMA ESCURO — AJUSTES ESPECÍFICOS
+   ========================================================= */
+
+:root[data-theme="dark"] .site-header.scrolled {
+    background-color: rgba(17, 26, 20, 0.94);
+}
+
+:root[data-theme="dark"] .metric-icon {
+    background-color: #203b25;
+    color: #78df82;
+}
+
+
+:root[data-theme="dark"] .card,
+:root[data-theme="dark"] .auth-panel,
+:root[data-theme="dark"] .feature-card,
+:root[data-theme="dark"] .step-card,
+:root[data-theme="dark"] .testimonial-card,
+:root[data-theme="dark"] .metric-card,
+:root[data-theme="dark"] .mini-card,
+:root[data-theme="dark"] .feedback-card,
+:root[data-theme="dark"] .profile-summary,
+:root[data-theme="dark"] .profile-form-card,
+:root[data-theme="dark"] .meal-form-card,
+:root[data-theme="dark"] .meal-intro,
+:root[data-theme="dark"] .hero-panel,
+:root[data-theme="dark"] .cta-panel,
+:root[data-theme="dark"] .stats-band {
+    background: var(--superficie);
+    color: var(--texto);
+    border: 1px solid var(--borda);
+    box-shadow: var(--sombra-card);
+}
+
+:root[data-theme="dark"] .card h1,
+:root[data-theme="dark"] .card h2,
+:root[data-theme="dark"] .card h3,
+:root[data-theme="dark"] .card h4,
+:root[data-theme="dark"] .card p {
+    color: var(--texto);
+}
+
+
+:root[data-theme="dark"] .hero-visual {
+    background:
+        linear-gradient(145deg,
+            #18221c,
+            #121914);
+    border: 1px solid var(--borda);
+    box-shadow: var(--sombra-card);
+}
+
+:root[data-theme="dark"] .hero-logo {
+    filter:
+        brightness(1.02)
+        contrast(1.04);
+}
+
+
+
+:root[data-theme="dark"] .meal-card,
+:root[data-theme="dark"] .food-card,
+:root[data-theme="dark"] .refeicao-card,
+:root[data-theme="dark"] .meal-item,
+:root[data-theme="dark"] .historico-card {
+    background: var(--superficie);
+    border: 1px solid var(--borda);
+    color: var(--texto);
+}
+
+:root[data-theme="dark"] .meal-card * ,
+:root[data-theme="dark"] .food-card * ,
+:root[data-theme="dark"] .refeicao-card * ,
+:root[data-theme="dark"] .meal-item * ,
+:root[data-theme="dark"] .historico-card * {
+    color: inherit;
+}
+
+:root[data-theme="dark"] .macro-value {
+    color: var(--verde-principal);
+}
+
+
+
+/* =========================================================
+   TEMA ESCURO — CORREÇÃO DAS LISTAS E FORMULÁRIOS
+   Adicionar no FINAL do styles.css
+   ========================================================= */
+
+:root[data-theme="dark"] .historico li,
+:root[data-theme="dark"] .history-list li,
+:root[data-theme="dark"] .lista-alimentos li {
+    background: linear-gradient(
+        145deg,
+        #1a241d,
+        #151d18
+    );
+    border: 1px solid var(--borda);
+    color: var(--texto);
+    box-shadow: 0 8px 22px rgba(0,0,0,.22);
+}
+
+:root[data-theme="dark"] .history-list li strong,
+:root[data-theme="dark"] .lista-alimentos li strong,
+:root[data-theme="dark"] .historico li strong {
+    color: var(--verde-principal);
+}
+
+:root[data-theme="dark"] .item-refeicao,
+:root[data-theme="dark"] .detalhes-refeicao,
+:root[data-theme="dark"] .item-meta {
+    color: var(--texto);
+}
+
+:root[data-theme="dark"] .sugestoes {
+    background: #141c17;
+    border: 1px solid var(--borda);
+    box-shadow: var(--sombra-card);
+}
+
+:root[data-theme="dark"] .item-sugestao {
+    color: var(--texto);
+}
+
+:root[data-theme="dark"] .item-sugestao:hover {
+    background: #203126;
+    color: var(--verde-principal);
+}
+
+/* ---------- campos do formulário ---------- */
+
+:root[data-theme="dark"] input,
+:root[data-theme="dark"] select,
+:root[data-theme="dark"] textarea {
+    background: #141c17;
+    border: 1px solid var(--borda);
+    color: var(--texto);
+}
+
+:root[data-theme="dark"] input::placeholder,
+:root[data-theme="dark"] textarea::placeholder {
+    color: var(--texto-secundario);
+}
+
+:root[data-theme="dark"] input:focus,
+:root[data-theme="dark"] select:focus,
+:root[data-theme="dark"] textarea:focus {
+    background: #18231d;
+    border-color: var(--verde-principal);
+    box-shadow: 0 0 0 3px rgba(123,226,138,.15);
+}
+
+/* ---------- botões secundários ---------- */
+
+:root[data-theme="dark"] .btn-secundario {
+    background: #233128;
+    color: var(--texto);
+    border: 1px solid var(--borda);
+}
+
+:root[data-theme="dark"] .btn-secundario:hover {
+    background: #2b3a31;
+}
+
+/* ---------- estado vazio ---------- */
+
+:root[data-theme="dark"] .empty-state {
+    background: #151d18;
+    border: 1px dashed var(--borda);
+    color: var(--texto-secundario);
 }
