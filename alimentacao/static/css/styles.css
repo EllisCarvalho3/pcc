@@ -2078,23 +2078,19 @@ code {
 }
 
 /* =========================================================
-   TEMA CLARO / ESCURO
-   NUTTRAEA
+   NUTTRAEA — SISTEMA DE TEMA CLARO / ESCURO
    ========================================================= */
 
 
 /* =========================================================
-   VARIÁVEIS DO TEMA CLARO
+   1. CORES DO TEMA CLARO
    ========================================================= */
 
 :root {
-
     color-scheme: light;
 
     --verde-principal: #16771b;
     --verde-secundario: #2d9b35;
-    --verde-claro: #e8f6ea;
-    --verde-suave: #f1faf2;
 
     --fundo: #f4faf5;
     --fundo-secundario: #edf7ef;
@@ -2109,46 +2105,35 @@ code {
     --borda: #d5e8d8;
     --borda-forte: #c5ddc9;
 
-    --sombra:
-        0 14px 35px rgba(27, 92, 36, 0.08);
-
-    --sombra-card:
-        0 12px 30px rgba(27, 92, 36, 0.07);
+    --header-bg: #ffffff;
+    --footer-bg: #edf7ef;
 
     --input-bg: #ffffff;
     --input-text: #304a37;
     --placeholder: #8a9b90;
 
-    --header-bg: #ffffff;
-    --footer-bg: #edf7ef;
-
     --link: #53695a;
     --link-hover: #16771b;
 
-    --alert-bg: #e8f6ea;
-    --alert-text: #17651d;
+    --pill-bg: #eef8ef;
 
-    --theme-transition:
-        background-color 0.3s ease,
-        color 0.3s ease,
-        border-color 0.3s ease,
-        box-shadow 0.3s ease;
+    --sombra:
+        0 14px 35px rgba(27, 92, 36, 0.08);
 
+    --sombra-card:
+        0 12px 30px rgba(27, 92, 36, 0.07);
 }
 
 
 /* =========================================================
-   VARIÁVEIS DO TEMA ESCURO
+   2. CORES DO TEMA ESCURO
    ========================================================= */
 
 :root[data-theme="dark"] {
-
     color-scheme: dark;
 
-    --verde-principal: #6ed878;
+    --verde-principal: #78df82;
     --verde-secundario: #52c95f;
-    --verde-claro: #18371e;
-    --verde-suave: #14281a;
 
     --fundo: #0d1510;
     --fundo-secundario: #111c14;
@@ -2163,30 +2148,28 @@ code {
     --borda: #304238;
     --borda-forte: #405447;
 
-    --sombra:
-        0 14px 35px rgba(0, 0, 0, 0.28);
-
-    --sombra-card:
-        0 12px 30px rgba(0, 0, 0, 0.25);
+    --header-bg: #111a14;
+    --footer-bg: #111c14;
 
     --input-bg: #111a14;
     --input-text: #e2eee4;
     --placeholder: #829387;
 
-    --header-bg: #111a14;
-    --footer-bg: #111c14;
-
     --link: #b7c7ba;
     --link-hover: #79df83;
 
-    --alert-bg: #19351e;
-    --alert-text: #91e99a;
+    --pill-bg: #18371e;
 
+    --sombra:
+        0 14px 35px rgba(0, 0, 0, 0.28);
+
+    --sombra-card:
+        0 12px 30px rgba(0, 0, 0, 0.25);
 }
 
 
 /* =========================================================
-   TRANSIÇÃO SUAVE
+   3. TRANSIÇÃO ENTRE OS TEMAS
    ========================================================= */
 
 html,
@@ -2205,15 +2188,17 @@ body,
 .profile-form-card,
 .meal-form-card,
 .metric-card,
-.cta-panel,
+.mini-card,
+.feedback-card,
 .hero-panel,
+.cta-panel,
+.stats-band,
 input,
 select,
 textarea,
 button,
 .nav-links a,
-.footer-links a,
-.alert {
+.nav-links button {
     transition:
         background-color 0.3s ease,
         color 0.3s ease,
@@ -2223,41 +2208,29 @@ button,
 
 
 /* =========================================================
-   BASE
+   4. FUNDO GERAL
    ========================================================= */
 
-html {
-    background: var(--fundo);
-}
-
+html,
 body {
-    background: var(--fundo);
+    background-color: var(--fundo);
     color: var(--texto);
 }
 
 
 /* =========================================================
-   HEADER
+   5. HEADER / NAVBAR
    ========================================================= */
 
 .site-header {
-    background: var(--header-bg);
-    border-bottom: 1px solid var(--borda);
+    background-color: var(--header-bg);
+    border-bottom-color: var(--borda);
     box-shadow: var(--sombra);
 }
 
 .top-nav {
-    background: transparent;
+    background-color: transparent;
 }
-
-.brand-logo {
-    transition: opacity 0.3s ease, filter 0.3s ease;
-}
-
-
-/* =========================================================
-   NAVBAR
-   ========================================================= */
 
 .nav-links a,
 .nav-links button,
@@ -2279,17 +2252,17 @@ body {
 
 
 /* =========================================================
-   PÁGINAS
+   6. CONTEÚDO
    ========================================================= */
 
 .page-shell {
-    background: var(--fundo);
+    background-color: var(--fundo);
     color: var(--texto);
 }
 
 
 /* =========================================================
-   TÍTULOS
+   7. TÍTULOS E TEXTOS
    ========================================================= */
 
 h1,
@@ -2300,11 +2273,6 @@ h5,
 h6 {
     color: var(--texto-principal);
 }
-
-
-/* =========================================================
-   TEXTOS
-   ========================================================= */
 
 p {
     color: var(--texto);
@@ -2320,7 +2288,7 @@ p {
 
 
 /* =========================================================
-   CARDS
+   8. CARDS
    ========================================================= */
 
 .card,
@@ -2334,50 +2302,19 @@ p {
 .meal-form-card,
 .metric-card,
 .mini-card,
-.feedback-card {
-    background: var(--superficie);
-    color: var(--texto);
-    border-color: var(--borda);
-    box-shadow: var(--sombra-card);
-}
-
-
-/* =========================================================
-   HERO
-   ========================================================= */
-
-.hero-panel {
-    background: var(--superficie);
-    color: var(--texto);
-    border-color: var(--borda);
-    box-shadow: var(--sombra-card);
-}
-
-
-/* =========================================================
-   CTA
-   ========================================================= */
-
-.cta-panel {
-    background: var(--superficie);
-    color: var(--texto);
-    border-color: var(--borda);
-}
-
-
-/* =========================================================
-   STATS
-   ========================================================= */
-
+.feedback-card,
+.hero-panel,
+.cta-panel,
 .stats-band {
-    background: var(--superficie);
+    background-color: var(--superficie);
     color: var(--texto);
     border-color: var(--borda);
+    box-shadow: var(--sombra-card);
 }
 
 
 /* =========================================================
-   PILLS
+   9. PILLS / ETIQUETAS
    ========================================================= */
 
 .summary-pill,
@@ -2385,14 +2322,14 @@ p {
 .hero-highlights,
 .showcase-meter,
 .metric-label {
-    background: var(--verde-suave);
+    background-color: var(--pill-bg);
     color: var(--verde-principal);
     border-color: var(--borda);
 }
 
 
 /* =========================================================
-   INPUTS
+   10. CAMPOS DE FORMULÁRIO
    ========================================================= */
 
 input,
@@ -2412,55 +2349,41 @@ input:focus,
 select:focus,
 textarea:focus {
     border-color: var(--verde-principal);
+    outline: none;
+
     box-shadow:
         0 0 0 3px rgba(110, 216, 120, 0.13);
-    outline: none;
 }
 
 
 /* =========================================================
-   BOTÕES
+   11. BOTÕES
    ========================================================= */
-
-button,
-.btn {
-    color: #ffffff;
-}
 
 .btn-primary,
 .btn-success,
 button[type="submit"] {
-    background: var(--verde-principal);
+    background-color: var(--verde-principal);
     border-color: var(--verde-principal);
+    color: #ffffff;
 }
 
 .btn-primary:hover,
 .btn-success:hover,
 button[type="submit"]:hover {
-    background: var(--verde-secundario);
+    background-color: var(--verde-secundario);
     border-color: var(--verde-secundario);
 }
 
 
 /* =========================================================
-   ALERTAS
-   ========================================================= */
-
-.alert {
-    background: var(--alert-bg);
-    color: var(--alert-text);
-    border-color: var(--borda);
-}
-
-
-/* =========================================================
-   FOOTER
+   12. FOOTER
    ========================================================= */
 
 .site-footer {
-    background: var(--footer-bg);
+    background-color: var(--footer-bg);
     color: var(--texto);
-    border-top: 1px solid var(--borda);
+    border-top-color: var(--borda);
 }
 
 .footer-shell {
@@ -2477,63 +2400,93 @@ button[type="submit"]:hover {
 
 
 /* =========================================================
-   BOTÃO DE TEMA
+   13. BOTÃO DE TROCA DE TEMA
    ========================================================= */
 
+/*
+   IMPORTANTE:
+   O input é escondido para que NÃO apareça o checkbox
+   azul padrão do navegador.
+*/
+
 .theme-switch {
-    flex-shrink: 0;
-    font-size: 15px;
     position: relative;
     display: inline-block;
+
     width: 4em;
     height: 2.2em;
-    border-radius: 30px;
-    box-shadow:
-        0 0 10px rgba(0, 0, 0, 0.12);
+
+    flex-shrink: 0;
+
+    font-size: 15px;
 }
 
 
-/* Remove checkbox original */
+/* Esconde completamente o checkbox */
 
-.theme-switch input {
+.theme-switch input,
+.switch.theme-switch input {
     position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
+
+    width: 1px;
+    height: 1px;
+
+    padding: 0;
+    margin: -1px;
+
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+
+    white-space: nowrap;
+    border: 0;
 }
 
 
-/* Corpo */
+/* Corpo do botão */
 
 .theme-switch .slider {
     position: absolute;
-    cursor: pointer;
+
     inset: 0;
 
+    cursor: pointer;
+
+    overflow: hidden;
+
+    border-radius: 30px;
+
     background-color: #18231b;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.08);
 
     transition:
         background-color 0.4s ease,
         box-shadow 0.4s ease;
-
-    border-radius: 30px;
-    overflow: hidden;
 }
 
 
-/* Sol / lua */
+/* =========================================================
+   LUA / SOL
+   ========================================================= */
 
 .theme-switch .slider::before {
-    position: absolute;
     content: "";
 
-    height: 1.2em;
-    width: 1.2em;
+    position: absolute;
 
-    border-radius: 50%;
+    width: 1.2em;
+    height: 1.2em;
 
     left: 0.5em;
     bottom: 0.5em;
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    box-shadow:
+        inset 8px -4px 0 0 #ffffff;
 
     transition:
         transform 0.4s ease,
@@ -2541,13 +2494,12 @@ button[type="submit"]:hover {
 
     transition-timing-function:
         cubic-bezier(0.81, -0.04, 0.38, 1.5);
-
-    box-shadow:
-        inset 8px -4px 0 0 #ffffff;
 }
 
 
-/* Tema claro */
+/* =========================================================
+   TEMA CLARO — SOL
+   ========================================================= */
 
 .theme-switch input:checked + .slider {
     background-color: #51a95a;
@@ -2561,7 +2513,9 @@ button[type="submit"]:hover {
 }
 
 
-/* Estrelas */
+/* =========================================================
+   ESTRELAS
+   ========================================================= */
 
 .theme-switch .star {
     position: absolute;
@@ -2602,15 +2556,17 @@ button[type="submit"]:hover {
 }
 
 
-/* Nuvem */
+/* =========================================================
+   NUVEM
+   ========================================================= */
 
 .theme-switch .cloud {
-    width: 3.5em;
-
     position: absolute;
 
-    bottom: -1.4em;
+    width: 3.5em;
+
     left: -1.1em;
+    bottom: -1.4em;
 
     opacity: 0;
 
@@ -2628,7 +2584,7 @@ button[type="submit"]:hover {
 
 
 /* =========================================================
-   HOVER DO BOTÃO DE TEMA
+   HOVER
    ========================================================= */
 
 .theme-switch:hover .slider {
@@ -2638,7 +2594,7 @@ button[type="submit"]:hover {
 
 
 /* =========================================================
-   ACESSIBILIDADE
+   FOCO PELO TECLADO
    ========================================================= */
 
 .theme-switch input:focus-visible + .slider {
@@ -2648,167 +2604,56 @@ button[type="submit"]:hover {
 
 
 /* =========================================================
-   RIPPLE
-   ========================================================= */
-
-.ripple {
-    background: rgba(255, 255, 255, 0.35);
-}
-
-
-/* =========================================================
-   TEMA ESCURO - ELEMENTOS ESPECÍFICOS
-   ========================================================= */
-
-:root[data-theme="dark"] .site-header.scrolled {
-    background: rgba(17, 26, 20, 0.94);
-}
-
-:root[data-theme="dark"] .hero-panel {
-    background:
-        linear-gradient(
-            135deg,
-            #18251b,
-            #142018
-        );
-}
-
-:root[data-theme="dark"] .metric-card {
-    background: #18211b;
-}
-
-:root[data-theme="dark"] .metric-icon {
-    background: #203b25;
-    color: #78df82;
-}
-
-
-/* =========================================================
-   TABELAS
-   ========================================================= */
-
-table {
-    color: var(--texto);
-    background: var(--superficie);
-}
-
-th {
-    background: var(--verde-suave);
-    color: var(--verde-principal);
-}
-
-td {
-    background: var(--superficie);
-    color: var(--texto);
-    border-color: var(--borda);
-}
-
-
-/* =========================================================
-   LINKS GERAIS
-   ========================================================= */
-
-a {
-    color: var(--link-hover);
-}
-
-a:hover {
-    color: var(--verde-principal);
-}
-
-
-/* =========================================================
-   RESPONSIVIDADE DO BOTÃO DE TEMA
+   14. POSIÇÃO DO BOTÃO AO LADO DA NAVEGAÇÃO
    ========================================================= */
 
 .nav-actions {
     display: flex;
     align-items: center;
     justify-content: center;
+
     gap: 12px;
 }
 
 
-/* Desktop */
+/* =========================================================
+   15. TEMA ESCURO — AJUSTES ESPECÍFICOS
+   ========================================================= */
 
-@media (min-width: 981px) {
+:root[data-theme="dark"] .site-header.scrolled {
+    background-color: rgba(17, 26, 20, 0.94);
+}
 
-    .top-nav {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .brand-link {
-        flex-shrink: 0;
-    }
-
-    .nav-actions {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 14px;
-    }
-
-    .nav-links {
-        margin: 0;
-    }
-
+:root[data-theme="dark"] .metric-icon {
+    background-color: #203b25;
+    color: #78df82;
 }
 
 
-/* Tablet */
-
-@media (max-width: 980px) {
-
-    .nav-actions {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-    }
-
-    .nav-links {
-        width: auto;
-        margin: 0;
-    }
-
-}
-
-
-/* Celular */
+/* =========================================================
+   16. RESPONSIVIDADE DO BOTÃO
+   ========================================================= */
 
 @media (max-width: 760px) {
 
     .nav-actions {
         width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: nowrap;
-        gap: 9px;
-    }
 
-    .nav-links {
-        width: auto;
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-wrap: wrap;
-        margin: 0;
+
+        gap: 9px;
     }
 
     .theme-switch {
         width: 3.7em;
         height: 2em;
+
         font-size: 14px;
     }
-
 }
 
-
-/* Celulares pequenos */
 
 @media (max-width: 540px) {
 
@@ -2819,23 +2664,11 @@ a:hover {
     .theme-switch {
         width: 3.5em;
         height: 1.95em;
+
         font-size: 13px;
     }
-
-    .nav-links {
-        gap: 3px 6px;
-    }
-
-    .nav-links a,
-    .nav-links button {
-        font-size: 0.8rem;
-        padding: 7px 8px;
-    }
-
 }
 
-
-/* Celulares muito pequenos */
 
 @media (max-width: 420px) {
 
@@ -2846,13 +2679,7 @@ a:hover {
     .theme-switch {
         width: 3.3em;
         height: 1.85em;
+
         font-size: 12px;
     }
-
-    .nav-links a,
-    .nav-links button {
-        font-size: 0.75rem;
-        padding: 6px 6px;
-    }
-
 }
