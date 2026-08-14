@@ -15,6 +15,555 @@
 
 
 
+
+
+
+
+
+/* =========================================================
+   NUTTRAEA — SISTEMA DE TEMA CLARO / ESCURO
+   ========================================================= */
+
+
+/* =========================================================
+   1. CORES DO TEMA CLARO
+   ========================================================= */
+
+:root {
+    color-scheme: light;
+ --verde: #4CAF50;
+  --verde-escuro: #16771b;
+  --verde-claro: #e8f7eb;
+  --fundo: #f5f8f6;
+  --card: rgba(255,255,255,0.94);
+  --texto: #22412b;
+  --cinza: #5f7566;
+  --borda: #dcefe2;
+  --sombra: 0 18px 45px rgba(22, 119, 27, 0.10);
+  --radius: 24px;
+}
+
+
+/* =========================================================
+   2. CORES DO TEMA ESCURO
+   ========================================================= */
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+
+    --verde-principal: #78df82;
+    --verde-secundario: #52c95f;
+
+    --fundo: #0d1510;
+    --fundo-secundario: #111c14;
+
+    --superficie: #18211b;
+    --superficie-2: #1d2820;
+
+    --texto: #dce9df;
+    --texto-principal: #78df82;
+    --texto-secundario: #a7b8aa;
+
+    --borda: #304238;
+    --borda-forte: #405447;
+
+    --header-bg: #111a14;
+    --footer-bg: #111c14;
+
+    --input-bg: #111a14;
+    --input-text: #e2eee4;
+    --placeholder: #829387;
+
+    --link: #b7c7ba;
+    --link-hover: #79df83;
+
+    --pill-bg: #18371e;
+
+    --sombra:
+        0 14px 35px rgba(0, 0, 0, 0.28);
+
+    --sombra-card:
+        0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================================================
+   3. TRANSIÇÃO ENTRE OS TEMAS
+   ========================================================= */
+
+html,
+body,
+.site-header,
+.top-nav,
+.page-shell,
+.site-footer,
+.card,
+.feature-card,
+.step-card,
+.testimonial-card,
+.auth-panel,
+.profile-summary,
+.meal-intro,
+.profile-form-card,
+.meal-form-card,
+.metric-card,
+.mini-card,
+.feedback-card,
+.hero-panel,
+.cta-panel,
+.stats-band,
+input,
+select,
+textarea,
+button,
+.nav-links a,
+.nav-links button {
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* =========================================================
+   4. FUNDO GERAL
+   ========================================================= */
+
+html,
+body {
+    background:
+    radial-gradient(circle at top left, rgba(76, 175, 80, 0.12), transparent 30%),
+    linear-gradient(135deg, #f8fcf8 0%, #eef8ef 100%);
+  color: var(--texto);
+  min-height: 100vh;
+}
+
+
+/* =========================================================
+   5. HEADER / NAVBAR
+   ========================================================= */
+
+.site-header {
+    background-color: var(--header-bg);
+    border-bottom-color: var(--borda);
+    box-shadow: var(--sombra);
+}
+
+.top-nav {
+    background-color: transparent;
+}
+
+.nav-links a,
+.nav-links button,
+.nav-link {
+    color: var(--link);
+}
+
+.nav-links a:hover,
+.nav-links button:hover,
+.nav-link:hover {
+    color: var(--link-hover);
+}
+
+.nav-links a.active,
+.nav-links button.active,
+.nav-link.active {
+    color: var(--verde-principal);
+}
+
+
+/* =========================================================
+   6. CONTEÚDO
+   ========================================================= */
+
+.page-shell {
+    background-color: var(--fundo);
+    color: var(--texto);
+}
+
+
+/* =========================================================
+   7. TÍTULOS E TEXTOS
+   ========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--texto-principal);
+}
+
+p {
+    color: var(--texto);
+}
+
+.subtle-text {
+    color: var(--texto-secundario);
+}
+
+.eyebrow {
+    color: var(--verde-principal);
+}
+
+
+/* =========================================================
+   8. CARDS
+   ========================================================= */
+
+.card,
+.feature-card,
+.step-card,
+.testimonial-card,
+.auth-panel,
+.profile-summary,
+.meal-intro,
+.profile-form-card,
+.meal-form-card,
+.metric-card,
+.mini-card,
+.feedback-card,
+.hero-panel,
+.cta-panel,
+.stats-band {
+    background-color: var(--superficie);
+    color: var(--texto);
+    border-color: var(--borda);
+    box-shadow: var(--sombra-card);
+}
+
+
+/* =========================================================
+   9. PILLS / ETIQUETAS
+   ========================================================= */
+
+.summary-pill,
+.highlight-pill,
+.hero-highlights,
+.showcase-meter,
+.metric-label {
+    background-color: var(--pill-bg);
+    color: var(--verde-principal);
+    border-color: var(--borda);
+}
+
+
+/* =========================================================
+   10. CAMPOS DE FORMULÁRIO
+   ========================================================= */
+
+input,
+select,
+textarea {
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    border-color: var(--borda);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--placeholder);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--verde-principal);
+    outline: none;
+
+    box-shadow:
+        0 0 0 3px rgba(110, 216, 120, 0.13);
+}
+
+
+/* =========================================================
+   11. BOTÕES
+   ========================================================= */
+
+.btn-primary,
+.btn-success,
+button[type="submit"] {
+    background-color: var(--verde-principal);
+    border-color: var(--verde-principal);
+    color: #ffffff;
+}
+
+.btn-primary:hover,
+.btn-success:hover,
+button[type="submit"]:hover {
+    background-color: var(--verde-secundario);
+    border-color: var(--verde-secundario);
+}
+
+
+/* =========================================================
+   12. FOOTER
+   ========================================================= */
+
+.site-footer {
+    background-color: var(--footer-bg);
+    color: var(--texto);
+    border-top-color: var(--borda);
+}
+
+.footer-shell {
+    color: var(--texto);
+}
+
+.footer-links a {
+    color: var(--link);
+}
+
+.footer-links a:hover {
+    color: var(--link-hover);
+}
+
+
+/* =========================================================
+   13. BOTÃO DE TROCA DE TEMA
+   ========================================================= */
+
+/*
+   IMPORTANTE:
+   O input é escondido para que NÃO apareça o checkbox
+   azul padrão do navegador.
+*/
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+
+    width: 4em;
+    height: 2.2em;
+
+    flex-shrink: 0;
+
+    font-size: 15px;
+}
+
+
+/* Esconde completamente o checkbox */
+
+.theme-switch input,
+.switch.theme-switch input {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    padding: 0;
+    margin: -1px;
+
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+
+    white-space: nowrap;
+    border: 0;
+}
+
+
+/* Corpo do botão */
+
+.theme-switch .slider {
+    position: absolute;
+
+    inset: 0;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    border-radius: 30px;
+
+    background-color: #18231b;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+
+    transition:
+        background-color 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+
+/* =========================================================
+   LUA / SOL
+   ========================================================= */
+
+.theme-switch .slider::before {
+    content: "";
+
+    position: absolute;
+
+    width: 1.2em;
+    height: 1.2em;
+
+    left: 0.5em;
+    bottom: 0.5em;
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    box-shadow:
+        inset 8px -4px 0 0 #ffffff;
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+
+    transition-timing-function:
+        cubic-bezier(0.81, -0.04, 0.38, 1.5);
+}
+
+
+/* =========================================================
+   TEMA CLARO — SOL
+   ========================================================= */
+
+.theme-switch input:checked + .slider {
+    background-color: #51a95a;
+}
+
+.theme-switch input:checked + .slider::before {
+    transform: translateX(1.8em);
+
+    box-shadow:
+        inset 15px -4px 0 15px #ffcf48;
+}
+
+
+/* =========================================================
+   ESTRELAS
+   ========================================================= */
+
+.theme-switch .star {
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background-color: #ffffff;
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+.theme-switch .star_1 {
+    left: 2.5em;
+    top: 0.5em;
+}
+
+.theme-switch .star_2 {
+    left: 2.2em;
+    top: 1.2em;
+}
+
+.theme-switch .star_3 {
+    left: 3em;
+    top: 0.9em;
+}
+
+
+/* Estrelas desaparecem no tema claro */
+
+.theme-switch input:checked ~ .slider .star {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+
+/* =========================================================
+   NUVEM
+   ========================================================= */
+
+.theme-switch .cloud {
+    position: absolute;
+
+    width: 3.5em;
+
+    left: -1.1em;
+    bottom: -1.4em;
+
+    opacity: 0;
+
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease;
+}
+
+
+/* Nuvem aparece no tema claro */
+
+.theme-switch input:checked ~ .slider .cloud {
+    opacity: 1;
+}
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+.theme-switch:hover .slider {
+    box-shadow:
+        0 0 0 3px rgba(110, 216, 120, 0.12);
+}
+
+
+/* =========================================================
+   FOCO PELO TECLADO
+   ========================================================= */
+
+.theme-switch input:focus-visible + .slider {
+    outline: 2px solid var(--verde-principal);
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   14. POSIÇÃO DO BOTÃO AO LADO DA NAVEGAÇÃO
+   ========================================================= */
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+}
+
+
+/* =========================================================
+   15. TEMA ESCURO — AJUSTES ESPECÍFICOS
+   ========================================================= */
+
+:root[data-theme="dark"] .site-header.scrolled {
+    background-color: rgba(17, 26, 20, 0.94);
+}
+
+:root[data-theme="dark"] .metric-icon {
+    background-color: #203b25;
+    color: #78df82;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 * {
   margin: 0;
   padding: 0;
@@ -1947,23 +2496,9 @@ code {
     overflow-x: auto;
 }
 
-
 /* =========================================================
    CAMPO DE SENHA + BOTÃO DO OLHO
    ========================================================= */
-
-/*
-   Use este formato no HTML:
-
-   <div class="password-field">
-       <input type="password" id="senha" name="senha">
-       <button type="button"
-               class="toggle-password"
-               aria-label="Mostrar senha">
-           SVG DO OLHO
-       </button>
-   </div>
-*/
 
 .password-field {
     position: relative;
@@ -1979,6 +2514,7 @@ code {
     position: absolute;
     top: 50%;
     right: 14px;
+    transform: translateY(-50%);
 
     width: 32px;
     height: 32px;
@@ -1987,8 +2523,6 @@ code {
     align-items: center;
     justify-content: center;
 
-    transform: translateY(-50%);
-
     padding: 0;
     margin: 0;
 
@@ -1996,25 +2530,37 @@ code {
     background: transparent;
 
     color: var(--verde-principal);
-
     cursor: pointer;
+    z-index: 5;
 }
 
 .toggle-password svg {
     width: 18px;
     height: 18px;
-    max-width: none;
 }
 
 .toggle-password:hover {
     background: transparent;
-    color: var(--verde-principal);
 }
 
 .toggle-password:focus {
     outline: none;
 }
 
+/* ===================== CELULAR ===================== */
+
+@media (max-width: 768px) {
+    .password-field input {
+        padding-right: 46px;
+    }
+
+    .toggle-password {
+        display: flex;
+        right: 12px;
+        width: 32px;
+        height: 32px;
+    }
+}
 
 /* =========================================================
    CAROUSEL
@@ -2076,557 +2622,6 @@ code {
     }
 }
 
-/* =========================================================
-   NUTTRAEA — SISTEMA DE TEMA CLARO / ESCURO
-   ========================================================= */
-
-
-/* =========================================================
-   1. CORES DO TEMA CLARO
-   ========================================================= */
-
-:root {
-    color-scheme: light;
-
-    --verde-principal: #16771b;
-    --verde-secundario: #2d9b35;
-
-    --fundo: #f4faf5;
-    --fundo-secundario: #edf7ef;
-
-    --superficie: #ffffff;
-    --superficie-2: #f8fcf9;
-
-    --texto: #304a37;
-    --texto-principal: #16771b;
-    --texto-secundario: #64766a;
-
-    --borda: #d5e8d8;
-    --borda-forte: #c5ddc9;
-
-    --header-bg: #ffffff;
-    --footer-bg: #edf7ef;
-
-    --input-bg: #ffffff;
-    --input-text: #304a37;
-    --placeholder: #8a9b90;
-
-    --link: #53695a;
-    --link-hover: #16771b;
-
-    --pill-bg: #eef8ef;
-
-    --sombra:
-        0 14px 35px rgba(27, 92, 36, 0.08);
-
-    --sombra-card:
-        0 12px 30px rgba(27, 92, 36, 0.07);
-}
-
-
-/* =========================================================
-   2. CORES DO TEMA ESCURO
-   ========================================================= */
-
-:root[data-theme="dark"] {
-    color-scheme: dark;
-
-    --verde-principal: #78df82;
-    --verde-secundario: #52c95f;
-
-    --fundo: #0d1510;
-    --fundo-secundario: #111c14;
-
-    --superficie: #18211b;
-    --superficie-2: #1d2820;
-
-    --texto: #dce9df;
-    --texto-principal: #78df82;
-    --texto-secundario: #a7b8aa;
-
-    --borda: #304238;
-    --borda-forte: #405447;
-
-    --header-bg: #111a14;
-    --footer-bg: #111c14;
-
-    --input-bg: #111a14;
-    --input-text: #e2eee4;
-    --placeholder: #829387;
-
-    --link: #b7c7ba;
-    --link-hover: #79df83;
-
-    --pill-bg: #18371e;
-
-    --sombra:
-        0 14px 35px rgba(0, 0, 0, 0.28);
-
-    --sombra-card:
-        0 12px 30px rgba(0, 0, 0, 0.25);
-}
-
-
-/* =========================================================
-   3. TRANSIÇÃO ENTRE OS TEMAS
-   ========================================================= */
-
-html,
-body,
-.site-header,
-.top-nav,
-.page-shell,
-.site-footer,
-.card,
-.feature-card,
-.step-card,
-.testimonial-card,
-.auth-panel,
-.profile-summary,
-.meal-intro,
-.profile-form-card,
-.meal-form-card,
-.metric-card,
-.mini-card,
-.feedback-card,
-.hero-panel,
-.cta-panel,
-.stats-band,
-input,
-select,
-textarea,
-button,
-.nav-links a,
-.nav-links button {
-    transition:
-        background-color 0.3s ease,
-        color 0.3s ease,
-        border-color 0.3s ease,
-        box-shadow 0.3s ease;
-}
-
-
-/* =========================================================
-   4. FUNDO GERAL
-   ========================================================= */
-
-html,
-body {
-    background-color: var(--fundo);
-    color: var(--texto);
-}
-
-
-/* =========================================================
-   5. HEADER / NAVBAR
-   ========================================================= */
-
-.site-header {
-    background-color: var(--header-bg);
-    border-bottom-color: var(--borda);
-    box-shadow: var(--sombra);
-}
-
-.top-nav {
-    background-color: transparent;
-}
-
-.nav-links a,
-.nav-links button,
-.nav-link {
-    color: var(--link);
-}
-
-.nav-links a:hover,
-.nav-links button:hover,
-.nav-link:hover {
-    color: var(--link-hover);
-}
-
-.nav-links a.active,
-.nav-links button.active,
-.nav-link.active {
-    color: var(--verde-principal);
-}
-
-
-/* =========================================================
-   6. CONTEÚDO
-   ========================================================= */
-
-.page-shell {
-    background-color: var(--fundo);
-    color: var(--texto);
-}
-
-
-/* =========================================================
-   7. TÍTULOS E TEXTOS
-   ========================================================= */
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    color: var(--texto-principal);
-}
-
-p {
-    color: var(--texto);
-}
-
-.subtle-text {
-    color: var(--texto-secundario);
-}
-
-.eyebrow {
-    color: var(--verde-principal);
-}
-
-
-/* =========================================================
-   8. CARDS
-   ========================================================= */
-
-.card,
-.feature-card,
-.step-card,
-.testimonial-card,
-.auth-panel,
-.profile-summary,
-.meal-intro,
-.profile-form-card,
-.meal-form-card,
-.metric-card,
-.mini-card,
-.feedback-card,
-.hero-panel,
-.cta-panel,
-.stats-band {
-    background-color: var(--superficie);
-    color: var(--texto);
-    border-color: var(--borda);
-    box-shadow: var(--sombra-card);
-}
-
-
-/* =========================================================
-   9. PILLS / ETIQUETAS
-   ========================================================= */
-
-.summary-pill,
-.highlight-pill,
-.hero-highlights,
-.showcase-meter,
-.metric-label {
-    background-color: var(--pill-bg);
-    color: var(--verde-principal);
-    border-color: var(--borda);
-}
-
-
-/* =========================================================
-   10. CAMPOS DE FORMULÁRIO
-   ========================================================= */
-
-input,
-select,
-textarea {
-    background-color: var(--input-bg);
-    color: var(--input-text);
-    border-color: var(--borda);
-}
-
-input::placeholder,
-textarea::placeholder {
-    color: var(--placeholder);
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-    border-color: var(--verde-principal);
-    outline: none;
-
-    box-shadow:
-        0 0 0 3px rgba(110, 216, 120, 0.13);
-}
-
-
-/* =========================================================
-   11. BOTÕES
-   ========================================================= */
-
-.btn-primary,
-.btn-success,
-button[type="submit"] {
-    background-color: var(--verde-principal);
-    border-color: var(--verde-principal);
-    color: #ffffff;
-}
-
-.btn-primary:hover,
-.btn-success:hover,
-button[type="submit"]:hover {
-    background-color: var(--verde-secundario);
-    border-color: var(--verde-secundario);
-}
-
-
-/* =========================================================
-   12. FOOTER
-   ========================================================= */
-
-.site-footer {
-    background-color: var(--footer-bg);
-    color: var(--texto);
-    border-top-color: var(--borda);
-}
-
-.footer-shell {
-    color: var(--texto);
-}
-
-.footer-links a {
-    color: var(--link);
-}
-
-.footer-links a:hover {
-    color: var(--link-hover);
-}
-
-
-/* =========================================================
-   13. BOTÃO DE TROCA DE TEMA
-   ========================================================= */
-
-/*
-   IMPORTANTE:
-   O input é escondido para que NÃO apareça o checkbox
-   azul padrão do navegador.
-*/
-
-.theme-switch {
-    position: relative;
-    display: inline-block;
-
-    width: 4em;
-    height: 2.2em;
-
-    flex-shrink: 0;
-
-    font-size: 15px;
-}
-
-
-/* Esconde completamente o checkbox */
-
-.theme-switch input,
-.switch.theme-switch input {
-    position: absolute;
-
-    width: 1px;
-    height: 1px;
-
-    padding: 0;
-    margin: -1px;
-
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-
-    white-space: nowrap;
-    border: 0;
-}
-
-
-/* Corpo do botão */
-
-.theme-switch .slider {
-    position: absolute;
-
-    inset: 0;
-
-    cursor: pointer;
-
-    overflow: hidden;
-
-    border-radius: 30px;
-
-    background-color: #18231b;
-
-    box-shadow:
-        inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-
-    transition:
-        background-color 0.4s ease,
-        box-shadow 0.4s ease;
-}
-
-
-/* =========================================================
-   LUA / SOL
-   ========================================================= */
-
-.theme-switch .slider::before {
-    content: "";
-
-    position: absolute;
-
-    width: 1.2em;
-    height: 1.2em;
-
-    left: 0.5em;
-    bottom: 0.5em;
-
-    border-radius: 50%;
-
-    background: transparent;
-
-    box-shadow:
-        inset 8px -4px 0 0 #ffffff;
-
-    transition:
-        transform 0.4s ease,
-        box-shadow 0.4s ease;
-
-    transition-timing-function:
-        cubic-bezier(0.81, -0.04, 0.38, 1.5);
-}
-
-
-/* =========================================================
-   TEMA CLARO — SOL
-   ========================================================= */
-
-.theme-switch input:checked + .slider {
-    background-color: #51a95a;
-}
-
-.theme-switch input:checked + .slider::before {
-    transform: translateX(1.8em);
-
-    box-shadow:
-        inset 15px -4px 0 15px #ffcf48;
-}
-
-
-/* =========================================================
-   ESTRELAS
-   ========================================================= */
-
-.theme-switch .star {
-    position: absolute;
-
-    width: 5px;
-    height: 5px;
-
-    border-radius: 50%;
-
-    background-color: #ffffff;
-
-    transition:
-        opacity 0.3s ease,
-        transform 0.3s ease;
-}
-
-.theme-switch .star_1 {
-    left: 2.5em;
-    top: 0.5em;
-}
-
-.theme-switch .star_2 {
-    left: 2.2em;
-    top: 1.2em;
-}
-
-.theme-switch .star_3 {
-    left: 3em;
-    top: 0.9em;
-}
-
-
-/* Estrelas desaparecem no tema claro */
-
-.theme-switch input:checked ~ .slider .star {
-    opacity: 0;
-    transform: scale(0.5);
-}
-
-
-/* =========================================================
-   NUVEM
-   ========================================================= */
-
-.theme-switch .cloud {
-    position: absolute;
-
-    width: 3.5em;
-
-    left: -1.1em;
-    bottom: -1.4em;
-
-    opacity: 0;
-
-    transition:
-        opacity 0.4s ease,
-        transform 0.4s ease;
-}
-
-
-/* Nuvem aparece no tema claro */
-
-.theme-switch input:checked ~ .slider .cloud {
-    opacity: 1;
-}
-
-
-/* =========================================================
-   HOVER
-   ========================================================= */
-
-.theme-switch:hover .slider {
-    box-shadow:
-        0 0 0 3px rgba(110, 216, 120, 0.12);
-}
-
-
-/* =========================================================
-   FOCO PELO TECLADO
-   ========================================================= */
-
-.theme-switch input:focus-visible + .slider {
-    outline: 2px solid var(--verde-principal);
-    outline-offset: 3px;
-}
-
-
-/* =========================================================
-   14. POSIÇÃO DO BOTÃO AO LADO DA NAVEGAÇÃO
-   ========================================================= */
-
-.nav-actions {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    gap: 12px;
-}
-
-
-/* =========================================================
-   15. TEMA ESCURO — AJUSTES ESPECÍFICOS
-   ========================================================= */
-
-:root[data-theme="dark"] .site-header.scrolled {
-    background-color: rgba(17, 26, 20, 0.94);
-}
-
-:root[data-theme="dark"] .metric-icon {
-    background-color: #203b25;
-    color: #78df82;
-}
 
 
 /* =========================================================
