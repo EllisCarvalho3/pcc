@@ -115,79 +115,6 @@ body::before {
 }
 
 
-@media (max-width: 900px){
-
-    .hero-panel{
-        grid-template-columns:1fr;
-        text-align:center;
-        gap:30px;
-        padding:30px 24px;
-    }
-
-    .hero-copy{
-        order:1;
-    }
-
-    .hero-visual{
-        order:2;
-    }
-
-    .hero-actions{
-        justify-content:center;
-    }
-
-    .hero-logo{
-        width:280px;
-    }
-
-}
-
-@media (max-width:640px){
-
-    .hero-panel{
-        padding:24px 18px;
-        gap:24px;
-    }
-
-    .hero-copy h1{
-        font-size:2rem;
-    }
-
-    .hero-copy p{
-        font-size:1rem;
-    }
-
-    .hero-actions{
-        flex-direction:column;
-        align-items:center;
-    }
-
-    .hero-actions .btn{
-        width:100%;
-        max-width:260px;
-    }
-
-    .hero-logo{
-        width:220px;
-    }
-
-}
-
-@media (max-width:420px){
-
-    .hero-logo{
-        width:170px;
-    }
-
-    .hero-copy h1{
-        font-size:1.7rem;
-    }
-
-}
-
-
-
-
 /* LOGO DO SISTEMA EM HOME.HTML */
 
 
@@ -975,64 +902,6 @@ textarea:focus {
   font-weight: 600;
 }
 
-@media (max-width: 1100px) {
-  .feature-grid,
-  .steps-grid,
-  .testimonials-grid,
-  .stats-band,
-  .dashboard-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .dashboard-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .auth-shell,
-  .profile-shell,
-  .meal-shell,
-  .hero-panel {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 760px) {
-  .top-nav,
-  .page-header,
-  .cta-panel,
-  .footer-shell {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .nav-links {
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .hero-panel,
-  .card,
-  .feature-card,
-  .step-card,
-  .testimonial-card,
-  .auth-panel,
-  .profile-summary,
-  .meal-intro,
-  .profile-form-card,
-  .meal-form-card {
-    padding: 18px;
-  }
-
-  .feature-grid,
-  .steps-grid,
-  .testimonials-grid,
-  .stats-band,
-  .dashboard-grid,
-  .showcase-grid,
-  .lower-grid {
-    grid-template-columns: 1fr;
-  }
-}
 
 .message-stack {
   max-width: 1180px;
@@ -1153,46 +1022,36 @@ textarea:focus {
   color: var(--cinza);
 }
 
-@media (max-width: 900px) {
-  .hero-panel,
-  .grid-2,
-  .feature-grid {
-    grid-template-columns: 1fr;
-  }
-}
+/* =========================================================
+   RESPONSIVIDADE GERAL - NUTTRAEA
+   ========================================================= */
 
-@media (max-width: 640px) {
-  .top-nav {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .nav-links {
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .page-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
+/* ---------- AJUSTES GERAIS ---------- */
 
 :root {
-  --verde-principal: var(--verde);
+    --verde-principal: var(--verde, #16771b);
+}
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
 img,
 svg,
 video,
 canvas {
-  max-width: 100%;
-  display: block;
-}
-
-body,
-html {
-  overflow-x: hidden;
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 h1,
@@ -1207,405 +1066,748 @@ button,
 input,
 select,
 textarea {
-  max-width: 100%;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
+
+button,
+.btn,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =========================================================
+   TELAS GRANDES / NOTEBOOK
+   ========================================================= */
 
 @media (max-width: 1200px) {
-  .page-shell,
-  .message-stack,
-  .site-footer .footer-shell,
-  .top-nav {
-    padding-left: 18px;
-    padding-right: 18px;
-  }
 
-  .page-header,
-  .cta-panel {
-    gap: 14px;
-  }
+    .page-shell,
+    .message-stack,
+    .site-footer .footer-shell,
+    .top-nav {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
 
-  .dashboard-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+    .page-header,
+    .cta-panel {
+        gap: 16px;
+    }
 
-  .showcase-grid,
-  .stats-band,
-  .steps-grid,
-  .testimonials-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+    .dashboard-grid,
+    .showcase-grid,
+    .stats-band,
+    .steps-grid,
+    .testimonials-grid,
+    .feature-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
+
+
+/* =========================================================
+   TABLETS
+   ========================================================= */
 
 @media (max-width: 980px) {
-  .site-header .top-nav {
-    flex-wrap: wrap;
-    justify-content: center;
-    padding-top: 14px;
-    padding-bottom: 14px;
-  }
 
-  .brand-link {
-    width: 100%;
-    justify-content: center;
-  }
+    /* ---------- NAV ---------- */
 
-  .nav-links {
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
+    .site-header .top-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        padding-top: 14px;
+        padding-bottom: 14px;
+    }
 
-  .hero-panel,
-  .auth-shell,
-  .profile-shell,
-  .meal-shell,
-  .lower-grid,
-  .feature-grid {
-    grid-template-columns: 1fr;
-  }
+    .brand-link {
+        width: 100%;
+        justify-content: center;
+    }
 
-  .hero-copy h1,
-  .page-header h1,
-  .page-header h2,
-  .section-heading h2,
-  .auth-panel h2,
-  .meal-intro h1,
-  .profile-summary h2 {
-    font-size: clamp(1.7rem, 5vw, 2.3rem);
-    line-height: 1.2;
-  }
+    .nav-links {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
 
-  .cta-panel {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+    /* ---------- GRIDS ---------- */
 
-  .stats-band {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+    .hero-panel,
+    .auth-shell,
+    .profile-shell,
+    .meal-shell,
+    .lower-grid,
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
 
-  .dashboard-grid,
-  .showcase-grid,
-  .steps-grid,
-  .testimonials-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+    .dashboard-grid,
+    .showcase-grid,
+    .steps-grid,
+    .testimonials-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 
-  .carousel,
-  .carousel-inner,
-  .carousel-item,
-  .carousel-item img {
-    max-width: 100%;
-    width: 100%;
-    height: auto;
-  }
+    .stats-band {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 
-  .carousel {
-    overflow: hidden;
-    border-radius: 18px;
-  }
+    /* ---------- TÍTULOS ---------- */
+
+    .hero-copy h1,
+    .page-header h1,
+    .page-header h2,
+    .section-heading h2,
+    .auth-panel h2,
+    .meal-intro h1,
+    .profile-summary h2 {
+        font-size: clamp(1.8rem, 5vw, 2.5rem);
+        line-height: 1.15;
+    }
+
+    /* ---------- CTA ---------- */
+
+    .cta-panel {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    /* ---------- CAROUSEL ---------- */
+
+    .carousel,
+    .carousel-inner,
+    .carousel-item {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .carousel {
+        overflow: hidden;
+        border-radius: 18px;
+    }
+
+    .carousel-item img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
 }
+
+
+/* =========================================================
+   CELULAR
+   ========================================================= */
 
 @media (max-width: 760px) {
-  .page-shell {
-    padding: 22px 16px 42px;
-  }
 
-  .top-nav {
-    padding: 14px 16px;
-    gap: 12px;
-  }
+    /* ---------- ESTRUTURA PRINCIPAL ---------- */
 
-  .brand-logo {
-    height: 46px;
-    max-width: 180px;
-  }
+    .page-shell {
+        width: 100%;
+        max-width: 100%;
+        padding: 22px 16px 40px;
+    }
 
-  .nav-links {
-    gap: 8px;
-  }
+    .message-stack {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
 
-  .nav-links a,
-  .nav-links button {
-    padding: 9px 10px;
-    font-size: 0.9rem;
-  }
+    /* ---------- HEADER ---------- */
 
-  .hero-panel,
-  .card,
-  .feature-card,
-  .step-card,
-  .testimonial-card,
-  .auth-panel,
-  .profile-summary,
-  .meal-intro,
-  .profile-form-card,
-  .meal-form-card,
-  .cta-panel {
-    padding: 18px;
-  }
+    .site-header {
+        width: 100%;
+    }
 
-  .hero-actions,
-  .acoes {
-    flex-direction: column;
-    align-items: stretch;
-  }
+    .top-nav {
+        width: 100%;
+        padding: 12px 16px;
+        gap: 10px;
+    }
 
-  .hero-actions .btn,
-  .acoes .btn,
-  .hero-actions button,
-  .acoes button {
-    width: 100%;
-  }
+    .brand-link {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-  .hero-copy p,
-  .subtle-text,
-  .feature-card p,
-  .step-card p,
-  .testimonial-card p,
-  .auth-panel p,
-  .profile-summary p,
-  .meal-intro p {
-    font-size: 0.96rem;
-    line-height: 1.7;
-  }
+    .brand-logo {
+        width: auto;
+        height: 42px;
+        max-width: 155px;
+        object-fit: contain;
+    }
 
-  .feature-grid,
-  .steps-grid,
-  .testimonials-grid,
-  .stats-band,
-  .dashboard-grid,
-  .showcase-grid,
-  .lower-grid {
-    grid-template-columns: 1fr;
-  }
+    /* ---------- MENU ---------- */
 
-  .page-header,
-  .section-heading,
-  .showcase-top,
-  .timeline-header,
-  .testimonial-head,
-  .dashboard-hero-content,
-  .cta-panel {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+    .nav-links {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 4px 8px;
+    }
 
-  .stats-band {
-    padding: 16px;
-  }
+    .nav-links a,
+    .nav-links button {
+        padding: 8px 9px;
+        font-size: 0.88rem;
+        line-height: 1.2;
+        white-space: nowrap;
+    }
 
-  .stat-block strong {
-    font-size: 1.35rem;
-  }
+    /* ---------- CABEÇALHOS ---------- */
 
-  .site-footer {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
+    .page-header,
+    .section-heading,
+    .showcase-top,
+    .timeline-header,
+    .testimonial-head,
+    .dashboard-hero-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
 
-  .footer-shell {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+    .page-header h1,
+    .page-header h2,
+    .hero-copy h1,
+    .hero-copy h2,
+    .section-heading h2,
+    .meal-intro h1,
+    .profile-summary h2,
+    .auth-panel h2 {
+        font-size: clamp(1.65rem, 7vw, 2rem);
+        line-height: 1.15;
+    }
 
-  .carousel {
-    border-radius: 16px;
-  }
+    /* ---------- HERO ---------- */
 
-  .carousel-control-prev,
-  .carousel-control-next {
-    width: 36px;
-    height: 36px;
-  }
+    .hero-panel {
+        width: 100%;
+        grid-template-columns: 1fr;
+        padding: 22px 18px;
+        gap: 24px;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .hero-copy {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .hero-copy h1 {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+    }
+
+    .hero-copy p {
+        font-size: 0.96rem;
+        line-height: 1.65;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+    }
+
+    .hero-actions {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .hero-actions .btn,
+    .hero-actions button {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .hero-logo {
+        width: min(180px, 70vw);
+        margin: 0 auto;
+    }
+
+    /* ---------- CARDS ---------- */
+
+    .card,
+    .feature-card,
+    .step-card,
+    .testimonial-card,
+    .auth-panel,
+    .profile-summary,
+    .meal-intro,
+    .profile-form-card,
+    .meal-form-card,
+    .cta-panel {
+        width: 100%;
+        max-width: 100%;
+        padding: 18px;
+    }
+
+    /* ---------- GRIDS ---------- */
+
+    .feature-grid,
+    .steps-grid,
+    .testimonials-grid,
+    .stats-band,
+    .dashboard-grid,
+    .showcase-grid,
+    .lower-grid {
+        width: 100%;
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    /* ---------- TEXTOS ---------- */
+
+    .hero-copy p,
+    .subtle-text,
+    .feature-card p,
+    .step-card p,
+    .testimonial-card p,
+    .auth-panel p,
+    .profile-summary p,
+    .meal-intro p {
+        font-size: 0.94rem;
+        line-height: 1.65;
+    }
+
+    /* ---------- BOTÕES ---------- */
+
+    .btn {
+        max-width: 100%;
+    }
+
+    .acoes {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .acoes .btn,
+    .acoes button {
+        width: 100%;
+    }
+
+    /* ---------- ESTATÍSTICAS ---------- */
+
+    .stats-band {
+        padding: 14px;
+    }
+
+    .stat-block {
+        min-width: 0;
+    }
+
+    .stat-block strong {
+        font-size: 1.3rem;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    .site-footer {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .footer-shell {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    /* ---------- CAROUSEL ---------- */
+
+    .carousel {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 14px;
+    }
+
+    .carousel-inner,
+    .carousel-item {
+        width: 100%;
+    }
+
+    .carousel-item img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 34px;
+        height: 34px;
+    }
 }
+
+
+/* =========================================================
+   CELULARES PEQUENOS
+   ========================================================= */
 
 @media (max-width: 540px) {
-  .brand-logo {
-    height: 40px;
-    max-width: 150px;
-  }
 
-  .nav-links {
-    justify-content: flex-start;
-  }
+    /* ---------- PÁGINA ---------- */
 
-  .nav-links a,
-  .nav-links button {
-    padding: 8px 10px;
-    font-size: 0.82rem;
-  }
+    .page-shell {
+        padding: 18px 12px 36px;
+    }
 
-  .page-header h1,
-  .page-header h2,
-  .hero-copy h1,
-  .hero-copy h2,
-  .section-heading h2,
-  .meal-intro h1,
-  .profile-summary h2,
-  .auth-panel h2 {
-    font-size: clamp(1.45rem, 7vw, 1.8rem);
-  }
+    .message-stack {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
 
-  .eyebrow {
-    letter-spacing: 0.12em;
-    font-size: 0.68rem;
-  }
+    /* ---------- HEADER ---------- */
 
-  .hero-highlights,
-  .summary-pill,
-  .highlight-pill {
-    width: 100%;
-    justify-content: center;
-  }
+    .top-nav {
+        padding: 10px 12px;
+        gap: 8px;
+    }
 
-  .showcase-meter {
-    align-items: flex-start;
-    gap: 12px;
-  }
+    .brand-logo {
+        height: 38px;
+        max-width: 145px;
+    }
 
-  .meter-ring {
-    width: 72px;
-    height: 72px;
-    border-width: 10px;
-  }
+    /* ---------- MENU ---------- */
 
-  .metric-card {
-    flex-direction: column;
-    text-align: center;
-  }
+    .nav-links {
+        gap: 3px 6px;
+    }
 
-  .metric-card .metric-icon {
-    margin-top: 0;
-  }
+    .nav-links a,
+    .nav-links button {
+        padding: 7px 8px;
+        font-size: 0.8rem;
+    }
 
-  .timeline-shell {
-    padding-left: 12px;
-  }
+    /* ---------- HERO ---------- */
 
-  .timeline-item {
-    margin-left: 0;
-  }
+    .hero-panel {
+        padding: 20px 15px;
+        border-radius: 18px;
+        gap: 20px;
+    }
 
-  .timeline-marker {
-    left: -16px;
-  }
+    .hero-copy h1 {
+        font-size: clamp(1.5rem, 7.5vw, 1.85rem);
+        line-height: 1.16;
+    }
 
-  .message-stack {
-    padding: 0 16px;
-  }
+    .hero-copy p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .hero-logo {
+        width: min(165px, 65vw);
+    }
+
+    /* ---------- CABEÇALHOS ---------- */
+
+    .page-header h1,
+    .page-header h2,
+    .section-heading h2,
+    .meal-intro h1,
+    .profile-summary h2,
+    .auth-panel h2 {
+        font-size: clamp(1.45rem, 7vw, 1.75rem);
+        line-height: 1.18;
+    }
+
+    .eyebrow {
+        font-size: 0.66rem;
+        letter-spacing: 0.1em;
+    }
+
+    /* ---------- CARDS ---------- */
+
+    .card,
+    .feature-card,
+    .step-card,
+    .testimonial-card,
+    .auth-panel,
+    .profile-summary,
+    .meal-intro,
+    .profile-form-card,
+    .meal-form-card,
+    .cta-panel {
+        padding: 16px;
+        border-radius: 16px;
+    }
+
+    /* ---------- PILLS ---------- */
+
+    .hero-highlights,
+    .summary-pill,
+    .highlight-pill {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* ---------- MÉTRICAS ---------- */
+
+    .showcase-meter {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .meter-ring {
+        width: 68px;
+        height: 68px;
+        border-width: 9px;
+    }
+
+    .metric-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .metric-card .metric-icon {
+        margin-top: 0;
+    }
+
+    /* ---------- TIMELINE ---------- */
+
+    .timeline-shell {
+        padding-left: 10px;
+    }
+
+    .timeline-item {
+        margin-left: 0;
+    }
+
+    .timeline-marker {
+        left: -14px;
+    }
+
+    /* ---------- CAROUSEL ---------- */
+
+    .carousel {
+        border-radius: 12px;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 32px;
+        height: 32px;
+    }
 }
+
+
+/* =========================================================
+   CELULARES MUITO PEQUENOS
+   ========================================================= */
 
 @media (max-width: 420px) {
-  .top-nav,
-  .page-shell,
-  .site-footer {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
 
-  .brand-link {
-    justify-content: center;
-  }
+    /* ---------- ESTRUTURA ---------- */
 
-  .hero-logo {
-    width: 170px;
-  }
+    .top-nav,
+    .page-shell,
+    .site-footer {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 
-  .hero-copy h1,
-  .page-header h1,
-  .page-header h2,
-  .section-heading h2 {
-    font-size: 1.55rem;
-  }
+    /* ---------- LOGO ---------- */
 
-  .btn,
-  button {
-    padding: 10px 14px;
-    font-size: 0.9rem;
-  }
+    .brand-logo {
+        height: 36px;
+        max-width: 135px;
+    }
 
-  .mini-card,
-  .metric-card,
-  .feedback-card,
-  .step-card,
-  .testimonial-card,
-  .auth-panel,
-  .profile-summary,
-  .meal-intro,
-  .profile-form-card,
-  .meal-form-card {
-    padding: 16px;
-  }
+    .hero-logo {
+        width: 150px;
+    }
 
-  .carousel,
-  .carousel-inner,
-  .carousel-item,
-  .carousel-item img {
-    min-height: 180px;
-  }
+    /* ---------- MENU ---------- */
+
+    .nav-links {
+        gap: 2px 4px;
+    }
+
+    .nav-links a,
+    .nav-links button {
+        padding: 6px 7px;
+        font-size: 0.76rem;
+    }
+
+    /* ---------- HERO ---------- */
+
+    .hero-panel {
+        padding: 18px 13px;
+        border-radius: 16px;
+    }
+
+    .hero-copy h1 {
+        font-size: 1.45rem;
+        line-height: 1.18;
+    }
+
+    .hero-copy p {
+        font-size: 0.87rem;
+        line-height: 1.55;
+    }
+
+    /* ---------- BOTÕES ---------- */
+
+    .btn,
+    button {
+        padding: 10px 13px;
+        font-size: 0.88rem;
+    }
+
+    /* ---------- CARDS ---------- */
+
+    .mini-card,
+    .metric-card,
+    .feedback-card,
+    .step-card,
+    .testimonial-card,
+    .auth-panel,
+    .profile-summary,
+    .meal-intro,
+    .profile-form-card,
+    .meal-form-card {
+        padding: 14px;
+    }
+
+    /* ---------- CAROUSEL ---------- */
+
+    .carousel,
+    .carousel-inner,
+    .carousel-item {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .carousel-item img {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        object-fit: cover;
+    }
 }
 
-.carousel,
-.carousel-inner,
-.carousel-item,
-.carousel-item img {
-  max-width: 100%;
-  width: 100%;
+
+/* =========================================================
+   PROTEÇÃO EXTRA CONTRA ELEMENTOS ESTOURANDO A TELA
+   ========================================================= */
+
+.page-shell,
+.top-nav,
+.site-header,
+.hero-panel,
+.hero-copy,
+.card,
+.feature-card,
+.step-card,
+.testimonial-card,
+.dashboard-grid,
+.feature-grid,
+.showcase-grid,
+.steps-grid,
+.testimonials-grid {
+    min-width: 0;
+    max-width: 100%;
 }
+
+input,
+select,
+textarea {
+    width: 100%;
+    max-width: 100%;
+}
+
+table {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    display: block;
+}
+
+pre,
+code {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+
+/* =========================================================
+   CAROUSEL - VERSÃO FINAL
+   ========================================================= */
 
 .carousel {
-  position: relative;
-  overflow: hidden;
-  border-radius: 20px;
-  margin: 0 auto;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 20px;
 }
 
 .carousel-inner {
-  display: flex;
-  align-items: stretch;
+    width: 100%;
+    display: flex;
+    align-items: stretch;
 }
 
 .carousel-item {
-  min-width: 100%;
-  display: block;
+    min-width: 100%;
+    width: 100%;
+    display: block;
 }
 
 .carousel-item img {
-  height: auto;
-  object-fit: cover;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
 }
 
 .carousel-control-prev,
 .carousel-control-next {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: rgba(22, 119, 27, 0.82);
-  border: none;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(22, 119, 27, 0.82);
+    border: none;
 }
 
 .carousel-control-prev:hover,
 .carousel-control-next:hover {
-  background: rgba(22, 119, 27, 1);
-}
-
-@media (max-width: 900px) {
-  .carousel {
-    max-width: 100%;
-  }
+    background: rgba(22, 119, 27, 1);
 }
 
 @media (max-width: 600px) {
-  .carousel {
-    border-radius: 14px;
-  }
 
-  .carousel-control-prev,
-  .carousel-control-next {
-    width: 34px;
-    height: 34px;
-  }
+    .carousel {
+        border-radius: 14px;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 32px;
+        height: 32px;
+    }
 }
