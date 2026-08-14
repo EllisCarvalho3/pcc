@@ -1489,14 +1489,12 @@ a {
 
     .nav-links {
         gap: 3px 6px;
-        align-items: center;
     }
 
     .nav-links a,
     .nav-links button {
         padding: 7px 8px;
         font-size: 0.8rem;
-        align-items: center;
     }
 
     /* ---------- HERO ---------- */
@@ -1628,7 +1626,6 @@ a {
     .site-footer {
         padding-left: 10px;
         padding-right: 10px;
-        align-items: center;
     }
 
     /* ---------- LOGO ---------- */
@@ -1653,8 +1650,6 @@ a {
     .nav-links button {
         padding: 6px 7px;
         font-size: 0.76rem;
-        align-items: center;
-        padding-left: 100px;
     }
 
     /* ---------- HERO ---------- */
