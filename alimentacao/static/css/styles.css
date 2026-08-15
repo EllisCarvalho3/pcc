@@ -2854,7 +2854,7 @@ button[type="submit"]:hover {
 
 :root[data-theme="dark"] .btn-secundario {
     background: #233128;
-    color: var(--texto);
+    color: var(--texto); 
     border: 1px solid var(--borda);
 }
 
