@@ -133,7 +133,7 @@ body::before {
     max-width:100%;
     height:auto;
 
-    background:rgba(22,119,27,.10);
+    background:#ffffff00;
 
     padding:18px;
 
@@ -146,6 +146,7 @@ body::before {
 }
 
 
+/* LOGO DO SISTEMA EM HOME.HTML */
 
 
 
