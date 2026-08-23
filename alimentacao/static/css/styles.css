@@ -121,8 +121,6 @@ body::before {
 
 
 
-/* LOGO DO SISTEMA EM HOME.HTML */
-
 .hero-visual{
     display:flex;
     justify-content:center;
@@ -135,7 +133,7 @@ body::before {
     max-width:100%;
     height:auto;
 
-    background:#fff;
+    background:#ffffff00;
 
     padding:18px;
 
@@ -2179,16 +2177,6 @@ code {
 
 
 
-
-/* =========================================================
-   NUTTRAEA — SISTEMA DE TEMA CLARO / ESCURO
-   ========================================================= */
-
-
-/* =========================================================
-   1. CORES DO TEMA CLARO
-   ========================================================= */
-
 :root {
     color-scheme: light;
  --verde: #4CAF50;
@@ -2204,9 +2192,6 @@ code {
 }
 
 
-/* =========================================================
-   2. CORES DO TEMA ESCURO
-   ========================================================= */
 
 :root[data-theme="dark"] {
     color-scheme: dark;
@@ -2246,9 +2231,6 @@ code {
 }
 
 
-/* =========================================================
-   3. TRANSIÇÃO ENTRE OS TEMAS
-   ========================================================= */
 
 html,
 body,
@@ -2285,9 +2267,6 @@ button,
 }
 
 
-/* =========================================================
-   4. FUNDO GERAL
-   ========================================================= */
 
 html,
 body {
@@ -2299,9 +2278,6 @@ body {
 }
 
 
-/* =========================================================
-   5. HEADER / NAVBAR
-   ========================================================= */
 
 .site-header {
     background-color: var(--header-bg);
@@ -2332,9 +2308,6 @@ body {
 }
 
 
-/* =========================================================
-   6. CONTEÚDO
-   ========================================================= */
 
 .page-shell {
     background-color: var(--fundo);
@@ -2342,9 +2315,6 @@ body {
 }
 
 
-/* =========================================================
-   7. TÍTULOS E TEXTOS
-   ========================================================= */
 
 h1,
 h2,
@@ -2368,10 +2338,6 @@ p {
 }
 
 
-/* =========================================================
-   8. CARDS
-   ========================================================= */
-
 .card,
 .feature-card,
 .step-card,
@@ -2394,9 +2360,6 @@ p {
 }
 
 
-/* =========================================================
-   9. PILLS / ETIQUETAS
-   ========================================================= */
 
 .summary-pill,
 .highlight-pill,
@@ -2409,9 +2372,6 @@ p {
 }
 
 
-/* =========================================================
-   10. CAMPOS DE FORMULÁRIO
-   ========================================================= */
 
 input,
 select,
@@ -2437,10 +2397,6 @@ textarea:focus {
 }
 
 
-/* =========================================================
-   11. BOTÕES
-   ========================================================= */
-
 .btn-primary,
 .btn-success,
 button[type="submit"] {
@@ -2457,9 +2413,6 @@ button[type="submit"]:hover {
 }
 
 
-/* =========================================================
-   12. FOOTER
-   ========================================================= */
 
 .site-footer {
     background-color: var(--footer-bg);
@@ -2480,15 +2433,6 @@ button[type="submit"]:hover {
 }
 
 
-/* =========================================================
-   13. BOTÃO DE TROCA DE TEMA
-   ========================================================= */
-
-/*
-   IMPORTANTE:
-   O input é escondido para que NÃO apareça o checkbox
-   azul padrão do navegador.
-*/
 
 .theme-switch {
     position: relative;
@@ -2503,7 +2447,6 @@ button[type="submit"]:hover {
 }
 
 
-/* Esconde completamente o checkbox */
 
 .theme-switch input,
 .switch.theme-switch input {
@@ -2523,7 +2466,6 @@ button[type="submit"]:hover {
 }
 
 
-/* Corpo do botão */
 
 .theme-switch .slider {
     position: absolute;
@@ -2546,10 +2488,6 @@ button[type="submit"]:hover {
         box-shadow 0.4s ease;
 }
 
-
-/* =========================================================
-   LUA / SOL
-   ========================================================= */
 
 .theme-switch .slider::before {
     content: "";
@@ -2578,9 +2516,6 @@ button[type="submit"]:hover {
 }
 
 
-/* =========================================================
-   TEMA CLARO — SOL
-   ========================================================= */
 
 .theme-switch input:checked + .slider {
     background-color: #51a95a;
@@ -2594,9 +2529,6 @@ button[type="submit"]:hover {
 }
 
 
-/* =========================================================
-   ESTRELAS
-   ========================================================= */
 
 .theme-switch .star {
     position: absolute;
@@ -2629,17 +2561,12 @@ button[type="submit"]:hover {
 }
 
 
-/* Estrelas desaparecem no tema claro */
 
 .theme-switch input:checked ~ .slider .star {
     opacity: 0;
     transform: scale(0.5);
 }
 
-
-/* =========================================================
-   NUVEM
-   ========================================================= */
 
 .theme-switch .cloud {
     position: absolute;
@@ -2657,16 +2584,12 @@ button[type="submit"]:hover {
 }
 
 
-/* Nuvem aparece no tema claro */
 
 .theme-switch input:checked ~ .slider .cloud {
     opacity: 1;
 }
 
 
-/* =========================================================
-   HOVER
-   ========================================================= */
 
 .theme-switch:hover .slider {
     box-shadow:
@@ -2674,19 +2597,12 @@ button[type="submit"]:hover {
 }
 
 
-/* =========================================================
-   FOCO PELO TECLADO
-   ========================================================= */
 
 .theme-switch input:focus-visible + .slider {
     outline: 2px solid var(--verde-principal);
     outline-offset: 3px;
 }
 
-
-/* =========================================================
-   14. POSIÇÃO DO BOTÃO AO LADO DA NAVEGAÇÃO
-   ========================================================= */
 
 .nav-actions {
     display: flex;
@@ -2697,9 +2613,6 @@ button[type="submit"]:hover {
 }
 
 
-/* =========================================================
-   15. TEMA ESCURO — AJUSTES ESPECÍFICOS
-   ========================================================= */
 
 :root[data-theme="dark"] .site-header.scrolled {
     background-color: rgba(17, 26, 20, 0.94);
@@ -2781,11 +2694,6 @@ button[type="submit"]:hover {
 }
 
 
-
-/* =========================================================
-   TEMA ESCURO — CORREÇÃO DAS LISTAS E FORMULÁRIOS
-   Adicionar no FINAL do styles.css
-   ========================================================= */
 
 :root[data-theme="dark"] .historico li,
 :root[data-theme="dark"] .history-list li,
