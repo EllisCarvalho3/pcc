@@ -99,6 +99,11 @@ pcc/
 
 ---
 
+# Acesse o Nuttraea via web
+https://nuttraea.onrender.com/
+
+---
+
 # Como executar o projeto
 
 ## Clonar o repositório
