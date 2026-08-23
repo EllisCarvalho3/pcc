@@ -133,7 +133,7 @@ body::before {
     max-width:100%;
     height:auto;
 
-    background:#ffffff00;
+    background:rgba(22,119,27,.10);
 
     padding:18px;
 
