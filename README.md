@@ -102,6 +102,10 @@ pcc/
 # Acesse o Nuttraea via web
 https://nuttraea.onrender.com/
 
+```bash
+Obs.: lembre-se de pesquisar oa alimentos traduzindo-os para o inglês 😉
+```
+
 ---
 
 # Como executar o projeto
