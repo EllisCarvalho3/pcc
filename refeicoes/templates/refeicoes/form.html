@@ -1234,16 +1234,35 @@
     limparFiltro();
   }
 
+  function normalizarTexto(texto = "") {
+    return texto
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[\-_]/g, " ")
+      .replace(/[^a-z0-9\s]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
   function limparFiltro() {
     foodCards.forEach((card) => {
       card.hidden = false;
+    });
+
+    categoryPanels.forEach((panel) => {
+      panel.classList.add("active");
+    });
+
+    categoryTabs.forEach((tab) => {
+      tab.classList.remove("active");
     });
 
     emptyState.hidden = true;
   }
 
   function filtrarAlimentos() {
-    const termo = buscarGuia.value.trim().toLowerCase();
+    const termo = normalizarTexto(buscarGuia.value);
     let encontrados = 0;
 
     if (!termo) {
@@ -1260,7 +1279,9 @@
     });
 
     foodCards.forEach((card) => {
-      const texto = card.dataset.search.toLowerCase();
+      const titulo = card.querySelector("h3")?.textContent || "";
+      const descricao = card.querySelector("p")?.textContent || "";
+      const texto = normalizarTexto(`${card.dataset.search} ${titulo} ${descricao}`);
       const encontrado = texto.includes(termo);
 
       card.hidden = !encontrado;
