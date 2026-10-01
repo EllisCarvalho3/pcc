@@ -1,4 +1,4 @@
-# Nuttraea 
+# Nuttrium 
 
 Sistema web desenvolvido em **Python** utilizando o framework **Django**, destinado ao monitoramento do consumo calórico diário de estudantes, promovendo maior consciência alimentar por meio do registro de refeições, cálculo automático de calorias e definição de metas nutricionais personalizadas.
 
@@ -17,7 +17,7 @@ Sistema web desenvolvido em **Python** utilizando o framework **Django**, destin
 
 # Sobre o projeto
 
-O **Nuttraea** é uma plataforma web desenvolvida para auxiliar estudantes no acompanhamento da alimentação diária de forma simples, intuitiva e acessível.
+O **Nuttrium** é uma plataforma web desenvolvida para auxiliar estudantes no acompanhamento da alimentação diária de forma simples, intuitiva e acessível.
 
 O sistema permite registrar refeições consumidas ao longo do dia, calcular automaticamente o total de calorias ingeridas, comparar esse valor com uma meta calórica personalizada e fornecer feedback nutricional ao usuário.
 
@@ -99,11 +99,11 @@ pcc/
 
 ---
 
-# Acesse o Nuttraea via web
-https://nuttraea.onrender.com/
+# Acesse o Nuttrium via web
+https://nuttrium.onrender.com/
 
 ```bash
-Obs.: lembre-se de pesquisar oa alimentos traduzindo-os para o inglês 😉
+Obs.: lembre-se de pesquisar os alimentos traduzindo-os para o inglês 😉
 ```
 
 ---
@@ -183,28 +183,14 @@ Ao permitir o monitoramento diário da alimentação, o Nuttraea busca incentiva
 
 ---
 
-# Equipe
-
-**Orientador**
-
-- Prof. Reinaldo Monteiro Cotrim
-
-**Equipe do projeto**
-
-- Ellis Carvalho Xavier
-- Álvaro Guedes
-- Anna Lívia Magalhães
-
----
-
 # Desenvolvimento do software
 
-Embora o projeto tenha sido desenvolvido em equipe no contexto acadêmico, todo o desenvolvimento do software, incluindo análise, modelagem, implementação do sistema, interface e integração entre os módulos, foi realizado por:
+- Orientador: Prof. Reinaldo Monteiro Cotrim
 
-**Ellis Carvalho Xavier**
+- Desenvolvedora: Ellis Carvalho Xavier
 
 ---
 
 # Licença
 
-Projeto desenvolvido como requisito parcial para a aprovação no Curso Técnico em Informática para Internet.
+Projeto desenvolvido como requisito parcial para a aprovação no Curso Técnico em Informática para Internet - IF Baiano Campus Guanambi
