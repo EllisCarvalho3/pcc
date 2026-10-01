@@ -9,7 +9,7 @@ Sistema web desenvolvido em **Python** utilizando o framework **Django**, destin
 *A imagem abaixo apresenta uma visão geral da interface do sistema.*
 
 <p align="center">
-    <img src="alimentacao/templates/imagens/demonstracao_sistema_.png" alt="Tela inicial do sistema" width="600">
+    <img src="alimentacao/templates/imagens/demonstracao_nuttrium.jpg" alt="Tela inicial do sistema" width="600">
 </p>
 
 
