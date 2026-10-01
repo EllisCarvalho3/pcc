@@ -12,7 +12,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Nuttraea | Monitoramento calórico</title>
+    <title>Nuttrium | Monitoramento calórico</title>
 
     <link
         rel="icon"
@@ -35,7 +35,7 @@
         (function () {
 
             const temaSalvo =
-                localStorage.getItem('nuttraea-theme');
+                localStorage.getItem('nuttrium-theme');
 
             if (temaSalvo === 'dark') {
 
@@ -99,13 +99,13 @@
             <a
                 class="brand-link"
                 href="{% url 'home' %}"
-                aria-label="Nuttraea - Página inicial"
+                aria-label="Nuttrium - Página inicial"
             >
 
                 <img
                     class="brand-logo"
                     src="{% static 'images/logo.png' %}"
-                    alt="Nuttraea logo"
+                    alt="Nuttrium logo"
                 >
 
             </a>
@@ -304,7 +304,7 @@
             <div>
 
                 <p class="eyebrow">
-                    Copyright &copy; 2026 Ellis Carvalho Xavier | Nuttraea
+                    Copyright &copy; 2026 Ellis Carvalho Xavier | Nuttrium
                 </p>
 
                 <h3>
@@ -735,7 +735,7 @@
                 function salvarTema(tema) {
 
                     localStorage.setItem(
-                        'nuttraea-theme',
+                        'nuttrium-theme',
                         tema
                     );
 
@@ -748,7 +748,7 @@
 
                 const temaSalvo =
                     localStorage.getItem(
-                        'nuttraea-theme'
+                        'nuttrium-theme'
                     );
 
 

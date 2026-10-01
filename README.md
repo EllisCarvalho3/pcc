@@ -111,7 +111,6 @@ Obs.: lembre-se de pesquisar os alimentos traduzindo-os para o inglês 😉
 # Como executar o projeto
 
 ## Clonar o repositório
-
 ```bash
 git clone https://github.com/EllisCarvalho3/pcc.git
 ```
@@ -179,7 +178,7 @@ http://127.0.0.1:8000/
 
 O desenvolvimento do sistema fundamenta-se na promoção da alimentação saudável entre estudantes, considerando que a rotina escolar frequentemente dificulta o planejamento alimentar e favorece o consumo de alimentos ultraprocessados.
 
-Ao permitir o monitoramento diário da alimentação, o Nuttraea busca incentivar escolhas alimentares mais conscientes e contribuir para o bem-estar e o desempenho acadêmico dos usuários.
+Ao permitir o monitoramento diário da alimentação, o Nuttrium busca incentivar escolhas alimentares mais conscientes e contribuir para o bem-estar e o desempenho acadêmico dos usuários.
 
 ---
 
